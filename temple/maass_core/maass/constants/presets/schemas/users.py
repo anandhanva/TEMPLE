@@ -1,9 +1,3 @@
-DB_NAME = 'temple'
-ENCRYPTION_KEY = "WHENTHESKIESAREBLUESEEYOUONCEAGA"
-# LOG_TABLE = 'log'
-
-
-#user scheema
 userSchema = {
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"}, 
@@ -19,3 +13,17 @@ userSchema = {
     'txntype': {'type':'string'},
     'hash': {'type':'string'},
     'checksum': {'type':'string'}}
+
+
+checkUserRespdatasuccess = {
+                    "status":200,
+                    "respType":"Success",
+                    "response": "Access Granted"
+}
+
+
+checkUserRespdatafail = {
+                    "status":500,
+                    "respType":"Failed",
+                    "response": "Access Denied"
+}
