@@ -1,10 +1,4 @@
-DB_NAME = 'temple'
-ENCRYPTION_KEY = "WHENTHESKIESAREBLUESEEYOUONCEAGA"
-# LOG_TABLE = 'log'
-
-
-#user scheema
-userSchema = {
+loanschema = {
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"}, 
     'apiname': {'type':'string'},
@@ -12,7 +6,7 @@ userSchema = {
     'partner_reqid': {'type':'string'},
     'req_timestamp': {'type':'integer'},
     'requestdata': {'username': {'type':'string'},
-                     'password': {'type':'string'}},
+                     'phonenum': {'type':'integer'}},
     'authtoken': {'type':'string'},
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
