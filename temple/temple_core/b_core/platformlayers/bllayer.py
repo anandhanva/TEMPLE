@@ -16,7 +16,7 @@ def processLoginRequest(req):
         hashchecksumNdata = constantslayer.parseRequestHCRD(request)
         print("HASHHHH",hashchecksumNdata)
     except Exception as e:
-        maasslogger(req, str(e))
+        maasslogger(req, str(e),request['modulename'],"SUCCESS")
         return responses.standardErrorResponseToBE("LOGIN",str(e))
     #Create hash from data
     try:
@@ -50,9 +50,9 @@ def processLoginRequest(req):
         print(">>>>>>Request",request)
         comparedResults['em_reqid'] = request['em_reqid']
         comparedResults['em_custid'] = request['em_custid']
-        comparedResults['resp_frm_bank'] = ['resp_frm_bank']
-        comparedResults['resp_frm_ewire'] = ['resp_frm_ewire']
-        comparedResults['resp_frm_cbs'] = ['resp_frm_cbs']
+        comparedResults['resp_frm_bank'] = ""
+        comparedResults['resp_frm_ewire'] = comparedResults['respfrmdb']
+        comparedResults['resp_frm_cbs'] = ""
         comparedResults['resp_frm_ext'] = ['resp_frm_ext']
         comparedResults['resp_frm_maass'] = ['resp_frm_maass']
         comparedResults['resp_frm_blockc'] = ['resp_frm_blockc']
