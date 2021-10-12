@@ -1,3 +1,4 @@
+from flask.globals import request
 from b_core.maass import maasslogger
 import json
 from b_core.statics import staticfunctions,staticconstants
@@ -43,7 +44,9 @@ def convinptodict(input):
 def createHashfromData(request, modulename):
     #Extract Data
     hashabledata = convinptodict(request)
-    rethashableonly = hashabledata['requestdata']
+    print("HASHABLEDATA",hashabledata)
+    rethashableonly = hashabledata['username']
+    print("RETHASHABLEONLY",rethashableonly)
     #Prepare Data
     hashinput = preparehash(rethashableonly)
     #Convert to Hash
@@ -62,9 +65,10 @@ def preparehash(dataset):
 
 
 def callmaass4hashing(hashinput, modulename):
-    urls = staticsfunctions.getUrlsbyModule(modulename)
-    configparams = staticsfunctions.commonValues
-    respfrmmasshash = staticsfunctions.performRequest(standardresponses.checkUserHeaders,standardresponses.checkUserReqType,standardresponses.checkUserMethodType,standardresponses.checkUserEndpoint)
+    requestDataJson=json.dumps(hashinput)
+    urls = staticfunctions.getUrlsbyModule(modulename)
+    configparams = standardresponses.commonValues
+    respfrmmasshash = staticfunctions.performRequest(standardresponses.checkUserServers,standardresponses.checkUserHeaders,requestDataJson,standardresponses.checkUserReqType,standardresponses.checkUserMethodType,standardresponses.checkUserEndpoint)
 
 def checkuserfrmdb(request):
     try:
@@ -72,7 +76,7 @@ def checkuserfrmdb(request):
         dbQuery = {"username":request['requestdata']['username'],"password":request['requestdata']['password']}
         request['database'] = "buildd"
         request['collection'] = "users"
-        usrSelect = staticsfunctions.MongoAPI(request).readOne(dbQuery)
+        usrSelect = staticfunctions.MongoAPI(request).readOne(dbQuery)
         if (request['requestdata']['username'] == usrSelect['username']) & (request['requestdata']['password'] == usrSelect['password']):
             datadict = {"username":usrSelect['username'],
                         # "user_id": usrSelect['userid'],

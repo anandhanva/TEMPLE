@@ -2,9 +2,6 @@ from flask.globals import request
 from b_core.platformlayers import constantslayer
 from b_core.responsemaster import responses
 from b_core.maass import maasslogger
-from b_core.statics import staticconstants
-from b_core.statics import staticfunctions
-from b_core.statics.dbconstants import MongoAPI
 from b_core.statics import staticfunctions
 
 
@@ -18,15 +15,15 @@ def processLoginRequest(req):
         hashchecksumNdata = constantslayer.parseRequestHCRD(request)
         print("HASHHHH",hashchecksumNdata)
     except Exception as e:
-        maasslogger(request, str(e))
+        maasslogger(req, str(e))
         return responses.standardErrorResponseToBE("LOGIN",str(e))
     #Create hash from data
     try:
-        createdhash = constantslayer.createHashfromData(hashchecksumNdata['data'],"LOGIN")
+        createdhash = constantslayer.createHashfromData(hashchecksumNdata['datafrm'],request['modulename'])
         print("HASH@@@",createdhash)
-    except Exception as ex:
-        maasslogger(request, str(ex))
-        return responses.standardErrorResponseToBE("CREATELOGINHASH",str(ex))
+    except Exception as e:
+        # maasslogger(req, str(e))
+        return responses.standardErrorResponseToBE("CREATELOGINHASH",str(e))
     #Decode hash obtained from input and from created hash and compare
     valHash = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
     if(valHash == "true"):
