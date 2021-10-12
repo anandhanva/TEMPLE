@@ -1,1 +1,7 @@
 userLogin = "templeloginapi"
+addTempleapi = "templeaddapi"
+listTempleapi = "templelistapi"
+createTempleAdminapi = "templeadminapi"
+listTempleAdminapi = "templeadminlistapi"
+createAccountapi = "templecreateaccountapi"
+listAccountapi = "templeaccountlistapi"

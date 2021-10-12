@@ -205,8 +205,8 @@ def validateReq(req):
             valResp['status'] = 200
             
         else:
-            responses.standardErrorResponseToUI["sourceoflog"] = "fail"
-            valResp = responses.standardErrorResponseToUI()
+            responses.standardErrorResponseToBE["sourceoflog"] = "fail"
+            valResp = responses.standardErrorResponseToBE()
 
         
         logging.info(" :::VALIDATION SUCCESSFULL::: ",valResp)
