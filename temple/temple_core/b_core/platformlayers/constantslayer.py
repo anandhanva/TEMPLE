@@ -45,12 +45,15 @@ def createHashfromData(request, modulename):
     #Extract Data
     hashabledata = convinptodict(request)
     print("HASHABLEDATA",hashabledata)
-    rethashableonly = hashabledata['username']
+    rethashableonly = hashabledata
     print("RETHASHABLEONLY",rethashableonly)
     #Prepare Data
     hashinput = preparehash(rethashableonly)
+    print("HASHINPUT",hashinput)
+    hashinput = json.dumps(hashinput)
     #Convert to Hash
     hashh = callmaass4hashing(hashinput, modulename)
+    print("HASSHH***",hashh)
     #Return Hash
     return hashh
 
@@ -65,10 +68,21 @@ def preparehash(dataset):
 
 
 def callmaass4hashing(hashinput, modulename):
-    requestDataJson=json.dumps(hashinput)
-    urls = staticfunctions.getUrlsbyModule(modulename)
-    configparams = standardresponses.commonValues
-    respfrmmasshash = staticfunctions.performRequest(standardresponses.checkUserServers,standardresponses.checkUserHeaders,requestDataJson,standardresponses.checkUserReqType,standardresponses.checkUserMethodType,standardresponses.checkUserEndpoint)
+    # requestDataJson=json.dumps(hashinput)
+    # print("REQUESTDATA",requestDataJson)
+    configparams = staticfunctions.getUrlsbyModule(modulename)
+    
+    # configparams = json.dumps(configparams)
+    print("CONFIG",configparams)
+    logdata = {}
+    logdata['parameters'] = configparams
+    logdata['data'] = hashinput
+    print("LOGDATA",logdata)
+    print("LOGDATA",type(logdata))
+    respfrmmasshash = staticfunctions.performRequest(logdata)
+    # checkUserServers,standardresponses.checkUserHeaders,requestDataJson,standardresponses.checkUserReqType,standardresponses.checkUserMethodType,standardresponses.checkUserEndpoint)
+    return respfrmmasshash
+    print("RESPFROMMAASS",respfrmmasshash)
 
 def checkuserfrmdb(request):
     try:
