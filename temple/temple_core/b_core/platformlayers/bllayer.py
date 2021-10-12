@@ -19,13 +19,13 @@ def processLoginRequest(req):
         return responses.standardErrorResponseToBE("LOGIN",str(e))
     #Create hash from data
     try:
-        createdhash = constantslayer.createHashfromData(hashchecksumNdata['datafrm'],request['modulename'])
+        createdhash = constantslayer.createHashfromData(request,"HASH_MO")
         print("HASH@@@",createdhash)
     except Exception as e:
         # maasslogger(req, str(e))
         return responses.standardErrorResponseToBE("CREATELOGINHASH",str(e))
     #Decode hash obtained from input and from created hash and compare
-    valHash = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
+    # valHash = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
     if(valHash == "true"):
         maasslogger(request, "Hashing Passed")
         # checking checksum

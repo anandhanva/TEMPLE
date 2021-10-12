@@ -1,13 +1,21 @@
 import datetime
 from re import A
+import re
 from flask import request,Response
 from jsonschema.validators import validate
 import requests,json
 import logging
+import hashlib
 from b_core.platformlayers import constantslayer,standardresponses
 from b_core.statics import staticfunctions
 from b_core.responsemaster import responses
+from base64 import b64decode
+from base64 import b64encode
 from b_core.statics import apiconstants,staticconstants
+from Crypto.Cipher import AES
+from hashlib import md5
+from Crypto.Random import get_random_bytes
+from Crypto.Util.Padding import pad, unpad
 from b_core.statics.urlconstants import ENDPOINT, IP_DEV
 
 
@@ -211,56 +219,134 @@ def validateReq(req):
     except Exception as e:
         return str(e)
 
-    
+class AESCipher:
+    def __init__(self, key):
+        self.key = md5(key.encode('utf8')).digest()
+
+    def encrypt(self, data):
+        iv = get_random_bytes(AES.block_size)
+        print(iv)
+        self.cipher = AES.new(self.key, AES.MODE_CBC,iv)
+        return b64encode(self.cipher.encrypt(pad(data.encode('utf-8'),AES.block_size))).decode('utf-8')
+
+    def decrypt(self, data):
+        raw = b64decode(data)
+        self.cipher = AES.new(self.key, AES.MODE_CBC, raw[:AES.block_size])
+        return unpad(self.cipher.decrypt(raw[AES.block_size:]), AES.block_size).decode('utf-8')    
 
 
 
 
-def performRequest(request, modulename):
-    server = request['parameters']['LOGIN']['server']
-    headerz = request['parameters']['LOGIN']['headerz']
-    endpoint = request['parameters']['LOGIN']['endpoint']
-    reqdata = request['data']['requestdata']
-    reqType = request['parameters']['LOGIN']['reqtype']
-    methodType = request['parameters']['LOGIN']['methodtype']
-   
-    if(reqType == "SSL"):
-        url = "https://" + server + endpoint
+def performRequest(request):
 
-    else:
-        url = "http://" + server + endpoint
 
-    responseofreq = ""
+    try:
 
-    if(methodType == "POST"):
+        print("Request>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",request)
+
+        server = request['parameters']['server']
+        print("server",server)
+
+        headerz = request['parameters']['headerz']
+        print("headerz",headerz)
+
+        endpoint = request['parameters']['endpoint']
+        print("endpoint",endpoint)
+
+        reqdata = request['data']
+        print("reqdata",reqdata)
+
+        reqType = request['parameters']['reqtype']
+        print("reqType",reqType)
+
+        methodType = request['parameters']['methodtype']
+        print("methodType",methodType)
+
+
         
-        print("DATA",str(reqdata))
-        print("URL",str(url))
-        print("HEADER",str(headerz))
-        payload = json.dumps(reqdata)
+        
+        if(reqType == "SSL"):
+            url = "https://" + server + endpoint
 
-        print("PL = ",payload)
+        else:
+            url = "http://" + server + endpoint
 
-        try:
-            r = requests.post(url, data = payload, headers=headerz)
-           
-            if(r.status_code == 200):
-                return r.text
-            else:
-                print(r.text)
-                return {"Error":"Api Failed"}
-            responseofreq = r
-        except Exception as e:
-            return  str(e)
+        responseofreq = ""
+
+        if(methodType == "POST"):
+            
+            print("DATA",str(reqdata))
+            print("URL",str(url))
+            print("HEADER",str(headerz))
+            payload = json.dumps(reqdata)
+
+            print("PL = ",payload)
+
+            try:
+                r = requests.post(url, data = payload, headers=headerz)
+            
+                if(r.status_code == 200):
+                    return r.text
+                else:
+                    print(r.text)
+                    return {"Error":"Api Failed"}
+                responseofreq = r
+            except Exception as e:
+                return  str(e)
+        else:
+            if(methodType == "GET"):
+                r = requests.get(url, data=reqdata, headers=headerz)
+                if(r.status_code == 200):
+                    return responses.upGetResponse
+                else:
+                    return responses.standardErrorResponseToUI
+                responseofreq = r
+        return responseofreq
+
+    except Exception as e:
+        print("EXCEPTION",str(e))
+        return str(e)
+
+    except ValueError as e:
+        print("EXCEPTION VALUE ERROR",str(e))
+        return str(e)
+
+def checkSum(value):
+        # if  type(value)!= "Dict":
+        #     value = json.dumps(value)
+    hashvalue = hashlib.md5(str(value).encode('utf-8')).hexdigest()
+    # hashValue = hashlib.sha512(value.encode('utf-8')).hexdigest().lower()
+    return hashvalue
+
+def validateHash(requesthash,createdhash):
+    # requesthash = json.loads(requesthash['hash'])
+    decodehash2 = AESCipher(staticconstants.ENCRYPTION_KEY).decrypt(requesthash['hash'])
+
+    #Decode hash from created hash
+    checksum1 = request['checksum']
+
+    checksum2 = checkSum(request['hash'])
+    decodehash1 = AESCipher(staticconstants.ENCRYPTION_KEY).decrypt(createdhash['hash'])
+
+    reqChecksum = checkSum(createdhash['hash'])
+
+    #Compare Checksum and HASHES
+    if decodehash1 == decodehash2:
+
+        return "true"
     else:
-        if(methodType == "GET"):
-            r = requests.get(url, data=reqdata, headers=headerz)
-            if(r.status_code == 200):
-                return responses.upGetResponse
-            else:
-                return responses.standardErrorResponseToUI
-            responseofreq = r
-    return responseofreq
+        return "false"
+
+
+def validatechecksum(requestchecksum,createdchecksum):
+    checksum1 = checkSum(requestchecksum)
+    checksum2 = checkSum(createdchecksum)
+    if checksum1 == checksum2:
+        return "true"
+    else:
+        return "false"
+
+
 
 
 

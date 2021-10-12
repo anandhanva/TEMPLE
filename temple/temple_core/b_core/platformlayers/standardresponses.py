@@ -4,18 +4,27 @@ from b_core.statics import ipconstants
 
 commonValues = {}
 commonValues['LOGIN'] = {
-                            "modulename":"checkUser",
+                            # "modulename":"checkUser",
                             "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/user",
+                            "endpoint" : "/hash",
                             "reqtype" : "LOGINREQ",
                             "methodtype" : "POST"
                         }
 commonValues['CORELOGIN']={
-                            "checkUserServer": "",
-                            "checkUserHeader":"",
-                            "checkUserReqType":"",
-                            "checkUserMethodType":"",
-                            "checkUserEndpoint":"/"
+                            "checkUserServer": ipconstants.templeBcoreServers,
+                            "checkUserHeader":{"Content-Type":"application/json"},
+                            "checkUserReqType":"/checkuserLogin",
+                            "checkUserMethodType":"LOGINREQ",
+                            "checkUserEndpoint":"POST"
                             }
+
+commonValues['HASH_MO'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.hashServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/hashrequest",
+                            "reqtype" : "HASHREQ",
+                            "methodtype" : "POST"
+                        }
                     
