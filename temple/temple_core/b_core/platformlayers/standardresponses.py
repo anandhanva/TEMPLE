@@ -14,9 +14,9 @@ commonValues['LOGIN'] = {
 commonValues['CORELOGIN']={
                             "checkUserServer": ipconstants.templeBcoreServers,
                             "checkUserHeader":{"Content-Type":"application/json"},
-                            "checkUserReqType":"/checkuserLogin",
-                            "checkUserMethodType":"LOGINREQ",
-                            "checkUserEndpoint":"POST"
+                            "checkUserEndpoint":"/checkuserLogin",
+                            "checkUserReqType":"LOGINREQ",
+                            "checkUserMethodType":"POST",
                             }
 
 commonValues['HASH_MO'] = {

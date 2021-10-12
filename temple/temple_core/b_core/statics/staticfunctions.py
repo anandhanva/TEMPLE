@@ -7,7 +7,7 @@ import requests,json
 import logging
 import hashlib
 from b_core.platformlayers import constantslayer,standardresponses
-from b_core.statics import staticfunctions
+from b_core.statics import staticfunctions,dbconstants
 from b_core.responsemaster import responses
 from base64 import b64decode
 from base64 import b64encode
@@ -87,17 +87,17 @@ class CommonResponse:
             if respdata["em_reqid"] is None or respdata["em_reqid"] is None:
                  raise Exception("Attribute error,request param null")
             else:
-              self.em_reqid = respdata["em_reqid"]
-            self.em_custid = respdata["em_custid"]
-            self.resp_frm_bank = respdata["resp_frm_bank"]
-            self.resp_frm_ewire = respdata["resp_frm_ewire"]
-            self.resp_frm_cbs = respdata["resp_frm_cbs"]
-            self.resp_frm_ext = respdata["resp_frm_ext"]
-            self.resp_frm_maass = respdata["resp_frm_maass"]
-            self.resp_frm_blockc = respdata["resp_frm_blockc"]
-            self.resp_frm_mojaloop = respdata["resp_frm_mojaloop"]
-            self.resp_frm_rulengn = respdata["resp_frm_rulengn"]
-            self.timestamp = str(datetime.datetime.now())        
+                self.em_reqid = respdata["em_reqid"]
+                self.em_custid = respdata["em_custid"]
+                self.resp_frm_bank = respdata["resp_frm_bank"]
+                self.resp_frm_ewire = respdata["resp_frm_ewire"]
+                self.resp_frm_cbs = respdata["resp_frm_cbs"]
+                self.resp_frm_ext = respdata["resp_frm_ext"]
+                self.resp_frm_maass = respdata["resp_frm_maass"]
+                self.resp_frm_blockc = respdata["resp_frm_blockc"]
+                self.resp_frm_mojaloop = respdata["resp_frm_mojaloop"]
+                self.resp_frm_rulengn = respdata["resp_frm_rulengn"]
+                self.timestamp = str(datetime.datetime.now())        
 
         except ValueError :
             raise Exception("ValueError exception  while assigning timeStamp")
@@ -118,13 +118,13 @@ def checkrequest(request):
                         "status" : 200,
                         "mimetype" : 'application/json'}
 
-def uitobe_response(resptype):
+def coretobe_response(resptype):
     
     if(resptype['resp_type'] == "SUCCESS"):
-        resptype['Response'] = {"request_status": "SUCCESS", "Status":" Transaction completed Successfully"}
+        resptype['message'] = {"request_status": "SUCCESS", "Status":" Login Successfull"}
         return CommonResponse(resptype).__dict__
     else:
-        respdata = {"request_status": "FAIL", "Status":" Transaction failed with errors"}
+        respdata = {"request_status": "FAIL", "Status":" Login failed with errors"}
 
         return CommonResponse(respdata).__dict__
 
@@ -160,13 +160,13 @@ def successlogreq(reqdata):
     # REQUEST LOGGING
     try:
         
-        loggr = staticfunctions.MongoAPI(reqdata).write(reqdata)
+        loggr = dbconstants.MongoAPI(reqdata).write(reqdata)
 
         
         if(loggr['Status'] == "Successfully Inserted"):
             return 
         else:
-            return responses.standardErrorResponseToUI
+            return responses.standardErrorResponseToBE
 
 
       
@@ -242,25 +242,25 @@ def performRequest(request):
 
     try:
 
-        print("Request>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",request)
+        # print("Request>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",request)
 
         server = request['parameters']['server']
-        print("server",server)
+        # print("server",server)
 
         headerz = request['parameters']['headerz']
-        print("headerz",headerz)
+        # print("headerz",headerz)
 
         endpoint = request['parameters']['endpoint']
-        print("endpoint",endpoint)
+        # print("endpoint",endpoint)
 
         reqdata = request['data']
-        print("reqdata",reqdata)
+        # print("reqdata",reqdata)
 
         reqType = request['parameters']['reqtype']
-        print("reqType",reqType)
+        # print("reqType",reqType)
 
         methodType = request['parameters']['methodtype']
-        print("methodType",methodType)
+        # print("methodType",methodType)
 
 
         
@@ -299,7 +299,7 @@ def performRequest(request):
                 if(r.status_code == 200):
                     return responses.upGetResponse
                 else:
-                    return responses.standardErrorResponseToUI
+                    return responses.standardErrorResponseToBE
                 responseofreq = r
         return responseofreq
 
