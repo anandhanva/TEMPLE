@@ -2,7 +2,7 @@ from b_end.statics.urlconstants import LOGIN
 from b_end.statics import ipconstants
 commonValues = {}
 commonValues['LOGIN'] = {
-                            
+                            "modulename":"checkUser",
                             "server" : ipconstants.checkUser,
                             "headerz" : {"Content-Type":"application/json"},
                             "endpoint" : "/user",

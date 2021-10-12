@@ -47,7 +47,7 @@ def checklogin(req):
         otherdata['parameters'] = obj
         otherdata['data'] = datadict
         print('otherdata', otherdata)
-        BuildBeResp = staticfunctions.performRequest(otherdata, "checkUser")
+        BuildBeResp = staticfunctions.performRequest(otherdata,'checkUser')
         print("ivide ethi 1",BuildBeResp)
         return BuildBeResp
     except ValueError as e:

@@ -163,12 +163,13 @@ def validateReq(req):
     except Exception as e:
         return str(e)
 def performRequest(request, modulename):
-    server = request['parameters']['modulename']['server']
-    headerz = request['parameters']['modulename']['headerz']
-    endpoint = request['parameters']['modulename']['endpoint']
+
+    server = request['parameters']['LOGIN']['server']
+    headerz = request['parameters']['LOGIN']['headerz']
+    endpoint = request['parameters']['LOGIN']['endpoint']
     reqdata = request['data']['requestdata']
-    reqType = request['parameters']['modulename']['reqtype']
-    methodType = request['parameters']['modulename']['methodtype']
+    reqType = request['parameters']['LOGIN']['reqtype']
+    methodType = request['parameters']['LOGIN']['methodtype']
     if(reqType == "SSL"):
         url = "https://" + server + endpoint
     else:
