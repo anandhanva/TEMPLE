@@ -11,8 +11,11 @@ def upGetResponse():
 
     return resp
 
-def standardErrorResponseToUI(src,error):
-    resp = Response(response=json.dumps({"Source":src},{"ERROR":str(error)}),status=200,mimetype='application/json')
+def standardErrorResponseToBE(src,error):
+    respdict = {}
+    respdict['Source']=src
+    respdict['ERROR']=str(error)
+    resp = Response(response=json.dumps(respdict),status=200,mimetype='application/json')
 
     return resp
 

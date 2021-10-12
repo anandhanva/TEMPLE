@@ -4,7 +4,7 @@ from flask import request,Response
 from jsonschema.validators import validate
 import requests,json
 import logging
-from b_core.platformlayers import constantslayer
+from b_core.platformlayers import constantslayer,standardresponses
 from b_core.statics import staticfunctions
 from b_core.responsemaster import responses
 from b_core.statics import apiconstants,staticconstants
@@ -173,6 +173,8 @@ def faillogreq(reqdata):
     reqst = "" + reqdata + ""
     return reqst
 
+def getUrlsbyModule(modulename):
+   return standardresponses.commonValues[modulename]
 
 
 

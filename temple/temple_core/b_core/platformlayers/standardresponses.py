@@ -5,7 +5,7 @@ from b_core.statics import ipconstants
 commonValues = {}
 commonValues['LOGIN'] = {
                             "modulename":"checkUser",
-                            "server" : ipconstants.checkUser,
+                            "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
                             "endpoint" : "/user",
                             "reqtype" : "LOGINREQ",
