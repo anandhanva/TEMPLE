@@ -88,22 +88,22 @@ def callmaass4hashing(hashinput, modulename):
 
 def checkuserfrmdb(request):
     try:
-        print("        REQUEST IVIDE ETHI    ",request)
+        # print("        REQUEST IVIDE ETHI    ",request)
         #Perform username and password validation with database if hashes and checksum are valid
         dbQuery = {"username":request['datafrm']['username'],"password":request['datafrm']['password']}
-        print("           ividethi           ",dbQuery)
+        # print("           ividethi           ",dbQuery)
         request['database'] = "temple"
         request['collection'] = "login"
         usrSelect = dbconstants.MongoAPI(request).readOne(dbQuery)
-        print("     ividethi 2   ",usrSelect)
-        print("     ividethi 2   ",type(usrSelect))
-        print("request********",request)
+        # print("     ividethi 2   ",usrSelect)
+        # print("     ividethi 2   ",type(usrSelect))
+        # print("request********",request)
         if (request['datafrm']['username'] == usrSelect['username']) & (request['datafrm']['password'] == usrSelect['password']):
-            print(">>>>>>>>>>>>>>>>.")
-            print(usrSelect['username'])
-            print(usrSelect['userpic'])
-            print(usrSelect['userRole'])
-            print(usrSelect['userstatus'])
+            # print(">>>>>>>>>>>>>>>>.")
+            # print(usrSelect['username'])
+            # print(usrSelect['userpic'])
+            # print(usrSelect['userRole'])
+            # print(usrSelect['userstatus'])
             datadict = {"username":usrSelect['username'],
                         # "user_id": usrSelect['userid'],
                         "user_prof_pic":usrSelect['userpic'],
@@ -116,7 +116,7 @@ def checkuserfrmdb(request):
             respdict['result'] = "Success"
            
             
-            print("DTA DICT",datadict)
+            # print("DTA DICT",datadict)
 
             return respdict
         else:

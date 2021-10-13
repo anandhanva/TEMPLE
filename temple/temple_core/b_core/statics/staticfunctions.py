@@ -195,6 +195,8 @@ def validateReq(req):
 
         if valdata['apiname']== apiconstants.userLogin:
             validatereq = constantslayer.validateJSON(valdata, staticconstants.userSchema)
+        elif valdata['apiname'] == apiconstants.accStatement:
+            validatereq = constantslayer.validateJSON(valdata, staticconstants.accStatementSchema)
             
             # responses.standardErrorResponseToUI["sourceoflog"] = "bcore-checklogin"
 
