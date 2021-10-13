@@ -10,7 +10,7 @@ import logging
 
 from maass.serversideApi.serverSideImpl import ServerSideImpl
 from flask import Response
-from maass.dbService.Db_service import DbServiceImpl
+# from maass.dbService.Db_service import DbServiceImpl
 from maass.constants import config
 from maass.constants.db import MongoAPI
 # from maass.commonUtil.commonUtil import flatten_json
@@ -18,8 +18,8 @@ from maass.constants.db import MongoAPI
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger('EQUIFAX API :: ')
 
-Database = DbServiceImpl
-Database.initialize_maass()
+# Database = DbServiceImpl
+# Database.initialize_maass()
 
 
 class EquifaxPCRLTApi():

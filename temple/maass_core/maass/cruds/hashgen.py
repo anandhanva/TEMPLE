@@ -28,7 +28,7 @@ def hashifyrequest(request):
     hashifiedrequestdata = AESCipher(key).encrypt(request)
 
     hashresp = users.checkUserRespdatasuccess
-    hashresp['hash'] = str(hashifiedrequestdata)
+    hashresp['hashstr'] = str(hashifiedrequestdata)
     hashresp['src'] = str(hashifyrequestdata)
     print("Hash Response", hashresp)
     return hashresp

@@ -1,8 +1,10 @@
+from flask.globals import request
 from b_core.maass import maasslogger
 import json
-from b_core.statics import staticfunctions,staticconstants
+from b_core.statics import staticfunctions,staticconstants,dbconstants
 from b_core.platformlayers import standardresponses
 import re
+
 
 
 
@@ -18,12 +20,12 @@ def parseRequestHCRD(request):
         return str(e)
 
     #parse by pre defined request data
-    hashfrmInput = reqdata['hash']
+    hashfrmInput = reqdata['hashstr']
     checksumfrmInput = reqdata['checksum']
     datafrmInput = reqdata['requestdata']
     #prepare a return dictionary
     retaftrParsed = {}
-    retaftrParsed['hash'] = hashfrmInput
+    retaftrParsed['hashstr'] = hashfrmInput
     retaftrParsed['checksum'] = checksumfrmInput
     retaftrParsed['datafrm'] = datafrmInput
     return retaftrParsed
@@ -43,11 +45,16 @@ def convinptodict(input):
 def createHashfromData(request, modulename):
     #Extract Data
     hashabledata = convinptodict(request)
-    rethashableonly = hashabledata['requestdata']
+    print("HASHABLEDATA",hashabledata)
+    rethashableonly = hashabledata
+    print("RETHASHABLEONLY",rethashableonly)
     #Prepare Data
     hashinput = preparehash(rethashableonly)
+    print("HASHINPUT",hashinput)
+    hashinput = json.dumps(hashinput)
     #Convert to Hash
     hashh = callmaass4hashing(hashinput, modulename)
+    print("HASSHH***",hashh)
     #Return Hash
     return hashh
 
@@ -62,29 +69,19 @@ def preparehash(dataset):
 
 
 def callmaass4hashing(hashinput, modulename):
-    urls = staticsfunctions.getUrlsbyModule(modulename)
-    configparams = staticsfunctions.commonValues
-    respfrmmasshash = staticsfunctions.performRequest(standardresponses.checkUserHeaders,standardresponses.checkUserReqType,standardresponses.checkUserMethodType,standardresponses.checkUserEndpoint)
-
-def checkuserfrmdb(request):
-    try:
-        #Perform username and password validation with database if hashes and checksum are valid
-        dbQuery = {"username":request['requestdata']['username'],"password":request['requestdata']['password']}
-        request['database'] = "buildd"
-        request['collection'] = "users"
-        usrSelect = staticsfunctions.MongoAPI(request).readOne(dbQuery)
-        if (request['requestdata']['username'] == usrSelect['username']) & (request['requestdata']['password'] == usrSelect['password']):
-            datadict = {"username":usrSelect['username'],
-                        # "user_id": usrSelect['userid'],
-                        "user_prof_pic":usrSelect['userpic'],
-                        "user_role":usrSelect['userRole'],
-                        "user_status":usrSelect['userStatus']["SUCCESS"]}
-            return datadict
-        else:
-            return staticconstants.INVALID_USER_PASS
-    except ValueError as e:
-        print("EXCEPTION1")
-        return str(e)
-    except Exception as e:
-        print("FAILED")
-        return str(e)
+    # requestDataJson=json.dumps(hashinput)
+    # print("REQUESTDATA",requestDataJson)
+    configparams = staticfunctions.getUrlsbyModule(modulename)
+    
+    # configparams = json.dumps(configparams)
+    print("CONFIG",configparams)
+    logdata = {}
+    logdata['parameters'] = configparams
+   
+    logdata['data'] = hashinput
+    print("LOGDATA",logdata)
+    print("LOGDATA",type(logdata))
+    respfrmmasshash = staticfunctions.performRequest(logdata)
+    # checkUserServers,standardresponses.checkUserHeaders,requestDataJson,standardresponses.checkUserReqType,standardresponses.checkUserMethodType,standardresponses.checkUserEndpoint)
+    return respfrmmasshash
+    print("RESPFROMMAASS",respfrmmasshash)
