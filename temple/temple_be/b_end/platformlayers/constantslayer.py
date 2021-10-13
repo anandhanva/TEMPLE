@@ -37,17 +37,17 @@ def convinptodict(input):
 def checklogin(req):
     request = req.get_json()
     try:
-        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],"modulename":request['modulename'],
                     "apiname":request['apiname'],"em_reqid":request['em_reqid'],
                     "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
-                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hash":request['hash'],"checksum":request['checksum']}
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
         obj = standardresponses.commonValues
         otherdata = {}
         # modulename = 'LOGIN'
         otherdata['parameters'] = obj
         otherdata['data'] = datadict
         print('otherdata', otherdata)
-        BuildBeResp = staticfunctions.performRequest(otherdata,'checkUser')
+        BuildBeResp = staticfunctions.performRequest(otherdata,request['modulename'])
         print("ivide ethi 1",BuildBeResp)
         return BuildBeResp
     except ValueError as e:

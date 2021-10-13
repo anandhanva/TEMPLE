@@ -22,7 +22,7 @@ class CommonReq2be:
     em_endpoint : str
     em_custid:str
     txntype=str
-    hash=str
+    hashstr=str
     checksum=str
     def __init__(self, rqstdata):
         print("DATAAA",rqstdata)
@@ -42,7 +42,7 @@ class CommonReq2be:
             self.em_endpoint=rqstdata["em_endpoint"]
             self.em_custid=rqstdata["em_custid"]
             self.txntype=rqstdata["txntype"]
-            self.hash=rqstdata['hash']
+            self.hashstr=rqstdata['hashstr']
             self.checksum=rqstdata['checksum']
             self.timestamp = str(datetime.datetime.now())
         except ValueError :
@@ -147,7 +147,94 @@ def validateReq(req):
         if valdata['apiname']== apiconstants.userLogin:
             validatereq = constantslayer.validateJSON(valdata, staticconstants.userSchema)
         elif valdata['apiname']==apiconstants.templelist:
-            validateReq=constantslayer.validateJSON(validate,staticconstants.templelistSchema)
+            validatereq=constantslayer.validateJSON(validate,staticconstants.templelistSchema)
+        elif valdata['apiname']==apiconstants.templeadmin:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.templeadminSchema)
+        elif valdata['apiname']==apiconstants.devaswomaddtempleapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.devaswomaddtempleschema)
+        elif valdata['apiname']==apiconstants.devaswomblocktempleapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.devaswomblocktempleschema)
+        elif valdata['apiname']==apiconstants.devaswomblocktempleadminapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.devaswomblocktempleadminschema)
+        elif valdata['apiname']==apiconstants.createfinanceadminapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.financeadminschema)
+        elif valdata['apiname']==apiconstants.createtempleadminapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.createtempleadminschema)
+        elif valdata['apiname']==apiconstants.createaccdevaswomapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.createaccdevschema)
+        elif valdata['apiname']==apiconstants.listaddtempleapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listtempleschema)
+        elif valdata['apiname']==apiconstants.listblocktempleapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listblocktempleschema)
+        elif valdata['apiname']==apiconstants.listfinadminapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listfinadminschema)
+        elif valdata['apiname']==apiconstants.listtempleadminapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listtempleadminschema)
+        elif valdata['apiname']==apiconstants.listaccdevaswomapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listaccdevasschema)
+        elif valdata['apiname']==apiconstants.templedatabyvaapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.tempdatavaschema)
+        elif valdata['apiname']==apiconstants.movemoneyapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.movemoneyschema)
+        elif valdata['apiname']==apiconstants.moneyloadapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.moneyloadschema)
+        elif valdata['apiname']==apiconstants.withdrawdetsapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.withdrawdetsschema)
+        elif valdata['apiname']==apiconstants.templedetbyidapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.tempdetbyidsschema)
+        elif valdata['apiname']==apiconstants.fundtxnapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.fundtxnschema)
+        elif valdata['apiname']==apiconstants.selecttempleadminapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.selecttempleadminschema)
+        elif valdata['apiname']==apiconstants.selectbankapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.selectbankschema)
+        elif valdata['apiname']==apiconstants.credevadminapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.credevadminschema)
+        elif valdata['apiname']==apiconstants.listdevadminapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listdevadminschema)
+        elif valdata['apiname']==apiconstants.creaccstatementapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.creaccstatementschema)
+        elif valdata['apiname']==apiconstants.listaccstatementapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listaccstatementschema)
+        elif valdata['apiname']==apiconstants.createdevaswomapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.createdevaswomschema)
+        elif valdata['apiname']==apiconstants.listdevaswomapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listdevaswomschema)
+        elif valdata['apiname']==apiconstants.forpinbyphoneapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.pinbyphoneschema)
+        elif valdata['apiname']==apiconstants.forpinbyreqapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.pinbyreqschema)
+        elif valdata['apiname']==apiconstants.fundtransapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.fundtransSchema)
+        elif valdata['apiname']==apiconstants.listfundtransapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listfundtransSchema)
+        elif valdata['apiname']==apiconstants.loadpoolapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.loadpoolschema)
+        elif valdata['apiname']==apiconstants.listloadpoolapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listloadpoolschema)
+        elif valdata['apiname']==apiconstants.selectbankapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.selectbankschema)
+        elif valdata['apiname']==apiconstants.selectdevsomapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.selectdevsomschema)
+
+        
+        
+
+
+        
+        
+        
+
+        
+        
+
+
+        
+        
+
+
+
+        
             # responses.standardErrorResponseToUI["sourceoflog"] = "bcore-checklogin"
         if(validatereq['respType'] == 'success'):
             valResp = {}
@@ -164,12 +251,12 @@ def validateReq(req):
         return str(e)
 def performRequest(request, modulename):
 
-    server = request['parameters']['LOGIN']['server']
-    headerz = request['parameters']['LOGIN']['headerz']
-    endpoint = request['parameters']['LOGIN']['endpoint']
+    server = request['parameters'][modulename]['server']
+    headerz = request['parameters'][modulename]['headerz']
+    endpoint = request['parameters'][modulename]['endpoint']
     reqdata = request['data']['requestdata']
-    reqType = request['parameters']['LOGIN']['reqtype']
-    methodType = request['parameters']['LOGIN']['methodtype']
+    reqType = request['parameters'][modulename]['reqtype']
+    methodType = request['parameters'][modulename]['methodtype']
     if(reqType == "SSL"):
         url = "https://" + server + endpoint
     else:
