@@ -34,7 +34,7 @@ def addtemple():
 @app.route(urlconstants.ENDPOINT+'/list_temple', methods = ['POST'])
 def listtemple():
     
-    return bllayer.listTemple(request)
+    return bllayer.listTempleApi(request)
 
 # CREATE TEMPLE ADMIN
 @app.route(urlconstants.ENDPOINT+'/createtemple_admin', methods = ['POST'])

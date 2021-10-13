@@ -41,9 +41,25 @@ def processLoginRequest(req):
     except Exception as exCompareUser:
         maasslogger(request, str(exCompareUser))
         return str(exCompareUser)
-    # If success return success response
     if(comparedResults['result'] == "Success"):
-        return comparedResults['respdata']
+
+
+        comparedResults['resp_code'] = 800
+        comparedResults['resp_type'] = "SUCCESS"
+        comparedResults['message'] = "Successfully login"
+        print(">>>>>>Request",request)
+        comparedResults['em_reqid'] = request['em_reqid']
+        comparedResults['em_custid'] = request['em_custid']
+        comparedResults['resp_frm_bank'] = ""
+        comparedResults['resp_frm_ewire'] = comparedResults['respfrmdb']
+        comparedResults['resp_frm_cbs'] = ""
+        comparedResults['resp_frm_ext'] = ['resp_frm_ext']
+        comparedResults['resp_frm_maass'] = ['resp_frm_maass']
+        comparedResults['resp_frm_blockc'] = ['resp_frm_blockc']
+        comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        comparedResults['resp_frm_rulengn'] = ['resp_frm_rulengn']
+        # comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        return staticfunctions.coretobe_response(comparedResults)
     else:
         maasslogger(request, "Wrong Credentials")
         return responses.standardErrorResponseToBE("LOGIN","Wrong Credentials")
@@ -64,14 +80,14 @@ def addTemple(req):
         print("HASHHHH",hashchecksumNdata)
     except Exception as e:
         maasslogger(req, str(e))
-        return responses.standardErrorResponseToBE("LOGIN",str(e))
+        return responses.standardErrorResponseToBE("INSERTED",str(e))
     #Create hash from data
     try:
         createdhash = constantslayer.createHashfromData(request,"HASH_MO")
         print("HASH@@@",createdhash)
     except Exception as e:
         # maasslogger(req, str(e))
-        return responses.standardErrorResponseToBE("CREATELOGINHASH",str(e))
+        return responses.standardErrorResponseToBE("INSERTINGHASH",str(e))
     #Decode hash obtained from input and from created hash and compare
     # valHash = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
     # if(valHash == "true"):
@@ -82,23 +98,41 @@ def addTemple(req):
     #     if(checksumcompare == "true"):
     try:
 
-        comparedResults = constantslayer.checkuserfrmdb(hashchecksumNdata)
+        comparedResults = constantslayer.addTempleApi(hashchecksumNdata)
     except Exception as exCompareUser:
         maasslogger(request, str(exCompareUser))
         return str(exCompareUser)
-    # If success return success response
     if(comparedResults['result'] == "Success"):
-        return comparedResults['respdata']
+
+        print("COMPARde",comparedResults)
+
+
+        comparedResults['resp_code'] = 800
+        comparedResults['resp_type'] = "SUCCESS"
+        comparedResults['message'] = "Successfully inserted"
+        print(">>>>>>Request",request)
+        comparedResults['em_reqid'] = request['em_reqid']
+        comparedResults['em_custid'] = request['em_custid']
+        comparedResults['resp_frm_bank'] = ""
+        comparedResults['resp_frm_ewire'] = comparedResults['respfrmdb']
+        comparedResults['resp_frm_cbs'] = ""
+        comparedResults['resp_frm_ext'] = ""
+        comparedResults['resp_frm_maass'] = ""
+        comparedResults['resp_frm_blockc'] = ""
+        comparedResults['resp_frm_mojaloop'] = ""
+        comparedResults['resp_frm_rulengn'] = ""
+        # comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        return staticfunctions.coretobe_response(comparedResults)
     else:
-        maasslogger(request, "Wrong Credentials")
-        return responses.standardErrorResponseToBE("LOGIN","Wrong Credentials")
+        maasslogger(request, "Failed")
+        return responses.standardErrorResponseToBE("INSERTING","Wrong!!")
 
     # else:
     #     maasslogger(request, str("Hash Mismatch, Incorrect Request"))
     #     return responses.standardErrorResponseToBE("LOGIN","Hash Mismatch, Incorrect Request")
 
 # LIST TEMPLE
-def listTemple(req):
+def listTempleApi(req):
     #Parse Request and  extract hash, checksum and data
     request = req.get_json()
     print("REQUEST",request)
@@ -126,13 +160,30 @@ def listTemple(req):
     #     if(checksumcompare == "true"):
     try:
 
-        comparedResults = constantslayer.checkuserfrmdb(hashchecksumNdata)
+        comparedResults = constantslayer.listTempleApi(hashchecksumNdata)
     except Exception as exCompareUser:
         maasslogger(request, str(exCompareUser))
         return str(exCompareUser)
-    # If success return success response
     if(comparedResults['result'] == "Success"):
-        return comparedResults['respdata']
+        print("compare*************",comparedResults)
+
+
+        comparedResults['resp_code'] = 800
+        comparedResults['resp_type'] = "SUCCESS"
+        comparedResults['message'] = "Successfully login"
+        print(">>>>>>Request",request)
+        comparedResults['em_reqid'] = request['em_reqid']
+        comparedResults['em_custid'] = request['em_custid']
+        comparedResults['resp_frm_bank'] = ""
+        comparedResults['resp_frm_ewire'] = comparedResults['respfrmdb']
+        comparedResults['resp_frm_cbs'] = ""
+        comparedResults['resp_frm_ext'] = ['resp_frm_ext']
+        comparedResults['resp_frm_maass'] = ['resp_frm_maass']
+        comparedResults['resp_frm_blockc'] = ['resp_frm_blockc']
+        comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        comparedResults['resp_frm_rulengn'] = ['resp_frm_rulengn']
+        # comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        return staticfunctions.coretobe_response(comparedResults)
     else:
         maasslogger(request, "Wrong Credentials")
         return responses.standardErrorResponseToBE("LOGIN","Wrong Credentials")
@@ -141,7 +192,6 @@ def listTemple(req):
     #     maasslogger(request, str("Hash Mismatch, Incorrect Request"))
     #     return responses.standardErrorResponseToBE("LOGIN","Hash Mismatch, Incorrect Request")
 # CREATE TEMPLE ADMIN
-
 def createTempleAdmin(req):
     #Parse Request and  extract hash, checksum and data
     request = req.get_json()
@@ -152,14 +202,14 @@ def createTempleAdmin(req):
         print("HASHHHH",hashchecksumNdata)
     except Exception as e:
         maasslogger(req, str(e))
-        return responses.standardErrorResponseToBE("LOGIN",str(e))
+        return responses.standardErrorResponseToBE("INSERTED",str(e))
     #Create hash from data
     try:
         createdhash = constantslayer.createHashfromData(request,"HASH_MO")
         print("HASH@@@",createdhash)
     except Exception as e:
         # maasslogger(req, str(e))
-        return responses.standardErrorResponseToBE("CREATELOGINHASH",str(e))
+        return responses.standardErrorResponseToBE("INSERTINGHASH",str(e))
     #Decode hash obtained from input and from created hash and compare
     # valHash = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
     # if(valHash == "true"):
@@ -170,20 +220,35 @@ def createTempleAdmin(req):
     #     if(checksumcompare == "true"):
     try:
 
-        comparedResults = constantslayer.checkuserfrmdb(hashchecksumNdata)
+        comparedResults = constantslayer.createTempleAdminApi(hashchecksumNdata)
     except Exception as exCompareUser:
         maasslogger(request, str(exCompareUser))
         return str(exCompareUser)
-    # If success return success response
     if(comparedResults['result'] == "Success"):
-        return comparedResults['respdata']
+
+        print("COMPARde",comparedResults)
+
+
+        comparedResults['resp_code'] = 800
+        comparedResults['resp_type'] = "SUCCESS"
+        comparedResults['message'] = "Successfully inserted"
+        print(">>>>>>Request",request)
+        comparedResults['em_reqid'] = request['em_reqid']
+        comparedResults['em_custid'] = request['em_custid']
+        comparedResults['resp_frm_bank'] = ""
+        comparedResults['resp_frm_ewire'] = comparedResults['respfrmdb']
+        comparedResults['resp_frm_cbs'] = ""
+        comparedResults['resp_frm_ext'] = ""
+        comparedResults['resp_frm_maass'] = ""
+        comparedResults['resp_frm_blockc'] = ""
+        comparedResults['resp_frm_mojaloop'] = ""
+        comparedResults['resp_frm_rulengn'] = ""
+        # comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        return staticfunctions.coretobe_response(comparedResults)
     else:
-        maasslogger(request, "Wrong Credentials")
-        return responses.standardErrorResponseToBE("LOGIN","Wrong Credentials")
-    
-    # else:
-    #     maasslogger(request, str("Hash Mismatch, Incorrect Request"))
-    #     return responses.standardErrorResponseToBE("LOGIN","Hash Mismatch, Incorrect Request")
+        maasslogger(request, "Failed")
+        return responses.standardErrorResponseToBE("INSERTING","Wrong!!")
+
 
 
 # LIST TEMPLE ADMIN
@@ -215,13 +280,29 @@ def listTempleAdminApi(req):
     #     if(checksumcompare == "true"):
     try:
 
-        comparedResults = constantslayer.checkuserfrmdb(hashchecksumNdata)
+        comparedResults = constantslayer.listTempleAdminApi(hashchecksumNdata)
     except Exception as exCompareUser:
         maasslogger(request, str(exCompareUser))
         return str(exCompareUser)
-    # If success return success response
     if(comparedResults['result'] == "Success"):
-        return comparedResults['respdata']
+
+
+        comparedResults['resp_code'] = 800
+        comparedResults['resp_type'] = "SUCCESS"
+        comparedResults['message'] = "Successfully login"
+        print(">>>>>>Request",request)
+        comparedResults['em_reqid'] = request['em_reqid']
+        comparedResults['em_custid'] = request['em_custid']
+        comparedResults['resp_frm_bank'] = ""
+        comparedResults['resp_frm_ewire'] = comparedResults['respfrmdb']
+        comparedResults['resp_frm_cbs'] = ""
+        comparedResults['resp_frm_ext'] = ['resp_frm_ext']
+        comparedResults['resp_frm_maass'] = ['resp_frm_maass']
+        comparedResults['resp_frm_blockc'] = ['resp_frm_blockc']
+        comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        comparedResults['resp_frm_rulengn'] = ['resp_frm_rulengn']
+        # comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        return staticfunctions.coretobe_response(comparedResults)
     else:
         maasslogger(request, "Wrong Credentials")
         return responses.standardErrorResponseToBE("LOGIN","Wrong Credentials")
@@ -241,14 +322,14 @@ def createAccount(req):
         print("HASHHHH",hashchecksumNdata)
     except Exception as e:
         maasslogger(req, str(e))
-        return responses.standardErrorResponseToBE("LOGIN",str(e))
+        return responses.standardErrorResponseToBE("INSERTED",str(e))
     #Create hash from data
     try:
         createdhash = constantslayer.createHashfromData(request,"HASH_MO")
         print("HASH@@@",createdhash)
     except Exception as e:
         # maasslogger(req, str(e))
-        return responses.standardErrorResponseToBE("CREATELOGINHASH",str(e))
+        return responses.standardErrorResponseToBE("INSERTINGHASH",str(e))
     #Decode hash obtained from input and from created hash and compare
     # valHash = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
     # if(valHash == "true"):
@@ -259,21 +340,34 @@ def createAccount(req):
     #     if(checksumcompare == "true"):
     try:
 
-        comparedResults = constantslayer.checkuserfrmdb(hashchecksumNdata)
+        comparedResults = constantslayer.createAccountApi(hashchecksumNdata)
     except Exception as exCompareUser:
         maasslogger(request, str(exCompareUser))
         return str(exCompareUser)
-    # If success return success response
     if(comparedResults['result'] == "Success"):
-        return comparedResults['respdata']
-    else:
-        maasslogger(request, "Wrong Credentials")
-        return responses.standardErrorResponseToBE("LOGIN","Wrong Credentials")
-    
-    # else:
-    #     maasslogger(request, str("Hash Mismatch, Incorrect Request"))
-    #     return responses.standardErrorResponseToBE("LOGIN","Hash Mismatch, Incorrect Request")
 
+        print("COMPARde",comparedResults)
+
+
+        comparedResults['resp_code'] = 800
+        comparedResults['resp_type'] = "SUCCESS"
+        comparedResults['message'] = "Successfully inserted"
+        print(">>>>>>Request",request)
+        comparedResults['em_reqid'] = request['em_reqid']
+        comparedResults['em_custid'] = request['em_custid']
+        comparedResults['resp_frm_bank'] = ""
+        comparedResults['resp_frm_ewire'] = comparedResults['respfrmdb']
+        comparedResults['resp_frm_cbs'] = ""
+        comparedResults['resp_frm_ext'] = ""
+        comparedResults['resp_frm_maass'] = ""
+        comparedResults['resp_frm_blockc'] = ""
+        comparedResults['resp_frm_mojaloop'] = ""
+        comparedResults['resp_frm_rulengn'] = ""
+        # comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        return staticfunctions.coretobe_response(comparedResults)
+    else:
+        maasslogger(request, "Failed")
+        return responses.standardErrorResponseToBE("INSERTING","Wrong!!")
 
 
 # LIST ACCOUNT
@@ -305,17 +399,12 @@ def listAccountApi(req):
     #     if(checksumcompare == "true"):
     try:
 
-        comparedResults = constantslayer.checkuserfrmdb(hashchecksumNdata)
+        comparedResults = constantslayer.listAccountApi(hashchecksumNdata)
     except Exception as exCompareUser:
         maasslogger(request, str(exCompareUser))
         return str(exCompareUser)
-    # If success return success response
     if(comparedResults['result'] == "Success"):
-        return comparedResults['respdata']
-    else:
-        maasslogger(request, "Wrong Credentials")
-        return responses.standardErrorResponseToBE("LOGIN","Wrong Credentials")
-    
+
 
         comparedResults['resp_code'] = 800
         comparedResults['resp_type'] = "SUCCESS"
