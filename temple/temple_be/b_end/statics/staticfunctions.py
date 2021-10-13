@@ -22,7 +22,7 @@ class CommonReq2be:
     em_endpoint : str
     em_custid:str
     txntype=str
-    hash=str
+    hashstr=str
     checksum=str
     def __init__(self, rqstdata):
         print("DATAAA",rqstdata)
@@ -42,7 +42,7 @@ class CommonReq2be:
             self.em_endpoint=rqstdata["em_endpoint"]
             self.em_custid=rqstdata["em_custid"]
             self.txntype=rqstdata["txntype"]
-            self.hash=rqstdata['hash']
+            self.hashstr=rqstdata['hash']
             self.checksum=rqstdata['checksum']
             self.timestamp = str(datetime.datetime.now())
         except ValueError :
@@ -147,7 +147,81 @@ def validateReq(req):
         if valdata['apiname']== apiconstants.userLogin:
             validatereq = constantslayer.validateJSON(valdata, staticconstants.userSchema)
         elif valdata['apiname']==apiconstants.templelist:
-            validateReq=constantslayer.validateJSON(validate,staticconstants.templelistSchema)
+            validatereq = constantslayer.validateJSON(validate,staticconstants.templelistSchema)
+
+        elif valdata['apiname']==apiconstants.super_create_bank:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.supercreatebankSchema)
+
+        elif valdata['apiname']==apiconstants.super_list_bank:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.superlistbankSchema)
+
+        elif valdata['apiname']==apiconstants.super_createLords:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.supercreate_lordsSchema)
+        elif valdata['apiname']==apiconstants.super_listlords:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.supercreate_lordsSchema)
+        
+        elif valdata['apiname']==apiconstants.create_pooja:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.create_poojaSchema)
+        
+        elif valdata['apiname']==apiconstants.list_total:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_totalSchema)
+        
+        elif valdata['apiname']==apiconstants.create_account:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.create_accountSchema)
+
+        elif valdata['apiname']==apiconstants.listaccount:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_accountSchema)
+
+        elif valdata['apiname']==apiconstants.createtranstemp:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.createtranstempSchema)
+
+        elif valdata['apiname']==apiconstants.listtranstemp:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listtranstempSchema)
+        
+        elif valdata['apiname']==apiconstants.create_devaswom:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.createdevaswomSchema)
+        
+        elif valdata['apiname']==apiconstants.list_devaswom:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listdevaswomSchema)
+        
+        elif valdata['apiname']==apiconstants.create_bank_admin:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.create_bank_adminSchema)
+        
+        elif valdata['apiname']==apiconstants.list_manage_bank_admin:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_bank_adminSchema)
+
+        elif valdata['apiname']==apiconstants.card_allocate:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.card_allocate_Schema)
+
+        elif valdata['apiname']==apiconstants.list_card_allocate:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_card_allocate_Schema)
+
+        elif valdata['apiname']==apiconstants.create_block_temple:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.create_block_temple_Schema)
+
+        elif valdata['apiname']==apiconstants.create_block_devaswom:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.create_block_devaswom_Schema)
+
+        elif valdata['apiname']==apiconstants.list_block_devaswom:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_block_devaswom_Schema)
+        
+        elif valdata['apiname']==apiconstants.create_block_customer:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.create_block_customer_Schema)
+        
+        elif valdata['apiname']==apiconstants.list_block_customer:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_block_customer_Schema)
+
+        elif valdata['apiname']==apiconstants.create_block_card:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.create_block_card_Schema)
+
+        elif valdata['apiname']==apiconstants.list_block_card:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_block_card_Schema)
+
+        elif valdata['apiname']==apiconstants.create_block_bank:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.create_block_bank_Schema)
+
+        elif valdata['apiname']==apiconstants.list_block_bank:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_block_bank_Schema)
             # responses.standardErrorResponseToUI["sourceoflog"] = "bcore-checklogin"
         if(validatereq['respType'] == 'success'):
             valResp = {}
@@ -162,14 +236,16 @@ def validateReq(req):
         return str(e)
     except Exception as e:
         return str(e)
+
+
 def performRequest(request, modulename):
 
-    server = request['parameters']['LOGIN']['server']
-    headerz = request['parameters']['LOGIN']['headerz']
-    endpoint = request['parameters']['LOGIN']['endpoint']
+    server = request['parameters'][modulename]['server']
+    headerz = request['parameters'][modulename]['headerz']
+    endpoint = request['parameters'][modulename]['endpoint']
     reqdata = request['data']['requestdata']
-    reqType = request['parameters']['LOGIN']['reqtype']
-    methodType = request['parameters']['LOGIN']['methodtype']
+    reqType = request['parameters'][modulename]['reqtype']
+    methodType = request['parameters'][modulename]['methodtype']
     if(reqType == "SSL"):
         url = "https://" + server + endpoint
     else:
