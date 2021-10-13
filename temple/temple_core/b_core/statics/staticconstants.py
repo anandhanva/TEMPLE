@@ -17,7 +17,7 @@ userSchema = {
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
     'txntype': {'type':'string'},
-    'hash': {'type':'string'},
+    'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
 accStatementSchema={
@@ -34,5 +34,5 @@ accStatementSchema={
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
     'txntype': {'type':'string'},
-    'hash': {'type':'string'},
+    'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
