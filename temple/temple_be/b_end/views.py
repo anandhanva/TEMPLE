@@ -598,10 +598,10 @@ def adtemple():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response())
+        return jsonify(betoui_response())
 # devaswom block temple
 @app.route(baseUrl+'/devblocktemple', methods = ['POST'])
 def blocktemple():
@@ -611,10 +611,10 @@ def blocktemple():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response())
+        return jsonify(betoui_response())
 # devaswom block temple admin
 @app.route(baseUrl+'/devblocktempleadmin', methods = ['POST'])
 def blocktempleadmin():
@@ -624,10 +624,10 @@ def blocktempleadmin():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response())
+        return jsonify(betoui_response())
 # create finance admin
 @app.route(baseUrl+'/crefinadmin', methods = ['POST'])
 def crefinadmin():
@@ -637,10 +637,10 @@ def crefinadmin():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response())
+        return jsonify(betoui_response())
 # create temple admin
 @app.route(baseUrl+'/cretemadmin', methods = ['POST'])
 def cretemadmin():
@@ -650,10 +650,10 @@ def cretemadmin():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response())
+        return jsonify(betoui_response())
 # create account devaswom
 @app.route(baseUrl+'/creaccdev', methods = ['POST'])
 def creaccount():
@@ -663,10 +663,10 @@ def creaccount():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response())
+        return jsonify(betoui_response())
 
 # list  temple api
 @app.route(baseUrl+'/listaddtemple', methods = ['POST'])
@@ -677,10 +677,10 @@ def listtemple():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response())
+        return jsonify(betoui_response())
 
 # list block  temple api
 @app.route(baseUrl+'/listblocktemple', methods = ['POST'])
@@ -691,10 +691,10 @@ def listblocktemple():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response())
+        return jsonify(betoui_response())
 
 # list fin admin
 @app.route(baseUrl+'/listfinadmin', methods = ['POST'])
@@ -705,10 +705,10 @@ def listfinadmin():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response())
+        return jsonify(betoui_response())
 
 # list temple admin
 @app.route(baseUrl+'/listtempleadmin', methods = ['POST'])
@@ -719,10 +719,10 @@ def listtempleadmin():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response())
+        return jsonify(betoui_response())
 
 # list account devaswom
 @app.route(baseUrl+'/listaccdev', methods = ['POST'])
@@ -733,10 +733,10 @@ def listaccdev():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response())
+        return jsonify(betoui_response())
 
 # temple details by virtual acc number
 @app.route(baseUrl+'/tmpdatabyva', methods = ['POST'])
@@ -747,10 +747,10 @@ def tmpdatabyva():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response())
+        return jsonify(betoui_response())
 
 # move money to devaswom
 @app.route(baseUrl+'/movemoney', methods = ['POST'])
@@ -761,10 +761,10 @@ def movemoney():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response())
+        return jsonify(betoui_response())
 
 # money load list
 @app.route(baseUrl+'/moneyload', methods = ['POST'])
@@ -775,10 +775,10 @@ def moneyload():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response())
+        return jsonify(betoui_response())
 
 # withdraw details
 @app.route(baseUrl+'/withdrawdets', methods = ['POST'])
@@ -789,10 +789,10 @@ def withdrawdets():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response())
+        return jsonify(betoui_response())
 
 # get temple details by id
 @app.route(baseUrl+'/tempdetbyid', methods = ['POST'])
@@ -803,10 +803,10 @@ def tempdetbyid():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response())
+        return jsonify(betoui_response())
 
 # fund transaction
 @app.route(baseUrl+'/fundtxn', methods = ['POST'])
@@ -817,10 +817,10 @@ def fundtxn():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 
 # select temple admin dropdown
 @app.route(baseUrl+'/selecttempleadmin', methods = ['POST'])
@@ -831,10 +831,10 @@ def selecttempleadmin():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 
 # select bank
 @app.route(baseUrl+'/select_bank', methods = ['POST'])
@@ -845,10 +845,10 @@ def select_bank():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 
 # create devaswom admin
 @app.route(baseUrl+'/credevadmin', methods = ['POST'])
@@ -859,10 +859,10 @@ def credevadmin():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 
 # list devaswom admin
 @app.route(baseUrl+'/listdevadmin', methods = ['POST'])
@@ -873,10 +873,10 @@ def listdevadmin():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response())
+        return jsonify(betoui_response())
 
 #create account statement
 @app.route(baseUrl+'/creaccstatement', methods = ['POST'])
@@ -887,10 +887,10 @@ def creaccstatement():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 #list account statement
 @app.route(baseUrl+'/listaccstatement', methods = ['POST'])
 def listaccstatement():
@@ -900,10 +900,10 @@ def listaccstatement():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 
 #create devaswom
 @app.route(baseUrl+'/credevaswom', methods = ['POST'])
@@ -914,10 +914,10 @@ def credevaswom():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 
 #list devaswom
 @app.route(baseUrl+'/listdevaswom', methods = ['POST'])
@@ -928,10 +928,10 @@ def listdevaswom():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 
 #forgot pin by phone
 @app.route(baseUrl+'/forpinphone', methods = ['POST'])
@@ -942,10 +942,10 @@ def forpinphone():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 #forgot pin request
 @app.route(baseUrl+'/forpinreq', methods = ['POST'])
 def forpinreq():
@@ -955,10 +955,10 @@ def forpinreq():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 #fund transfer
 @app.route(baseUrl+'/fundtrans', methods = ['POST'])
 def fundtrans():
@@ -968,10 +968,10 @@ def fundtrans():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 #list fund transfer
 @app.route(baseUrl+'/listfundtrans', methods = ['POST'])
 def listfundtrans():
@@ -981,10 +981,10 @@ def listfundtrans():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 #load pool
 @app.route(baseUrl+'/loadpool', methods = ['POST'])
 def loadpool():
@@ -994,10 +994,10 @@ def loadpool():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 
 #list load pool
 @app.route(baseUrl+'/listloadpool', methods = ['POST'])
@@ -1008,10 +1008,10 @@ def listloadpool():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 #select bank drop
 @app.route(baseUrl+'/selectbank', methods = ['POST'])
 def selectbank():
@@ -1021,10 +1021,10 @@ def selectbank():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 #select devsom drop
 @app.route(baseUrl+'/selectdevsom', methods = ['POST'])
 def selectdevsom():
@@ -1034,10 +1034,10 @@ def selectdevsom():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 
 
 
