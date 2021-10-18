@@ -975,12 +975,103 @@ def selectdevsom():
         request['resp_type']="FAIL"
         return jsonify(uitobe_response()) 
 
+#list_stay
+
+@app.route(baseUrl+'/list_stay', methods = ['POST'])
+def list_stay_be():
+    valdata=validateReq(request)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.checklogin(request)
+        print("checklog",checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(uitobe_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(uitobe_response()) 
+
+#create_festival
+
+@app.route(baseUrl+'/create_festival', methods = ['POST'])
+def create_festival_be():
+    valdata=validateReq(request)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.checklogin(request)
+        print("checklog",checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(uitobe_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(uitobe_response()) 
 
 
 
+@app.route(baseUrl+'/list_festival', methods = ['POST'])
+def list_festival_be():
+    valdata=validateReq(request)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.checklogin(request)
+        print("checklog",checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(uitobe_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(uitobe_response()) 
 
 
+@app.route(baseUrl+'/getpooja_bydate', methods = ['POST'])
+def getpooja_bydate_be():
+    valdata=validateReq(request)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.checklogin(request)
+        print("checklog",checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(uitobe_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(uitobe_response()) 
 
+@app.route(baseUrl+'/getprasadam_bydate', methods = ['POST'])
+def getprasadam_bydate_be():
+    valdata=validateReq(request)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.checklogin(request)
+        print("checklog",checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(uitobe_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(uitobe_response()) 
+
+@app.route(baseUrl+'/getoffering_bydate', methods = ['POST'])
+def getoffering_bydate_be():
+    valdata=validateReq(request)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.checklogin(request)
+        print("checklog",checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(uitobe_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(uitobe_response()) 
+
+@app.route(baseUrl+'/getkanikka_bydate', methods = ['POST'])
+def getkanikka_bydate_be():
+    valdata=validateReq(request)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.checklogin(request)
+        print("checklog",checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(uitobe_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(uitobe_response()) 
         
 
 

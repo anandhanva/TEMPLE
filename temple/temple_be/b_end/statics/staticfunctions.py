@@ -183,6 +183,23 @@ def validateReq(req):
             validatereq=constantslayer.validateJSON(validate,staticconstants.selectbankschema)
         elif valdata['apiname']==apiconstants.selectdevsomapi:
             validatereq=constantslayer.validateJSON(validate,staticconstants.selectdevaswomSchema)
+        elif valdata['apiname']==apiconstants.list_stayapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_staySchema)
+        elif valdata['apiname']==apiconstants.create_festival_api:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.create_festivalSchema)
+        elif valdata['apiname']==apiconstants.list_festival_api:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_festivalSchema)
+        elif valdata['apiname']==apiconstants.getpooja_bydate_api:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.getpooja_bydateSchema)
+        elif valdata['apiname']==apiconstants.getprasadam_bydate_api:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.getprasadam_bydateSchema)
+        elif valdata['apiname']==apiconstants.getoffering_bydate_api:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.getoffering_bydateSchema)
+        elif valdata['apiname']==apiconstants.getkanikka_bydate_api:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.getkanikka_bydateSchema)
+        
+        
+        
 
 
 
