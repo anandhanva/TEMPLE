@@ -17,7 +17,7 @@ userSchema = {
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
     'txntype': {'type':'string'},
-    'hash': {'type':'string'},
+    'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
 # ADD TEMPLE SCHEMA
@@ -54,7 +54,7 @@ accStatementSchema={
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
     'txntype': {'type':'string'},
-    'hash': {'type':'string'},
+    'hasstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
 listTempleSchema = {
@@ -65,13 +65,13 @@ listTempleSchema = {
     'partner_reqid': {'type':'string'},
     'req_timestamp': {'type':'integer'},
     'requestdata': {
-        "list":{"type":"all"}
+        "type":"all"
         },
     'authtoken': {'type':'string'},
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
     'txntype': {'type':'string'},
-    'hash': {'type':'string'},
+    'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
 
@@ -94,7 +94,7 @@ addTempleAdminSchema = {
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
     'txntype': {'type':'string'},
-    'hash': {'type':'string'},
+    'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
 listTempleAdminSchema = {
@@ -110,7 +110,7 @@ listTempleAdminSchema = {
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
     'txntype': {'type':'string'},
-    'hash': {'type':'string'},
+    'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 createAccountSchema = {
     'req_type': {'type':'string'},
@@ -129,7 +129,7 @@ createAccountSchema = {
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
     'txntype': {'type':'string'},
-    'hash': {'type':'string'},
+    'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 listAccountSchema = {
     'req_type': {'type':'string'},
@@ -144,7 +144,32 @@ listAccountSchema = {
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
     'txntype': {'type':'string'},
-    
 
+
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+
+createFinAccountSchema = {
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"}, 
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata': { "tmpname": "tmpname",        
+        "ad_name": {'type':'string'},
+        "d_email": {'type':'string'},
+        "d_add1": {'type':'string'},        
+        "d_add2": {'type':'string'},
+        "d_state": {'type':'string'},         
+        "bank_name": {'type':'string'},        
+        "d_accno": {'type':'string'},
+        "ifsc": {'type':'string'},
+                        },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}

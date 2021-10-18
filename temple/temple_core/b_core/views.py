@@ -61,3 +61,11 @@ def listaccount():
     
     return bllayer.listAccountApi(request)
 
+
+
+# CREATE FIN ADMIN
+@app.route(urlconstants.ENDPOINT+'/add_finadmin', methods = ['POST'])
+def createfinadmins():
+    
+    return bllayer.createFinAdmin(request)
+

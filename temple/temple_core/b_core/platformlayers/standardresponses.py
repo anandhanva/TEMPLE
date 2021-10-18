@@ -78,4 +78,14 @@ commonValues['LIST_ACCOUNT'] = {
                             "reqtype" : "LISTACCOUNTREQ",
                             "methodtype" : "POST"
                         }
+
+
+commonValues['ADD_FINADMIN'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.hashServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/add_finadmin",
+                            "reqtype" : "CREATEFINADMINREQ",
+                            "methodtype" : "POST"
+                        }
                     

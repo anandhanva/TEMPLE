@@ -79,7 +79,7 @@ def addTemple(req):
         hashchecksumNdata = constantslayer.parseRequestHCRD(request)
         print("HASHHHH",hashchecksumNdata)
     except Exception as e:
-        maasslogger(req, str(e))
+        # maasslogger(req, str(e))
         return responses.standardErrorResponseToBE("INSERTED",str(e))
     #Create hash from data
     try:
@@ -88,6 +88,9 @@ def addTemple(req):
     except Exception as e:
         # maasslogger(req, str(e))
         return responses.standardErrorResponseToBE("INSERTINGHASH",str(e))
+
+    maasslogger(request,"hashing passes",request['modulename'],"SUCCESS")
+
     #Decode hash obtained from input and from created hash and compare
     # valHash = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
     # if(valHash == "true"):
@@ -141,7 +144,7 @@ def listTempleApi(req):
         hashchecksumNdata = constantslayer.parseRequestHCRD(request)
         print("HASHHHH",hashchecksumNdata)
     except Exception as e:
-        maasslogger(req, str(e))
+        # maasslogger(req, str(e))
         return responses.standardErrorResponseToBE("LOGIN",str(e))
     #Create hash from data
     try:
@@ -150,6 +153,8 @@ def listTempleApi(req):
     except Exception as e:
         # maasslogger(req, str(e))
         return responses.standardErrorResponseToBE("CREATELOGINHASH",str(e))
+    maasslogger(request,"hashing passes",request['modulename'],"SUCCESS")
+
     #Decode hash obtained from input and from created hash and compare
     # valHash = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
     # if(valHash == "true"):
@@ -201,7 +206,7 @@ def createTempleAdmin(req):
         hashchecksumNdata = constantslayer.parseRequestHCRD(request)
         print("HASHHHH",hashchecksumNdata)
     except Exception as e:
-        maasslogger(req, str(e))
+        # maasslogger(req, str(e))
         return responses.standardErrorResponseToBE("INSERTED",str(e))
     #Create hash from data
     try:
@@ -210,6 +215,7 @@ def createTempleAdmin(req):
     except Exception as e:
         # maasslogger(req, str(e))
         return responses.standardErrorResponseToBE("INSERTINGHASH",str(e))
+    maasslogger(request,"hashing passess",request['modulename'],"SUCCESS")
     #Decode hash obtained from input and from created hash and compare
     # valHash = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
     # if(valHash == "true"):
@@ -270,6 +276,8 @@ def listTempleAdminApi(req):
     except Exception as e:
         # maasslogger(req, str(e))
         return responses.standardErrorResponseToBE("CREATELOGINHASH",str(e))
+    maasslogger(request,"hashing passess",request['modulename'],"SUCCESS")
+
     #Decode hash obtained from input and from created hash and compare
     # valHash = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
     # if(valHash == "true"):
@@ -321,7 +329,7 @@ def createAccount(req):
         hashchecksumNdata = constantslayer.parseRequestHCRD(request)
         print("HASHHHH",hashchecksumNdata)
     except Exception as e:
-        maasslogger(req, str(e))
+        # maasslogger(req, str(e))
         return responses.standardErrorResponseToBE("INSERTED",str(e))
     #Create hash from data
     try:
@@ -333,6 +341,7 @@ def createAccount(req):
     #Decode hash obtained from input and from created hash and compare
     # valHash = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
     # if(valHash == "true"):
+    maasslogger(request,"hashing passes",request['modulename'],"SUCCESS")
     #     maasslogger(request, "Hashing Passed")
     #     # checking checksum
     #     createdchecksum = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
@@ -380,7 +389,7 @@ def listAccountApi(req):
         hashchecksumNdata = constantslayer.parseRequestHCRD(request)
         print("HASHHHH",hashchecksumNdata)
     except Exception as e:
-        maasslogger(req, str(e))
+        # maasslogger(req, str(e))
         return responses.standardErrorResponseToBE("LOGIN",str(e))
     #Create hash from data
     try:
@@ -389,6 +398,8 @@ def listAccountApi(req):
     except Exception as e:
         # maasslogger(req, str(e))
         return responses.standardErrorResponseToBE("CREATELOGINHASH",str(e))
+    maasslogger(request,"hashing passess",request['modulename'],"SUCCESS")
+
     #Decode hash obtained from input and from created hash and compare
     # valHash = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
     # if(valHash == "true"):
@@ -461,7 +472,7 @@ def accStatement(req):
         # if(checksumcompare == "true"):
     try:
 
-        comparedResults = constantslayer.accstmtfrmdb(hashchecksumNdata)
+        comparedResults = blconstants.accstmtfrmdb(hashchecksumNdata)
     except Exception as exCompareUser:
         maasslogger(request, str(exCompareUser))
         return str(exCompareUser)
@@ -486,4 +497,64 @@ def accStatement(req):
     else:
         maasslogger(request, "Wrong Credentials")
         return responses.standardErrorResponseToBE("LOGIN","Wrong Credentials")
+
+# CREATE FIN ADMIN
+def createFinAdmin(req):
+    #Parse Request and  extract hash, checksum and data
+    request = req.get_json()
+    print("REQUEST",request)
+    try:
+        print("REQQUEST",request)
+        hashchecksumNdata = constantslayer.parseRequestHCRD(request)
+        print("HASHHHH",hashchecksumNdata)
+    except Exception as e:
+        # maasslogger(req, str(e))
+        return responses.standardErrorResponseToBE("INSERTED",str(e))
+    #Create hash from data
+    try:
+        createdhash = constantslayer.createHashfromData(request,"HASH_MO")
+        print("HASH@@@",createdhash)
+    except Exception as e:
+        # maasslogger(req, str(e))
+        return responses.standardErrorResponseToBE("INSERTINGHASH",str(e))
+    #Decode hash obtained from input and from created hash and compare
+    # valHash = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
+    # if(valHash == "true"):
+    maasslogger(request,"hashing passes",request['modulename'],"SUCCESS")
+    #     maasslogger(request, "Hashing Passed")
+    #     # checking checksum
+    #     createdchecksum = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
+    #     checksumcompare = staticfunctions.validatechecksum(hashchecksumNdata['checksum'], createdchecksum)
+    #     if(checksumcompare == "true"):
+    try:
+
+        comparedResults = constantslayer.createFinAdminApi(hashchecksumNdata)
+        comparedResults=constantslayer.convinptodict(comparedResults)
+    except Exception as exCompareUser:
+        maasslogger(request, str(exCompareUser))
+        return str(exCompareUser)
+    if(comparedResults['result'] == "Success"):
+
+        print("COMPARde",comparedResults)
+
+
+        comparedResults['resp_code'] = 800
+        comparedResults['resp_type'] = "SUCCESS"
+        comparedResults['message'] = "Successfully inserted"
+        print(">>>>>>Request",request)
+        comparedResults['em_reqid'] = request['em_reqid']
+        comparedResults['em_custid'] = request['em_custid']
+        comparedResults['resp_frm_bank'] = ""
+        comparedResults['resp_frm_ewire'] = comparedResults['respfrmdb']
+        comparedResults['resp_frm_cbs'] = ""
+        comparedResults['resp_frm_ext'] = ""
+        comparedResults['resp_frm_maass'] = ""
+        comparedResults['resp_frm_blockc'] = ""
+        comparedResults['resp_frm_mojaloop'] = ""
+        comparedResults['resp_frm_rulengn'] = ""
+        comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        return staticfunctions.coretobe_response(comparedResults)
+    else:
+        maasslogger(request, "Failed")
+        return responses.standardErrorResponseToBE("INSERTING","Wrong!!")
 

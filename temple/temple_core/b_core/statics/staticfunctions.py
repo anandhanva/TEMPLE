@@ -120,10 +120,10 @@ def checkrequest(request):
 def coretobe_response(resptype):
     
     if(resptype['resp_type'] == "SUCCESS"):
-        resptype['message'] = {"request_status": "SUCCESS", "Status":" Login Successfull"}
+        resptype['message'] = {"request_status": "SUCCESS", "Status":" Successfull"}
         return CommonResponse(resptype).__dict__
     else:
-        respdata = {"request_status": "FAIL", "Status":" Login failed with errors"}
+        respdata = {"request_status": "FAIL", "Status":"failed with errors"}
 
         return CommonResponse(respdata).__dict__
 
@@ -212,6 +212,8 @@ def validateReq(req):
             validatereq = constantslayer.validateJSON(valdata,staticconstants.createAccountSchema)
         elif valdata['apiname'] == apiconstants.listAccountapi:
             validatereq = constantslayer.validateJSON(valdata,staticconstants.listAccountSchema)
+        elif valdata['apiname'] == apiconstants.createFinAdminapi:
+            validatereq = constantslayer.validateJSON(valdata,staticconstants.createFinAccountSchema)
 
 
                 
