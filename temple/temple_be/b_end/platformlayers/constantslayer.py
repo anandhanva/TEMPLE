@@ -6,6 +6,7 @@ from b_end.platformlayers import standardresponses
 from b_end.statics import urlconstants
 from jsonschema import validate
 def parseRequestHCRD(request):
+    
     try:
         #convert Request to dictionary
         reqdata = convinptodict(request)
@@ -14,12 +15,12 @@ def parseRequestHCRD(request):
         maasslogger(request,str(e))
         return str(e)
     #parse by predefined requestdata
-    hashfrmInput = reqdata['hash']
+    hashfrmInput = reqdata['hashstr']
     checksumfrmInput = reqdata['checksum']
     datafrmInput = reqdata['requestdata']
     #prepare a return dictionary
     retaftrParsed = {}
-    retaftrParsed['hash'] = hashfrmInput
+    retaftrParsed['hashstr'] = hashfrmInput
     retaftrParsed['checksum'] = checksumfrmInput
     retaftrParsed['datafrm'] = datafrmInput
     return retaftrParsed
@@ -38,16 +39,16 @@ def checklogin(req):
     request = req.get_json()
     try:
         datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
-                    "apiname":request['apiname'],"em_reqid":request['em_reqid'],
+                    "apiname":request['apiname'],"em_reqid":request['em_reqid'],"modulename":request['modulename'],
                     "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
-                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hash":request['hash'],"checksum":request['checksum']}
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
         obj = standardresponses.commonValues
         otherdata = {}
         # modulename = 'LOGIN'
         otherdata['parameters'] = obj
         otherdata['data'] = datadict
         print('otherdata', otherdata)
-        BuildBeResp = staticfunctions.performRequest(otherdata,'checkUser')
+        BuildBeResp = staticfunctions.performRequest(otherdata,request['modulename'])
         print("ivide ethi 1",BuildBeResp)
         return BuildBeResp
     except ValueError as e:
