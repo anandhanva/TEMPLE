@@ -28,3 +28,17 @@ create_block_card="create_block_cardrapi"
 list_block_card="list_block_card_api"
 create_block_bank="create_block_bank_api"
 list_block_bank="list_block_bank_api"
+accstatement="accstatementapi"
+activitiestypedrop="activitytypeapi"
+pooldetails="pooldetailsapi"
+fundtransfer="fundtransferapi"
+selectdevaswom="selectdevaswomapi"#dropdwon
+selecttemple="selecttempleapi"#dropdwon
+requestmoney="requestmoneyapi"
+#TEMPLE ADMIN
+createpooja="createpoojaapi"
+listpooja="listpoojaapi"
+createprasadam="createprasadamapi"
+listprasadam="listprasadamapi"
+createofferings="createofferingsapi"
+listofferings="listofferingsapi"

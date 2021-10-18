@@ -6,6 +6,7 @@ from b_end.platformlayers import standardresponses
 from b_end.statics import urlconstants
 from jsonschema import validate
 def parseRequestHCRD(request):
+    
     try:
         #convert Request to dictionary
         reqdata = convinptodict(request)
