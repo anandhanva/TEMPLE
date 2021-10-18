@@ -34,11 +34,15 @@ class MongoAPI:
     def readOne(self, query):
         log.info('Reading One Data')
         print(":::::::")
-        documents = self.collection.find_one(query)
-        del documents['_id']
-    
-        # output = [{item: data[item] for item in data if item != '_id'} for data in documents]
-        return documents        
+        countdocs = self.collection.count(query)
+        if(countdocs >=1):
+            documents = self.collection.find_one(query)
+            print(":::::::", countdocs)
+            output =  documents
+            output.pop('_id')
+        else:
+            output= {"item": "None"}
+        return output        
 
     def write(self, data):
         

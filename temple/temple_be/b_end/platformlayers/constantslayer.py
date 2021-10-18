@@ -26,33 +26,66 @@ def parseRequestHCRD(request):
     return retaftrParsed
 def convinptodict(input):
     #check input data type
-    if(isinstance(input,dict)):
+    if(isinstance(input, dict)):
         #it is already dict
         return input
-    elif(isinstance(input,str)):
+    elif(isinstance(input, str)):
         #convert string to dictionary
         return json.loads(input)
-    elif(isinstance(input,int)):
+    elif(isinstance(input, int)):
         #convert iny to dictionary
         return json.loads(input)
 
 
 def checklogin(req):
-    request = req.get_json()
+    # print('Req Type', type(req))
+    request = convinptodict(req)
     try:
+        modulename = 'LOGIN'
         datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
-                    "apiname":request['apiname'],"modulename":request['modulename'],"em_reqid":request['em_reqid'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
                     "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
                     "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
         obj = standardresponses.commonValues
         otherdata = {}
-        # modulename = 'LOGIN'
+        # 
         otherdata['parameters'] = obj
         otherdata['data'] = datadict
-        print('otherdata', otherdata)
-        BuildBeResp = staticfunctions.performRequest(otherdata,request['modulename'])
-        print("ivide ethi 1",BuildBeResp)
-        return BuildBeResp
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        TempleBeResp =convinptodict(TempleBeResp)
+        # print("ivide ethi 1",TempleBeResp)
+        return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return str(e)
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return str(e)
+
+def accountstatement(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'ACCSTATEMENT'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        TempleBeResp =convinptodict(TempleBeResp)
+        # print("ivide ethi 1",TempleBeResp)
+        return TempleBeResp 
     except ValueError as e:
         print("EXCEPTION1",str(e))
         return str(e)
@@ -62,10 +95,72 @@ def checklogin(req):
 
 
 
+def Createpooja(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'CREATEPOOJA'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        TempleBeResp =convinptodict(TempleBeResp)
+        # print("ivide ethi 1",TempleBeResp)
+        return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return str(e)
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return str(e)
+
+    
+def Listpooja(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'LISTPOOJA'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        TempleBeResp =convinptodict(TempleBeResp)
+        # print("ivide ethi 1",TempleBeResp)
+        return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return str(e)
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return str(e)
+
+
+
+
+
 def validateJSON(jsonData, schemaname):
     str1 = {}
     try:
         validated = validate(instance=jsonData, schema=schemaname)
+        return {"respType": "success"}
     except jsonschema.exceptions.ValidationError as err:
         return {"respType": "failure"}
-    return {"respType": "success"}
+   

@@ -21,7 +21,6 @@ from b_core.statics.urlconstants import ENDPOINT, IP_DEV
 
 
 
-
 # COMMON RESPONSE CLASS
 class CommonReq2be:
     req_type : str
@@ -193,12 +192,24 @@ def validateReq(req):
         valdata = json.loads(req.data.decode('utf-8'))
         
 
-        if valdata['apiname']== apiconstants.userLogin:
-            validatereq = constantslayer.validateJSON(valdata, staticconstants.userSchema)
+        if valdata['apiname'] == apiconstants.userLogin:
+            validatereq = constantslayer.validateJSON(valdata, staticconstants.userSchema)   
         elif valdata['apiname'] == apiconstants.accStatement:
             validatereq = constantslayer.validateJSON(valdata, staticconstants.accStatementSchema)
-            
             # responses.standardErrorResponseToUI["sourceoflog"] = "bcore-checklogin"
+        elif valdata['apiname'] == apiconstants.addTempleapi:
+            validatereq = constantslayer.validateJSON(valdata,staticconstants.addTempleSchema)
+        elif valdata['apiname'] == apiconstants.listTempleapi:
+            validatereq = constantslayer.validateJSON(valdata,staticconstants.listTempleSchema)
+        elif valdata['apiname'] == apiconstants.createTempleAdminapi:
+            validatereq = constantslayer.validateJSON(valdata,staticconstants.addTempleAdminSchema)
+        elif valdata['apiname'] == apiconstants.listTempleAdminapi:
+            validatereq = constantslayer.validateJSON(valdata,staticconstants.listTempleAdminSchema)
+        elif valdata['apiname'] == apiconstants.createAccountapi:
+            validatereq = constantslayer.validateJSON(valdata,staticconstants.createAccountSchema)
+        elif valdata['apiname'] == apiconstants.listAccountapi:
+            validatereq = constantslayer.validateJSON(valdata,staticconstants.listAccountSchema)
+
 
                 
         if(validatereq['respType'] == 'success'):
@@ -243,30 +254,13 @@ def performRequest(request):
 
 
     try:
-
-        # print("Request>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",request)
-
+        print("REQUESTTTTTTTTTTT",request)
         server = request['parameters']['server']
-        # print("server",server)
-
         headerz = request['parameters']['headerz']
-        # print("headerz",headerz)
-
         endpoint = request['parameters']['endpoint']
-        # print("endpoint",endpoint)
-
         reqdata = request['data']
-        # print("reqdata",reqdata)
-
         reqType = request['parameters']['reqtype']
-        # print("reqType",reqType)
-
-        methodType = request['parameters']['methodtype']
-        # print("methodType",methodType)
-
-
-        
-        
+        methodType = request['parameters']['methodtype']   
         if(reqType == "SSL"):
             url = "https://" + server + endpoint
 
@@ -286,7 +280,7 @@ def performRequest(request):
 
             try:
                 r = requests.post(url, data = payload, headers=headerz)
-            
+                
                 if(r.status_code == 200):
                     return r.text
                 else:
