@@ -287,6 +287,16 @@ def validateReq(req):
             validatereq=constantslayer.validateJSON(validate,staticconstants.createofferingsSchema)
         elif valdata['apiname']==apiconstants.listofferings:
             validatereq=constantslayer.validateJSON(validate,staticconstants.listofferingsSchema)
+        elif valdata['apiname']==apiconstants.createdietyapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.credietySchema)
+        elif valdata['apiname']==apiconstants.listdietyapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listdietySchema)
+        elif valdata['apiname']==apiconstants.createhistoryapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.createhisSchema)
+        elif valdata['apiname']==apiconstants.listhistoryapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listhisSchema)
+        
+        
         
         
         

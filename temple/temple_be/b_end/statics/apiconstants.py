@@ -39,18 +39,6 @@ listloadpoolapi="listloadpoolapi"
 selectbankapi="selectbankapi"
 selectdevsomapi="selectdevsomapi"
 
-
-
-
-
-
-
-
-
-
-
-
-
 super_create_bank="createbankapi"
 super_list_bank="listbankapi"
 super_createLords="createlordsapi"
@@ -91,3 +79,9 @@ createprasadam="createprasadamapi"
 listprasadam="listprasadamapi"
 createofferings="createofferingsapi"
 listofferings="listofferingsapi"
+#18 oct(temple admin)
+createdietyapi="createdietyapi"
+listdietyapi="listdietyapi"
+createhistoryapi="createhistoryapi"
+listhistoryapi="listhistoryapi"
+createstayapi="createstayapi"

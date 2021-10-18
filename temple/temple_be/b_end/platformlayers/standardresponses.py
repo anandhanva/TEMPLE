@@ -681,4 +681,52 @@ commonValues['LISTBLOCKBANK']={
                             "methodtype" : "POST"
                                 }
 
+#create diety(temple admin)
+commonValues['crediety']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_diety",
+                            "reqtype" : "crediety",
+                            "methodtype" : "POST"
+                                }
+
+#list diety(temple admin)
+commonValues['listdiety']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_diety",
+                            "reqtype" : "listdiety",
+                            "methodtype" : "POST"
+                                }
+#create history(temple admin)
+commonValues['createhistory']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_his",
+                            "reqtype" : "create_his",
+                            "methodtype" : "POST"
+                                }
+#list history(temple admin)
+commonValues['listhistory']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_his",
+                            "reqtype" : "list_his",
+                            "methodtype" : "POST"
+                                }
+#create stay(temple admin)
+commonValues['createstay']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/cre_stay",
+                            "reqtype" : "cre_stay",
+                            "methodtype" : "POST"
+                                }
+
+
                             
