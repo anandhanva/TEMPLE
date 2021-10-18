@@ -18,6 +18,7 @@ def parseRequestHCRD(request):
         maasslogger(request, str(e))
         return str(e)
 
+    print(reqdata)
     #parse by pre defined request data
     hashfrmInput = reqdata['hashstr']
     checksumfrmInput = reqdata['checksum']
@@ -30,6 +31,7 @@ def parseRequestHCRD(request):
     return retaftrParsed
 
 def convinptodict(input):
+    print("Input",  input)
     #check input data type
     if(isinstance(input, dict)):
         #it is already dict
@@ -52,6 +54,9 @@ def createHashfromData(request, modulename):
     print("HASHINPUT",hashinput)
     hashinput = json.dumps(hashinput)
     #Convert to Hash
+    print("HAAAASH",hashinput)
+    print("MODULENAME",modulename)
+
     hashh = callmaass4hashing(hashinput, modulename)
     print("HASSHH***",hashh)
     #Return Hash
@@ -76,14 +81,14 @@ def callmaass4hashing(hashinput, modulename):
     print("CONFIG",configparams)
     logdata = {}
     logdata['parameters'] = configparams
-   
     logdata['data'] = hashinput
     print("LOGDATA",logdata)
     print("LOGDATA",type(logdata))
+
     respfrmmasshash = staticfunctions.performRequest(logdata)
     # checkUserServers,standardresponses.checkUserHeaders,requestDataJson,standardresponses.checkUserReqType,standardresponses.checkUserMethodType,standardresponses.checkUserEndpoint)
     return respfrmmasshash
-    print("RESPFROMMAASS",respfrmmasshash)
+    # print("RESPFROMMAASS",respfrmmasshash)
 
 def checkuserfrmdb(request):
     try:
