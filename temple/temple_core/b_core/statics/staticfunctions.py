@@ -21,7 +21,6 @@ from b_core.statics.urlconstants import ENDPOINT, IP_DEV
 
 
 
-
 # COMMON RESPONSE CLASS
 class CommonReq2be:
     req_type : str
@@ -193,12 +192,27 @@ def validateReq(req):
         valdata = json.loads(req.data.decode('utf-8'))
         
 
+        if valdata['apiname'] == apiconstants.userLogin:
+            validatereq = constantslayer.validateJSON(valdata, staticconstants.userSchema)   
         if valdata['apiname']== apiconstants.userLogin:
             validatereq = constantslayer.validateJSON(valdata, staticconstants.userSchema)
         elif valdata['apiname'] == apiconstants.accStatement:
             validatereq = constantslayer.validateJSON(valdata, staticconstants.accStatementSchema)
             
             # responses.standardErrorResponseToUI["sourceoflog"] = "bcore-checklogin"
+        elif valdata['apiname'] == apiconstants.addTempleapi:
+            validatereq = constantslayer.validateJSON(valdata,staticconstants.addTempleSchema)
+        elif valdata['apiname'] == apiconstants.listTempleapi:
+            validatereq = constantslayer.validateJSON(valdata,staticconstants.listTempleSchema)
+        elif valdata['apiname'] == apiconstants.createTempleAdminapi:
+            validatereq = constantslayer.validateJSON(valdata,staticconstants.addTempleAdminSchema)
+        elif valdata['apiname'] == apiconstants.listTempleAdminapi:
+            validatereq = constantslayer.validateJSON(valdata,staticconstants.listTempleAdminSchema)
+        elif valdata['apiname'] == apiconstants.createAccountapi:
+            validatereq = constantslayer.validateJSON(valdata,staticconstants.createAccountSchema)
+        elif valdata['apiname'] == apiconstants.listAccountapi:
+            validatereq = constantslayer.validateJSON(valdata,staticconstants.listAccountSchema)
+
 
                 
         if(validatereq['respType'] == 'success'):
