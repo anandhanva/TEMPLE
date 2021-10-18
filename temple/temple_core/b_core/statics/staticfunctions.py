@@ -194,11 +194,8 @@ def validateReq(req):
 
         if valdata['apiname'] == apiconstants.userLogin:
             validatereq = constantslayer.validateJSON(valdata, staticconstants.userSchema)   
-        if valdata['apiname']== apiconstants.userLogin:
-            validatereq = constantslayer.validateJSON(valdata, staticconstants.userSchema)
         elif valdata['apiname'] == apiconstants.accStatement:
             validatereq = constantslayer.validateJSON(valdata, staticconstants.accStatementSchema)
-            
             # responses.standardErrorResponseToUI["sourceoflog"] = "bcore-checklogin"
         elif valdata['apiname'] == apiconstants.addTempleapi:
             validatereq = constantslayer.validateJSON(valdata,staticconstants.addTempleSchema)
@@ -257,30 +254,13 @@ def performRequest(request):
 
 
     try:
-
-        # print("Request>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",request)
-
+        print("REQUESTTTTTTTTTTT",request)
         server = request['parameters']['server']
-        # print("server",server)
-
         headerz = request['parameters']['headerz']
-        # print("headerz",headerz)
-
         endpoint = request['parameters']['endpoint']
-        # print("endpoint",endpoint)
-
         reqdata = request['data']
-        # print("reqdata",reqdata)
-
         reqType = request['parameters']['reqtype']
-        # print("reqType",reqType)
-
-        methodType = request['parameters']['methodtype']
-        # print("methodType",methodType)
-
-
-        
-        
+        methodType = request['parameters']['methodtype']   
         if(reqType == "SSL"):
             url = "https://" + server + endpoint
 
@@ -300,7 +280,7 @@ def performRequest(request):
 
             try:
                 r = requests.post(url, data = payload, headers=headerz)
-            
+                
                 if(r.status_code == 200):
                     return r.text
                 else:

@@ -3,6 +3,7 @@ from b_core.statics import ipconstants
 
 
 commonValues = {}
+
 commonValues['LOGIN'] = {
                             # "modulename":"checkUser",
                             "server" : ipconstants.templeBcoreServers,
@@ -27,6 +28,14 @@ commonValues['HASH_MO'] = {
                             "reqtype" : "HASHREQ",
                             "methodtype" : "POST"
                         }
+
+commonValues['ACCOUNT_STATEMENT']={
+                            "checkUserServer": ipconstants.templeBcoreServers,
+                            "checkUserHeader":{"Content-Type":"application/json"},
+                            "checkUserEndpoint":"/checkuserLogin",
+                            "checkUserReqType":"ACCSTMTREQ",
+                            "checkUserMethodType":"POST",
+                            }
 
 
 
