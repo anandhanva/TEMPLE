@@ -24,6 +24,15 @@ def user():
     # Check User credentials and perform login operation
     return bllayer.processLoginRequest(request)
 
+<<<<<<< HEAD
+@app.route(urlconstants.ENDPOINT+'/ac', methods = ['POST'])
+def ac():
+    
+    # Check User credentials and perform login operation
+    return bllayer.accstmtfrmdb(request)
+
+
+=======
 
 # ADD TEMPLE
 @app.route(urlconstants.ENDPOINT+'/add_temple', methods = ['POST'])
@@ -61,3 +70,4 @@ def listaccount():
     
     return bllayer.listAccountApi(request)
 
+>>>>>>> e2e4140eb9cfd2f2508e94c48bd2d601c92c2ba2

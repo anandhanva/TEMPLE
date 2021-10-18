@@ -3,6 +3,7 @@ from b_core.statics import ipconstants
 
 
 commonValues = {}
+
 commonValues['LOGIN'] = {
                             # "modulename":"checkUser",
                             "server" : ipconstants.templeBcoreServers,

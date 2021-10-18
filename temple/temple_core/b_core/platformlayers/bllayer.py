@@ -433,7 +433,7 @@ def listAccountApi(req):
 #===============================================================================================================
 #ACCOUNT STATEMENT - FINANCE ADMIN
 
-def accStatement(req):
+def accstmtfrmdb(req):
 #Parse Request and  extract hash, checksum and data
     request = req.get_json()
     print("REQUEST",request)
@@ -461,7 +461,7 @@ def accStatement(req):
         # if(checksumcompare == "true"):
     try:
 
-        comparedResults = constantslayer.accstmtfrmdb(hashchecksumNdata)
+        comparedResults = blconstants.accstmtfrmdbApi(hashchecksumNdata)
     except Exception as exCompareUser:
         maasslogger(request, str(exCompareUser))
         return str(exCompareUser)
