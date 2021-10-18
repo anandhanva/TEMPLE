@@ -1490,6 +1490,118 @@ templelistSchema={
     'txntype': {'type':'string'},
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}
+}
+#create diety (temple admin)
+credietySchema={ 
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {'templeid':{'type':'all'},
+                     'diety_name': {'type':'string'},
+                   'diety_desc': {'type':'string'},
+                   'diety_photo': {'type':'string'},
+                   'diety_oftemp': {'type':'string'}},
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}
+
+
+}
+#list diety (temple admin)
+listdietySchema={ 
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {'templeid':{'type':'all'},
+                     'diety_name': {'type':'string'},
+                   'diety_desc': {'type':'string'},
+                   'diety_photo': {'type':'string'},
+                   'diety_oftemp': {'type':'string'}},
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#create history (temple admin)
+createhisSchema={ 
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {'templeid':{'type':'all'},
+                     't_name': {'type':'string'},
+                   't_photo': {'type':'string'},
+                   't_history': {'type':'string'}
+                   },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}
+
+
+}
+
+#list history (temple admin)
+listhisSchema={ 
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {'templeid':{'type':'all'},
+                     't_name': {'type':'string'},
+                   't_photo': {'type':'string'},
+                   't_history': {'type':'string'}
+                   },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}
+
+
+}
+#create stay (temple admin)
+crestaySchema={ 
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {'templeid':{'type':'all'},
+                     'stay_name': {'type':'string'},
+                   'stay_photo': {'type':'string'},
+                   'stay_desc': {'type':'string'},
+                    'stay_amount': {'type':'string'} },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}
 
 
 }
