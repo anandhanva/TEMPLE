@@ -220,6 +220,27 @@ def listpooja():
         return jsonify(betoui_response())
 
 
+#LIST PRASADAM
+
+
+@app.route(baseUrl+'/list_prasadam', methods = ['POST'])
+def listprasadam():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata=validateReq(req)
+    valdata=constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.Listpooja(req)
+        print("checklog",checklog)
+        checklog = constantslayer.convinptodict(checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(betoui_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(betoui_response())
+
 
 @app.route(baseUrl+'/list_total', methods = ['POST'])
 def list_total_be():
