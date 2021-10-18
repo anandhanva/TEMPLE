@@ -9,7 +9,11 @@ from b_end.platformlayers import constantslayer
 from b_end.responsemaster import responses
 from b_end.statics.staticfunctions import uitobe_response, validateReq
 from flask_cors import CORS
+
+
 baseUrl = '/api/v1/temple'
+
+
 @app.route('/', methods=['POST','GET'])
 def base():
     return responses.upGetResponse(request)
