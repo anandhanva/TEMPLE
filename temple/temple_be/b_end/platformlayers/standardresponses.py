@@ -590,14 +590,8 @@ commonValues['selectbank'] = {
     "endpoint": "/selectbank",
     "reqtype": "selectbank",
     "methodtype": "POST"}
-# select devsom drop
-commonValues['selectbank'] = {
 
-    "server": ipconstants.checkUser,
-    "headerz": {"Content-Type": "application/json"},
-    "endpoint": "/selectdevsom",
-    "reqtype": "selectdevsom",
-    "methodtype": "POST"}
+
 
 
 commonValues['CREATEBLOCKDEVASWOM'] = {
@@ -730,3 +724,136 @@ commonValues['GETKANIKKABYDATE'] = {
     "reqtype": "GETKANIKKABYDATE",
     "methodtype": "POST"
 }
+
+
+
+
+
+commonValues['CREATEBLOCKDEVASWOM']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_block_devaswom",
+                            "reqtype" : "CREATEBLOCKDEVASWOM",
+                            "methodtype" : "POST"
+
+                            }
+
+commonValues['LISTBLOCKDEVASWOM']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_block_devaswom",
+                            "reqtype" : "LISTBLOCKDEVASWOM",
+                            "methodtype" : "POST"
+
+                            }
+
+commonValues['CREATEBLOCKCUSTOMER']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_block_customer",
+                            "reqtype" : "CREATEBLOCKCUSTOMER",
+                            "methodtype" : "POST"
+
+                            }
+
+commonValues['LISTBLOCKCUSTOMER']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_block_customer",
+                            "reqtype" : "LISTBLOCKCUSTOMER",
+                            "methodtype" : "POST"
+
+                            }
+
+commonValues['CREATEBLOCKCARD']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_block_card",
+                            "reqtype" : "CREATEBLOCKCARD",
+                            "methodtype" : "POST"
+
+                            }
+
+commonValues['LISTBLOCKCARD']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_block_card",
+                            "reqtype" : "LISTBLOCKCARD",
+                            "methodtype" : "POST"
+
+                            }
+
+commonValues['CREATEBLOCKBANK']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_block_bank",
+                            "reqtype" : "CREATEBLOCKBANK",
+                            "methodtype" : "POST"
+
+                            }
+
+commonValues['LISTBLOCKBANK']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_block_bank",
+                            "reqtype" : "LISTBLOCKBANK",
+                            "methodtype" : "POST"
+                                }
+
+#create diety(temple admin)
+commonValues['crediety']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_diety",
+                            "reqtype" : "crediety",
+                            "methodtype" : "POST"
+                                }
+
+#list diety(temple admin)
+commonValues['listdiety']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_diety",
+                            "reqtype" : "listdiety",
+                            "methodtype" : "POST"
+                                }
+#create history(temple admin)
+commonValues['createhistory']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_his",
+                            "reqtype" : "create_his",
+                            "methodtype" : "POST"
+                                }
+#list history(temple admin)
+commonValues['listhistory']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_his",
+                            "reqtype" : "list_his",
+                            "methodtype" : "POST"
+                                }
+#create stay(temple admin)
+commonValues['createstay']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/cre_stay",
+                            "reqtype" : "cre_stay",
+                            "methodtype" : "POST"
+                                }
+
+
+                            

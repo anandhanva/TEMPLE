@@ -1039,7 +1039,76 @@ def selectdevsom():
         request['resp_type']="FAIL"
         return jsonify(betoui_response()) 
 
-#list_stay
+#create diety (temple admin)
+@app.route(baseUrl+'/create_diety', methods = ['POST'])
+def create_diety():
+    valdata=validateReq(request)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.checklogin(request)
+        print("checklog",checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(betoui_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(betoui_response())
+
+
+#list diety (temple admin)
+@app.route(baseUrl+'/list_diety', methods = ['POST'])
+def list_diety():
+    valdata=validateReq(request)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.checklogin(request)
+        print("checklog",checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(betoui_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(betoui_response()) 
+
+#create history (temple admin)
+@app.route(baseUrl+'/create_his', methods = ['POST'])
+def create_his():
+    valdata=validateReq(request)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.checklogin(request)
+        print("checklog",checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(betoui_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(betoui_response()) 
+#list history (temple admin)
+@app.route(baseUrl+'/list_his', methods = ['POST'])
+def list_his():
+    valdata=validateReq(request)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.checklogin(request)
+        print("checklog",checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(betoui_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(betoui_response()) 
+
+#create stay (temple admin)
+@app.route(baseUrl+'/cre_stay', methods = ['POST'])
+def cre_stay():
+    valdata=validateReq(request)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.checklogin(request)
+        print("checklog",checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(betoui_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(betoui_response()) 
+
 
 @app.route(baseUrl+'/list_stay', methods = ['POST'])
 def list_stay_be():
@@ -1049,10 +1118,10 @@ def list_stay_be():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 
 #create_festival
 
@@ -1064,10 +1133,10 @@ def create_festival_be():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 
 
 
@@ -1079,10 +1148,10 @@ def list_festival_be():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 
 
 @app.route(baseUrl+'/getpooja_bydate', methods = ['POST'])
@@ -1093,10 +1162,10 @@ def getpooja_bydate_be():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 
 @app.route(baseUrl+'/getprasadam_bydate', methods = ['POST'])
 def getprasadam_bydate_be():
@@ -1106,10 +1175,10 @@ def getprasadam_bydate_be():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 
 @app.route(baseUrl+'/getoffering_bydate', methods = ['POST'])
 def getoffering_bydate_be():
@@ -1119,10 +1188,10 @@ def getoffering_bydate_be():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
 
 @app.route(baseUrl+'/getkanikka_bydate', methods = ['POST'])
 def getkanikka_bydate_be():
@@ -1132,10 +1201,10 @@ def getkanikka_bydate_be():
         checklog=constantslayer.checklogin(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
-        return jsonify(uitobe_response(checklog))
+        return jsonify(betoui_response(checklog))
     else:
         request['resp_type']="FAIL"
-        return jsonify(uitobe_response()) 
+        return jsonify(betoui_response()) 
         
 
 
