@@ -113,6 +113,152 @@ def validateReq(req):
         valdata = json.loads(req.data.decode('utf-8'))
         if valdata['apiname']== apiconstants.userLogin:
             validatereq = constantslayer.validateJSON(valdata, staticconstants.userSchema)
+        elif valdata['apiname']==apiconstants.templelist:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.templelistSchema)
+        elif valdata['apiname']==apiconstants.templeadmin:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.templeadminSchema)
+        elif valdata['apiname']==apiconstants.devaswomaddtempleapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.devaswomaddtempleschema)
+        elif valdata['apiname']==apiconstants.devaswomblocktempleapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.devaswomblocktempleschema)
+        elif valdata['apiname']==apiconstants.devaswomblocktempleadminapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.devaswomblocktempleadminschema)
+        elif valdata['apiname']==apiconstants.createfinanceadminapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.financeadminschema)
+        elif valdata['apiname']==apiconstants.createtempleadminapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.createtempleadminschema)
+        elif valdata['apiname']==apiconstants.createaccdevaswomapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.createaccdevschema)
+        elif valdata['apiname']==apiconstants.listaddtempleapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listtempleschema)
+        elif valdata['apiname']==apiconstants.listblocktempleapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listblocktempleschema)
+        elif valdata['apiname']==apiconstants.listfinadminapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listfinadminschema)
+        elif valdata['apiname']==apiconstants.listtempleadminapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listtempleadminschema)
+        elif valdata['apiname']==apiconstants.listaccdevaswomapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listaccdevasschema)
+        elif valdata['apiname']==apiconstants.templedatabyvaapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.tempdatavaschema)
+        elif valdata['apiname']==apiconstants.movemoneyapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.movemoneyschema)
+        elif valdata['apiname']==apiconstants.moneyloadapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.moneyloadschema)
+        elif valdata['apiname']==apiconstants.withdrawdetsapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.withdrawdetsschema)
+        elif valdata['apiname']==apiconstants.templedetbyidapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.tempdetbyidsschema)
+        elif valdata['apiname']==apiconstants.fundtxnapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.fundtxnschema)
+        elif valdata['apiname']==apiconstants.selecttempleadminapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.selecttempleadminschema)
+        elif valdata['apiname']==apiconstants.selectbankapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.selectbankschema)
+        elif valdata['apiname']==apiconstants.credevadminapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.credevadminschema)
+        elif valdata['apiname']==apiconstants.listdevadminapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listdevadminschema)
+        elif valdata['apiname']==apiconstants.creaccstatementapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.creaccstatementschema)
+        elif valdata['apiname']==apiconstants.listaccstatementapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listaccstatementschema)
+        elif valdata['apiname']==apiconstants.createdevaswomapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.createdevaswomschema)
+        elif valdata['apiname']==apiconstants.listdevaswomapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listdevaswomschema)
+        elif valdata['apiname']==apiconstants.forpinbyphoneapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.pinbyphoneschema)
+        elif valdata['apiname']==apiconstants.forpinbyreqapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.pinbyreqschema)
+        elif valdata['apiname']==apiconstants.fundtransapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.fundtransSchema)
+        elif valdata['apiname']==apiconstants.listfundtransapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listfundtransSchema)
+        elif valdata['apiname']==apiconstants.loadpoolapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.loadpoolschema)
+        elif valdata['apiname']==apiconstants.listloadpoolapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listloadpoolschema)
+        elif valdata['apiname']==apiconstants.selectbankapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.selectbankschema)
+        elif valdata['apiname']==apiconstants.selectdevsomapi:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.selectdevaswomSchema)
+
+
+
+        elif valdata['apiname']==apiconstants.super_create_bank:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.supercreatebankSchema)
+
+        elif valdata['apiname']==apiconstants.super_list_bank:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.superlistbankSchema)
+
+        elif valdata['apiname']==apiconstants.super_createLords:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.supercreate_lordsSchema)
+        elif valdata['apiname']==apiconstants.super_listlords:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.supercreate_lordsSchema)
+        
+        elif valdata['apiname']==apiconstants.create_pooja:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.create_poojaSchema)
+        
+        elif valdata['apiname']==apiconstants.list_total:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_totalSchema)
+        
+        elif valdata['apiname']==apiconstants.create_account:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.create_accountSchema)
+
+        elif valdata['apiname']==apiconstants.listaccount:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_accountSchema)
+
+        elif valdata['apiname']==apiconstants.createtranstemp:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.createtranstempSchema)
+
+        elif valdata['apiname']==apiconstants.listtranstemp:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listtranstempSchema)
+        
+        elif valdata['apiname']==apiconstants.create_devaswom:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.createdevaswomSchema)
+        
+        elif valdata['apiname']==apiconstants.list_devaswom:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listdevaswomSchema)
+        
+        elif valdata['apiname']==apiconstants.create_bank_admin:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.create_bank_adminSchema)
+        
+        elif valdata['apiname']==apiconstants.list_manage_bank_admin:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_bank_adminSchema)
+
+        elif valdata['apiname']==apiconstants.card_allocate:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.card_allocate_Schema)
+
+        elif valdata['apiname']==apiconstants.list_card_allocate:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_card_allocate_Schema)
+
+        elif valdata['apiname']==apiconstants.create_block_temple:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.create_block_temple_Schema)
+
+        elif valdata['apiname']==apiconstants.create_block_devaswom:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.create_block_devaswom_Schema)
+
+        elif valdata['apiname']==apiconstants.list_block_devaswom:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_block_devaswom_Schema)
+        
+        elif valdata['apiname']==apiconstants.create_block_customer:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.create_block_customer_Schema)
+        
+        elif valdata['apiname']==apiconstants.list_block_customer:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_block_customer_Schema)
+
+        elif valdata['apiname']==apiconstants.create_block_card:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.create_block_card_Schema)
+
+        elif valdata['apiname']==apiconstants.list_block_card:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_block_card_Schema)
+
+        elif valdata['apiname']==apiconstants.create_block_bank:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.create_block_bank_Schema)
+
+        elif valdata['apiname']==apiconstants.list_block_bank:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.list_block_bank_Schema)
         elif valdata['apiname']==apiconstants.accstatement:
             validatereq=constantslayer.validateJSON(validate,staticconstants.AccStatementSchema)
         elif valdata['apiname']==apiconstants.activitiestypedrop:
@@ -161,6 +307,8 @@ def validateReq(req):
         return str(e)
     except Exception as e:
         return str(e)
+
+
 def performRequest(request, modulename):
 
     server = request['parameters'][modulename]['server']

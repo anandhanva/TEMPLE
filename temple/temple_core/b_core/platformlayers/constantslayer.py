@@ -18,6 +18,7 @@ def parseRequestHCRD(request):
         maasslogger(request, str(e))
         return str(e)
 
+    print(reqdata)
     #parse by pre defined request data
     hashfrmInput = reqdata['hashstr']
     checksumfrmInput = reqdata['checksum']
@@ -30,6 +31,7 @@ def parseRequestHCRD(request):
     return retaftrParsed
 
 def convinptodict(input):
+    print("Input",  input)
     #check input data type
     if(isinstance(input, dict)):
         #it is already dict
@@ -52,6 +54,9 @@ def createHashfromData(request, modulename):
     print("HASHINPUT",hashinput)
     hashinput = json.dumps(hashinput)
     #Convert to Hash
+    print("HAAAASH",hashinput)
+    print("MODULENAME",modulename)
+
     hashh = callmaass4hashing(hashinput, modulename)
     print("HASSHH***",hashh)
     #Return Hash
@@ -84,13 +89,14 @@ def callmaass4hashing(hashinput, modulename):
     print("CONFIG",configparams)
     logdata = {}
     logdata['parameters'] = configparams
-   
     logdata['data'] = hashinput
     print("LOGDATA",logdata)
     print("LOGDATA",type(logdata))
+
     respfrmmasshash = staticfunctions.performRequest(logdata)
     # checkUserServers,standardresponses.checkUserHeaders,requestDataJson,standardresponses.checkUserReqType,standardresponses.checkUserMethodType,standardresponses.checkUserEndpoint)
     return respfrmmasshash
+    # print("RESPFROMMAASS",respfrmmasshash)
 
 def checkuserfrmdb(request):
     try:
@@ -297,3 +303,34 @@ def createFinAdminApi(request):
     except Exception as e:
         print("FAILED")
         return str(e)
+
+
+def createPoojaApi(request):
+    try:
+        request['database'] = "temple"
+        request['collection'] = "temple_admin"
+        datadict={}
+        datadict['tmp_name'] = request['datafrm']['tmp_name'],
+        datadict['ad_name'] = request['datafrm']['ad_name'],
+        datadict['contact'] = request['datafrm']['contact'],
+        datadict['d_email'] = request['datafrm']['d_email'],
+        datadict['d_add1'] = request['datafrm']['d_add1'],
+        datadict['d_add2'] = request['datafrm']['d_add2'],
+        datadict['d_state'] = request['datafrm']['d_state'],
+        print("Datadict*************",datadict)
+        datavalue = dbconstants.MongoAPI(request).write(datadict)
+        print("insert",datavalue)
+        respdict={}
+        respdict['respfrmdb'] = datadict
+        respdict['result']="Success"
+        del datadict['_id']
+        print("type------",type(datadict))
+        print("respdict!!!!!!!!!",datadict)
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        return str(e)
+
