@@ -2,9 +2,11 @@ DB_NAME = 'temple'
 ENCRYPTION_KEY = "WHENTHESKIESAREBLUESEEYOUONCEAGA"
 # LOG_TABLE = 'log'
 #user scheema
-
+# SchemaConst=['api_name']+"Schema"
+# print("||||||||||||||||||||||||||||||||||||",SchemaConst)
+schemas = {}
 #FINANCE ADMIN
-userSchema = {
+schemas['templeloginapiSchema'] = {
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -21,7 +23,7 @@ userSchema = {
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-AccStatementSchema={
+schemas['accstatementapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -40,7 +42,7 @@ AccStatementSchema={
     'checksum': {'type':'string'}}
 
 
-ActivitiedropSchema={
+schemas['activitytypeapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -58,7 +60,7 @@ ActivitiedropSchema={
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-pooldetailsSchema={
+schemas['pooldetailsapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -76,7 +78,7 @@ pooldetailsSchema={
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-fundtransferSchema={
+schemas['fundtransferapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -97,7 +99,7 @@ fundtransferSchema={
 
 
 
-selectdevaswomSchema={
+schemas['selectdevaswomapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -116,7 +118,7 @@ selectdevaswomSchema={
     'checksum': {'type':'string'}}
 
 
-selecttempleSchema={
+schemas['selecttempleapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -134,7 +136,7 @@ selecttempleSchema={
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-requestmoneySchema={
+schemas['requestmoneyapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -157,7 +159,7 @@ requestmoneySchema={
 
 
 #create_pooja(TEMPLE_ADMIN)
-createpoojaSchema={
+schemas['createpoojaapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -179,7 +181,7 @@ createpoojaSchema={
     'checksum': {'type':'string'}}
 
 #list_pooja(TEMPLE_ADMIN)
-listpoojaSchema={
+schemas['listpoojaapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -200,7 +202,7 @@ listpoojaSchema={
 
 #createprasadam(TEMPLE_ADMIN)
 
-createprasadamSchema={
+schemas['createprasadamapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -223,7 +225,7 @@ createprasadamSchema={
     'checksum': {'type':'string'}}
 
 #listprasadam(TEMPLE_ADMIN)
-listprasadamSchema={
+schemas['listprasadamapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -246,7 +248,7 @@ listprasadamSchema={
 
 
 #create_offerings(TEMPLE_ADMIN)
-createofferingsSchema={
+schemas['createofferingsapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -270,8 +272,7 @@ createofferingsSchema={
 #super_admin
 
 #create_bank
-
-supercreatebankSchema={
+schemas['createbankapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -295,7 +296,7 @@ supercreatebankSchema={
 
 #list_bank
 
-superlistbankSchema={
+schemas['listbankapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -314,7 +315,7 @@ superlistbankSchema={
 
 #create_lords
 
-supercreate_lordsSchema={
+schemas['createlordsapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -336,7 +337,7 @@ supercreate_lordsSchema={
 
     #list_lords
 
-superlist_lordsSchema={
+schemas['listlordsapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -355,7 +356,7 @@ superlist_lordsSchema={
 
 #create_pooja
 
-create_poojaSchema={
+schemas['createpoojaapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -377,7 +378,7 @@ create_poojaSchema={
     #list_total
 
 
-list_totalSchema={
+schemas['list_totalapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -398,7 +399,7 @@ list_totalSchema={
 
 #create_account
 
-create_accountSchema={
+schemas['createaccountapichema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -422,7 +423,7 @@ create_accountSchema={
 
 #list_account
 
-list_accountSchema={
+schemas['listaccountapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -442,7 +443,7 @@ list_accountSchema={
 
 #createtranstemp
 
-createtranstempSchema={
+schemas['createtranstempapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -464,7 +465,7 @@ createtranstempSchema={
 
 #list trans 
 
-listtranstempSchema={
+schemas['listtranstempapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -485,7 +486,7 @@ listtranstempSchema={
 
 #create_devaswom
 
-createdevaswomSchema={
+schemas['createdevaswomapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -507,7 +508,7 @@ createdevaswomSchema={
 
 #list_devaswom
 
-listdevaswomSchema={
+schemas['listevaswomapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -528,7 +529,7 @@ listdevaswomSchema={
 
  #create_bank_admin
 
-create_bank_adminSchema={
+schemas['createbankadminapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -550,7 +551,7 @@ create_bank_adminSchema={
 
 #list_manage_bank_admin_schema
 
-list_bank_adminSchema={
+schemas['list_manage_bank_admin_apiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -571,7 +572,7 @@ list_bank_adminSchema={
 
 #card_allocate_schema
 
-card_allocate_Schema={
+schemas['card_allocate_apiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -593,7 +594,7 @@ card_allocate_Schema={
 
 #list_card_allocate_schema
 
-list_card_allocate_Schema={
+schemas['list_card_allocate_apiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -613,7 +614,7 @@ list_card_allocate_Schema={
 
 #create_block_temple
 
-create_block_temple_Schema={
+schemas['create_block_temple_apiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -635,7 +636,7 @@ create_block_temple_Schema={
 
 #list_block_temple
 
-list_block_temple_Schema={
+schemas['list_block_temple_apiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -656,7 +657,7 @@ list_block_temple_Schema={
 #create_block_devaswom
 
 
-create_block_devaswom_Schema={
+schemas['create_block_devaswom_apiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -677,7 +678,7 @@ create_block_devaswom_Schema={
 
 #list_block_devaswom
 
-list_block_devaswom_Schema={
+schemas['list_block_devaswom_apiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -697,7 +698,7 @@ list_block_devaswom_Schema={
 
 #create_block_customer
 
-create_block_customer_Schema={
+schemas['create_block_customerbeSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -719,7 +720,7 @@ create_block_customer_Schema={
 
 #list_block_customer_Schema
 
-list_block_customer_Schema={
+schemas['list_block_customer_apiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -739,7 +740,7 @@ list_block_customer_Schema={
 
 #create_block_card
 
-create_block_card_Schema={
+schemas['create_block_cardrapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -761,7 +762,7 @@ create_block_card_Schema={
 
 #list_block_card
 
-list_block_card_Schema={
+schemas['list_block_card_apiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -781,7 +782,7 @@ list_block_card_Schema={
 
 #create_block_bank
 
-create_block_bank_Schema={
+schemas['create_block_bank_apiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -802,7 +803,7 @@ create_block_bank_Schema={
 
 #list_block_bank
 
-list_block_bank_Schema={
+schemas['list_block_bank_apiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -821,7 +822,7 @@ list_block_bank_Schema={
     'checksum': {'type':'string'}}
 
 #list_offerings(TEMPLE_ADMIN)
-listofferingsSchema={
+schemas['listofferingsapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},

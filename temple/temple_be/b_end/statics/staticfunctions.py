@@ -4,6 +4,7 @@ from flask import request,Response
 from jsonschema.validators import validate
 import requests,json
 import logging
+
 from b_end.platformlayers import constantslayer
 from b_end.statics import staticfunctions
 from b_end.responsemaster import responses
@@ -13,7 +14,7 @@ from b_end.statics.urlconstants import ENDPOINT, IP_DEV
 class CommonReq2be:
     req_type : str
     req_code : datetime
-    apiname : str
+    api_name : str
     em_reqid : str
     partner_reqid : str
     req_timestamp : str
@@ -34,7 +35,7 @@ class CommonReq2be:
                 raise Exception("Attribute error,request param null")
             self.req_type=rqstdata["req_type"]
             self.req_code=rqstdata["req_code"]
-            self.apiname=rqstdata["apiname"]
+            self.api_name=rqstdata["api_name"]
             self.em_reqid=rqstdata["em_reqid"]
             self.partner_reqid=rqstdata["partner_reqid"]
             self.requestdata=rqstdata["requestdata"]
@@ -99,131 +100,24 @@ def checkrequest(request):
         return {"response" : json.dumps({"Success": "It Works"}),
                         "status" : 200,
                         "mimetype" : 'application/json'}
-def uitobe_response(resptype):
+def betoui_response(resptype):
     if(resptype['resp_type'] == "SUCCESS"):
-        resptype['Response'] = {"request_status": "SUCCESS", "Status":" Transaction completed Successfully"}
+        resptype['Response'] = {"request_status": "SUCCESS", "Status":" Login Successfully"}
         return CommonResponse(resptype).__dict__
     else:
-        respdata = {"request_status": "FAIL", "Status":" Transaction failed with errors"}
+        respdata = {"request_status": "FAIL", "Status":" Login failed with errors"}
         return CommonResponse(respdata).__dict__
 
 def validateReq(req):
     # VALIDATE REQUEST
     try:
-        valdata = json.loads(req.data.decode('utf-8'))
-        if valdata['apiname']== apiconstants.userLogin:
-            validatereq = constantslayer.validateJSON(valdata, staticconstants.userSchema)
-        elif valdata['apiname']==apiconstants.templelist:
-            validatereq = constantslayer.validateJSON(validate,staticconstants.templelistSchema)
-
-        elif valdata['apiname']==apiconstants.super_create_bank:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.supercreatebankSchema)
-
-        elif valdata['apiname']==apiconstants.super_list_bank:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.superlistbankSchema)
-
-        elif valdata['apiname']==apiconstants.super_createLords:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.supercreate_lordsSchema)
-        elif valdata['apiname']==apiconstants.super_listlords:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.supercreate_lordsSchema)
-        
-        elif valdata['apiname']==apiconstants.create_pooja:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.create_poojaSchema)
-        
-        elif valdata['apiname']==apiconstants.list_total:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.list_totalSchema)
-        
-        elif valdata['apiname']==apiconstants.create_account:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.create_accountSchema)
-
-        elif valdata['apiname']==apiconstants.listaccount:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.list_accountSchema)
-
-        elif valdata['apiname']==apiconstants.createtranstemp:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.createtranstempSchema)
-
-        elif valdata['apiname']==apiconstants.listtranstemp:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.listtranstempSchema)
-        
-        elif valdata['apiname']==apiconstants.create_devaswom:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.createdevaswomSchema)
-        
-        elif valdata['apiname']==apiconstants.list_devaswom:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.listdevaswomSchema)
-        
-        elif valdata['apiname']==apiconstants.create_bank_admin:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.create_bank_adminSchema)
-        
-        elif valdata['apiname']==apiconstants.list_manage_bank_admin:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.list_bank_adminSchema)
-
-        elif valdata['apiname']==apiconstants.card_allocate:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.card_allocate_Schema)
-
-        elif valdata['apiname']==apiconstants.list_card_allocate:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.list_card_allocate_Schema)
-
-        elif valdata['apiname']==apiconstants.create_block_temple:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.create_block_temple_Schema)
-
-        elif valdata['apiname']==apiconstants.create_block_devaswom:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.create_block_devaswom_Schema)
-
-        elif valdata['apiname']==apiconstants.list_block_devaswom:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.list_block_devaswom_Schema)
-        
-        elif valdata['apiname']==apiconstants.create_block_customer:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.create_block_customer_Schema)
-        
-        elif valdata['apiname']==apiconstants.list_block_customer:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.list_block_customer_Schema)
-
-        elif valdata['apiname']==apiconstants.create_block_card:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.create_block_card_Schema)
-
-        elif valdata['apiname']==apiconstants.list_block_card:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.list_block_card_Schema)
-
-        elif valdata['apiname']==apiconstants.create_block_bank:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.create_block_bank_Schema)
-
-        elif valdata['apiname']==apiconstants.list_block_bank:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.list_block_bank_Schema)
-        elif valdata['apiname']==apiconstants.accstatement:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.AccStatementSchema)
-        elif valdata['apiname']==apiconstants.activitiestypedrop:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.ActivitiedropSchema)
-        elif valdata['apiname']==apiconstants.pooldetails:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.pooldetailsSchema)
-        elif valdata['apiname']==apiconstants.fundtransfer:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.fundtransferSchema)
-        elif valdata['apiname']==apiconstants.selectdevaswom:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.selectdevaswomSchema)
-        elif valdata['apiname']==apiconstants.selecttemple:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.selecttempleSchema)
-        elif valdata['apiname']==apiconstants.selecttemple:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.selecttempleSchema)
-        elif valdata['apiname']==apiconstants.requestmoney:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.requestmoneySchema)
-        elif valdata['apiname']==apiconstants.createpooja:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.createpoojaSchema)
-        elif valdata['apiname']==apiconstants.listpooja:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.listpoojaSchema)
-        elif valdata['apiname']==apiconstants.listpooja:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.listpoojaSchema)
-        elif valdata['apiname']==apiconstants.createprasadam:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.createprasadamSchema)
-        elif valdata['apiname']==apiconstants.createofferings:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.createofferingsSchema)
-        elif valdata['apiname']==apiconstants.listofferings:
-            validatereq=constantslayer.validateJSON(validate,staticconstants.listofferingsSchema)
-        
-        
-        
-
-
-        
-            # responses.standardErrorResponseToUI["sourceoflog"] = "bcore-checklogin"
+        valdata = json.loads(json.dumps(req))
+        # valdata=json.dumps(valdata)
+        print("val Data ", valdata)
+        SchemaConst=valdata['api_name']+"Schema"
+        Schema=staticconstants.schemas[SchemaConst]
+        validatereq=constantslayer.validateJSON(validate,Schema)
+        # responses.standardErrorResponseToUI["sourceoflog"] = "bcore-checklogin"
         if(validatereq['respType'] == 'success'):
             valResp = {}
             valResp['response'] = responses.upGetResponse()
@@ -232,7 +126,7 @@ def validateReq(req):
             responses.standardErrorResponseToUI["sourceoflog"] = "fail"
             valResp = responses.standardErrorResponseToUI()
         logging.info(" :::VALIDATION SUCCESSFULL::: ",valResp)
-        return valResp
+        return valResp        
     except ValueError as e:
         return str(e)
     except Exception as e:
@@ -240,14 +134,14 @@ def validateReq(req):
 
 
 def performRequest(request, modulename):
+    
 
     server = request['parameters'][modulename]['server']
     headerz = request['parameters'][modulename]['headerz']
     endpoint = request['parameters'][modulename]['endpoint']
-    reqdata = request['data']['requestdata']
+    reqdata = request['data']
     reqType = request['parameters'][modulename]['reqtype']
     methodType = request['parameters'][modulename]['methodtype']
-    print(">>>>>>>>>>>>>>>>>>>>>>>>",server)
     if(reqType == "SSL"):
         url = "https://" + server + endpoint
     else:
@@ -261,20 +155,23 @@ def performRequest(request, modulename):
         print("PL = ",payload)
         try:
             r = requests.post(url, data = payload, headers=headerz)
-            if(r.status_code == 200):
+            if(r.status_code == 200):                
                 return r.text
             else:
                 print(r.text)
                 return {"Error":"Api Failed"}
             responseofreq = r
+            
         except Exception as e:
             return  str(e)
     else:
         if(methodType == "GET"):
             r = requests.get(url, data=reqdata, headers=headerz)
+            
             if(r.status_code == 200):
                 return responses.upGetResponse
             else:
                 return responses.standardErrorResponseToUI
             responseofreq = r
+            
     return responseofreq
