@@ -38,6 +38,19 @@ loadpoolapi="loadpoolapi"
 listloadpoolapi="listloadpoolapi"
 selectbankapi="selectbankapi"
 selectdevsomapi="selectdevsomapi"
+
+
+
+
+
+
+
+
+
+
+
+
+
 super_create_bank="createbankapi"
 super_list_bank="listbankapi"
 super_createLords="createlordsapi"
@@ -78,16 +91,3 @@ createprasadam="createprasadamapi"
 listprasadam="listprasadamapi"
 createofferings="createofferingsapi"
 listofferings="listofferingsapi"
-list_stayapi="list_stay_api"
-create_festival_api="create_festival_api"
-list_festival_api="list_festival_api"
-getpooja_bydate_api="getpooja_bydate"
-getprasadam_bydate_api="getprasadam_bydate"
-getoffering_bydate_api="getoffering_bydate"
-getkanikka_bydate_api="getkanikka_bydate"
-#18 oct(temple admin)
-createdietyapi="createdietyapi"
-listdietyapi="listdietyapi"
-createhistoryapi="createhistoryapi"
-listhistoryapi="listhistoryapi"
-createstayapi="createstayapi"
