@@ -23,3 +23,11 @@ def user():
     
     # Check User credentials and perform login operation
     return bllayer.processLoginRequest(request)
+
+@app.route(urlconstants.ENDPOINT+'/ac', methods = ['POST'])
+def ac():
+    
+    # Check User credentials and perform login operation
+    return bllayer.accstmtfrmdb(request)
+
+
