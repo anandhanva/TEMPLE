@@ -22,7 +22,7 @@ class CommonReq2be:
     em_endpoint : str
     em_custid:str
     txntype=str
-    hash=str
+    hashstr=str
     checksum=str
     def __init__(self, rqstdata):
         print("DATAAA",rqstdata)
@@ -42,7 +42,7 @@ class CommonReq2be:
             self.em_endpoint=rqstdata["em_endpoint"]
             self.em_custid=rqstdata["em_custid"]
             self.txntype=rqstdata["txntype"]
-            self.hash=rqstdata['hash']
+            self.hashstr=rqstdata['hashstr']
             self.checksum=rqstdata['checksum']
             self.timestamp = str(datetime.datetime.now())
         except ValueError :
@@ -106,48 +106,47 @@ def uitobe_response(resptype):
     else:
         respdata = {"request_status": "FAIL", "Status":" Transaction failed with errors"}
         return CommonResponse(respdata).__dict__
-def logger_srv(logData):
-    if(logData['reqtype'] == "SUCCESS"):
-        logData['apiname'] =  apiconstants.userLogin
-        logData['level'] = "SUCCESS"
-        logData['logtype'] = "SUCCESS LOG"
-        logData['logdata'] = json.dumps(logData)
-        logData['reqtype'] = logData['req_type']
-        logData['timestamp'] = str(datetime.datetime.now())
-        #logData['collection'] = config.LOG_TABLE
-        logData['database'] = staticconstants.DB_NAME
-        resp = successlogreq(logData)
-    else:
-        if(logData['reqtype'] == "FAIL"):
-            resp = faillogreq(logData)
-            print("")
-        else:
-            print("FAIL")
-    print("Response: " + str(resp))
-    return resp
-def successlogreq(reqdata):
-    # REQUEST LOGGING
-    try:
-        loggr = staticfunctions.MongoAPI(reqdata).write(reqdata)
-        if(loggr['Status'] == "Successfully Inserted"):
-            return
-        else:
-            return responses.standardErrorResponseToUI
-    except ValueError as e:
-        return str(e)
-    except Exception as e:
-        return str(e)
-def faillogreq(reqdata):
-    reqst = "" + reqdata + ""
-    return reqst
+
 def validateReq(req):
     # VALIDATE REQUEST
     try:
         valdata = json.loads(req.data.decode('utf-8'))
         if valdata['apiname']== apiconstants.userLogin:
             validatereq = constantslayer.validateJSON(valdata, staticconstants.userSchema)
-        elif valdata['apiname']==apiconstants.templelist:
-            validateReq=constantslayer.validateJSON(validate,staticconstants.templelistSchema)
+        elif valdata['apiname']==apiconstants.accstatement:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.AccStatementSchema)
+        elif valdata['apiname']==apiconstants.activitiestypedrop:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.ActivitiedropSchema)
+        elif valdata['apiname']==apiconstants.pooldetails:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.pooldetailsSchema)
+        elif valdata['apiname']==apiconstants.fundtransfer:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.fundtransferSchema)
+        elif valdata['apiname']==apiconstants.selectdevaswom:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.selectdevaswomSchema)
+        elif valdata['apiname']==apiconstants.selecttemple:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.selecttempleSchema)
+        elif valdata['apiname']==apiconstants.selecttemple:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.selecttempleSchema)
+        elif valdata['apiname']==apiconstants.requestmoney:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.requestmoneySchema)
+        elif valdata['apiname']==apiconstants.createpooja:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.createpoojaSchema)
+        elif valdata['apiname']==apiconstants.listpooja:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listpoojaSchema)
+        elif valdata['apiname']==apiconstants.listpooja:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listpoojaSchema)
+        elif valdata['apiname']==apiconstants.createprasadam:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.createprasadamSchema)
+        elif valdata['apiname']==apiconstants.createofferings:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.createofferingsSchema)
+        elif valdata['apiname']==apiconstants.listofferings:
+            validatereq=constantslayer.validateJSON(validate,staticconstants.listofferingsSchema)
+        
+        
+        
+
+
+        
             # responses.standardErrorResponseToUI["sourceoflog"] = "bcore-checklogin"
         if(validatereq['respType'] == 'success'):
             valResp = {}
@@ -164,12 +163,13 @@ def validateReq(req):
         return str(e)
 def performRequest(request, modulename):
 
-    server = request['parameters']['LOGIN']['server']
-    headerz = request['parameters']['LOGIN']['headerz']
-    endpoint = request['parameters']['LOGIN']['endpoint']
+    server = request['parameters'][modulename]['server']
+    headerz = request['parameters'][modulename]['headerz']
+    endpoint = request['parameters'][modulename]['endpoint']
     reqdata = request['data']['requestdata']
-    reqType = request['parameters']['LOGIN']['reqtype']
-    methodType = request['parameters']['LOGIN']['methodtype']
+    reqType = request['parameters'][modulename]['reqtype']
+    methodType = request['parameters'][modulename]['methodtype']
+    print(">>>>>>>>>>>>>>>>>>>>>>>>",server)
     if(reqType == "SSL"):
         url = "https://" + server + endpoint
     else:

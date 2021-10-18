@@ -19,12 +19,12 @@ def parseRequestHCRD(request):
         return str(e)
 
     #parse by pre defined request data
-    hashfrmInput = reqdata['hash']
+    hashfrmInput = reqdata['hashstr']
     checksumfrmInput = reqdata['checksum']
     datafrmInput = reqdata['requestdata']
     #prepare a return dictionary
     retaftrParsed = {}
-    retaftrParsed['hash'] = hashfrmInput
+    retaftrParsed['hashstr'] = hashfrmInput
     retaftrParsed['checksum'] = checksumfrmInput
     retaftrParsed['datafrm'] = datafrmInput
     return retaftrParsed

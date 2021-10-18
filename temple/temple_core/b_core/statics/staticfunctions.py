@@ -34,7 +34,7 @@ class CommonReq2be:
     em_endpoint : str
     em_custid:str
     txntype=str
-    hash=str
+    hashstr=str
     checksum=str
     def __init__(self, rqstdata):
         print("DATAAA",rqstdata)
@@ -54,7 +54,7 @@ class CommonReq2be:
             self.em_endpoint=rqstdata["em_endpoint"]
             self.em_custid=rqstdata["em_custid"]
             self.txntype=rqstdata["txntype"]
-            self.hash=rqstdata['hash']
+            self.hashstr=rqstdata['hashstr']
             self.checksum=rqstdata['checksum']
             self.timestamp = str(datetime.datetime.now())
         except ValueError :
@@ -194,6 +194,11 @@ def validateReq(req):
 
         if valdata['apiname'] == apiconstants.userLogin:
             validatereq = constantslayer.validateJSON(valdata, staticconstants.userSchema)   
+        if valdata['apiname']== apiconstants.userLogin:
+            validatereq = constantslayer.validateJSON(valdata, staticconstants.userSchema)
+        elif valdata['apiname'] == apiconstants.accStatement:
+            validatereq = constantslayer.validateJSON(valdata, staticconstants.accStatementSchema)
+            
             # responses.standardErrorResponseToUI["sourceoflog"] = "bcore-checklogin"
         elif valdata['apiname'] == apiconstants.addTempleapi:
             validatereq = constantslayer.validateJSON(valdata,staticconstants.addTempleSchema)
@@ -330,16 +335,16 @@ def checkSum(value):
     return hashvalue
 
 def validateHash(requesthash,createdhash):
-    # requesthash = json.loads(requesthash['hash'])
-    decodehash2 = AESCipher(staticconstants.ENCRYPTION_KEY).decrypt(requesthash['hash'])
+    # requesthash = json.loads(requesthash['hashstr'])
+    decodehash2 = AESCipher(staticconstants.ENCRYPTION_KEY).decrypt(requesthash['hashstr'])
 
     #Decode hash from created hash
     checksum1 = request['checksum']
 
-    checksum2 = checkSum(request['hash'])
-    decodehash1 = AESCipher(staticconstants.ENCRYPTION_KEY).decrypt(createdhash['hash'])
+    checksum2 = checkSum(request['hashstr'])
+    decodehash1 = AESCipher(staticconstants.ENCRYPTION_KEY).decrypt(createdhash['hashstr'])
 
-    reqChecksum = checkSum(createdhash['hash'])
+    reqChecksum = checkSum(createdhash['hashstr'])
 
     #Compare Checksum and HASHES
     if decodehash1 == decodehash2:
