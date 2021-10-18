@@ -97,4 +97,74 @@ commonValues['ADD_FINADMIN'] = {
                             "reqtype" : "CREATEFINADMINREQ",
                             "methodtype" : "POST"
                         }
+
+commonValues['ADD_POOJA'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.hashServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_pooja",
+                            "reqtype" : "CREATEPOOJAREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LIST_POOJA'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.hashServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_pooja",
+                            "reqtype" : "LISTPOOJAREQ",
+                            "methodtype" : "POST"
+                        }
+
+
+commonValues['CREATE_OFFERING'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.hashServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_offerings",
+                            "reqtype" : "CREATEOFFERINGREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LIST_OFFERING'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.hashServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_offerings",
+                            "reqtype" : "LISTOFFERINGREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['CREATE_PRASADAM'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.hashServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_prasadam",
+                            "reqtype" : "CREATEPRASADAMREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['LIST_PRASADAM'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.hashServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_prasadam",
+                            "reqtype" : "LISTPRASADAMREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['CREATE_DIETY'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.hashServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_diety",
+                            "reqtype" : "CREATEDIETYREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LIST_DIETY'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.hashServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_diety",
+                            "reqtype" : "LISTDIETYREQ",
+                            "methodtype" : "POST"
+                        }
                     

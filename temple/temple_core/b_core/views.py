@@ -80,7 +80,7 @@ def createfinadmins():
 @app.route(urlconstants.ENDPOINT+'/create_pooja', methods = ['POST'])
 def addpooja():
     
-    return bllayer.createPooja(request)
+    return bllayer.createPooja(request.json)
 
 #LIST POOJA
 @app.route(urlconstants.ENDPOINT+'/list_pooja', methods = ['POST'])
@@ -92,7 +92,7 @@ def listpooja():
 @app.route(urlconstants.ENDPOINT+'/create_prasadam', methods = ['POST'])
 def addprasadam():
     
-    return bllayer.createPrasadam(request)
+    return bllayer.createPrasadam(request.json)
 
 #LIST PRASADAM
 @app.route(urlconstants.ENDPOINT+'/list_prasadam', methods = ['POST'])
@@ -104,7 +104,7 @@ def listprasadam():
 @app.route(urlconstants.ENDPOINT+'/create_offerings', methods = ['POST'])
 def addofferings():
     
-    return bllayer.createOfferings(request)
+    return bllayer.createOfferings(request.json)
 
 #LIST OFFERINGS
 @app.route(urlconstants.ENDPOINT+'/list_offerings', methods = ['POST'])
@@ -116,7 +116,7 @@ def listofferings():
 @app.route(urlconstants.ENDPOINT+'/create_diety', methods = ['POST'])
 def adddiety():
     
-    return bllayer.createDiety(request)
+    return bllayer.createDiety(request.json)
 
 #LIST DIETY
 @app.route(urlconstants.ENDPOINT+'/list_diety', methods = ['POST'])

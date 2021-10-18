@@ -189,46 +189,22 @@ def validateReq(req):
 
     # VALIDATE REQUEST
     try:
-        valdata = json.loads(req.data.decode('utf-8'))
-        
-
-        if valdata['apiname'] == apiconstants.userLogin:
-            validatereq = constantslayer.validateJSON(valdata, staticconstants.userSchema)   
-        elif valdata['apiname'] == apiconstants.accStatement:
-            validatereq = constantslayer.validateJSON(valdata, staticconstants.accStatementSchema)
-            # responses.standardErrorResponseToUI["sourceoflog"] = "bcore-checklogin"
-        elif valdata['apiname'] == apiconstants.addTempleapi:
-            validatereq = constantslayer.validateJSON(valdata,staticconstants.addTempleSchema)
-        elif valdata['apiname'] == apiconstants.listTempleapi:
-            validatereq = constantslayer.validateJSON(valdata,staticconstants.listTempleSchema)
-        elif valdata['apiname'] == apiconstants.createTempleAdminapi:
-            validatereq = constantslayer.validateJSON(valdata,staticconstants.addTempleAdminSchema)
-        elif valdata['apiname'] == apiconstants.listTempleAdminapi:
-            validatereq = constantslayer.validateJSON(valdata,staticconstants.listTempleAdminSchema)
-        elif valdata['apiname'] == apiconstants.createAccountapi:
-            validatereq = constantslayer.validateJSON(valdata,staticconstants.createAccountSchema)
-        elif valdata['apiname'] == apiconstants.listAccountapi:
-            validatereq = constantslayer.validateJSON(valdata,staticconstants.listAccountSchema)
-        elif valdata['apiname'] == apiconstants.createFinAdminapi:
-            validatereq = constantslayer.validateJSON(valdata,staticconstants.createFinAccountSchema)
-
-
-                
+        valdata = json.loads(json.dumps(req))
+        # valdata=json.dumps(valdata)
+        print("val Data ", valdata)
+        SchemaConst=valdata['api_name']+"Schema"
+        Schema=staticconstants.schemas[SchemaConst]
+        validatereq=constantslayer.validateJSON(validate,Schema)
+        # responses.standardErrorResponseToUI["sourceoflog"] = "bcore-checklogin"
         if(validatereq['respType'] == 'success'):
             valResp = {}
             valResp['response'] = responses.upGetResponse()
             valResp['status'] = 200
-            
         else:
-            responses.standardErrorResponseToBE["sourceoflog"] = "fail"
-            valResp = responses.standardErrorResponseToBE()
-
-        
+            responses.standardErrorResponseToUI["sourceoflog"] = "fail"
+            valResp = responses.standardErrorResponseToUI()
         logging.info(" :::VALIDATION SUCCESSFULL::: ",valResp)
-
         return valResp
-
-    
     except ValueError as e:
         return str(e)
     except Exception as e:

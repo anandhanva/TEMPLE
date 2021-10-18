@@ -308,15 +308,51 @@ def createFinAdminApi(request):
 def createPoojaApi(request):
     try:
         request['database'] = "temple"
-        request['collection'] = "temple_admin"
+        request['collection'] = "temple_pooja"
         datadict={}
-        datadict['tmp_name'] = request['datafrm']['tmp_name'],
-        datadict['ad_name'] = request['datafrm']['ad_name'],
-        datadict['contact'] = request['datafrm']['contact'],
-        datadict['d_email'] = request['datafrm']['d_email'],
-        datadict['d_add1'] = request['datafrm']['d_add1'],
-        datadict['d_add2'] = request['datafrm']['d_add2'],
-        datadict['d_state'] = request['datafrm']['d_state'],
+        datadict['templeid'] = request['datafrm']['templeid'],
+        datadict['pooja_amount'] = request['datafrm']['pooja_amount'],
+        datadict['pooja_description'] = request['datafrm']['pooja_description'],
+        datadict['pooja_name'] = request['datafrm']['pooja_name']
+        print("Datadict*************",datadict)
+        datavalue = dbconstants.MongoAPI(request).write(datadict)
+        print("insert",datavalue)
+        respdict={}
+        respdict['respfrmdb'] = datadict
+        respdict['result']="Success"
+        del datadict['_id']
+        print("type------",type(datadict))
+        print("respdict!!!!!!!!!",datadict)
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        return str(e)
+def listTemplePoojaApi(request):
+    try:
+        request['database'] = "temple"
+        request['collection'] = "temple_pooja"
+        datavalue = dbconstants.MongoAPI(request).readAll()
+        print("listed",datavalue)
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        return str(e)
+
+
+def createOfferingApi(request):
+    try:
+        request['database'] = "temple"
+        request['collection'] = "temple_offering"
+        datadict={}
+        datadict['templeid'] = request['datafrm']['templeid'],
+        datadict['offering_name'] = request['datafrm']['offering_name'],
+        datadict['offering_amount'] = request['datafrm']['offering_amount'],
+        datadict['offering_description'] = request['datafrm']['offering_description']
         print("Datadict*************",datadict)
         datavalue = dbconstants.MongoAPI(request).write(datadict)
         print("insert",datavalue)
@@ -334,3 +370,98 @@ def createPoojaApi(request):
         print("FAILED")
         return str(e)
 
+
+def listTempleOfferingApi(request):
+    try:
+        request['database'] = "temple"
+        request['collection'] = "temple_admin"
+        datavalue = dbconstants.MongoAPI(request).read()
+        print("listed",datavalue)
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        return str(e)
+def createPrasadamApi(request):
+    try:
+        request['database'] = "temple"
+        request['collection'] = "temple_prasadam"
+        datadict={}
+        datadict['templeid'] = request['datafrm']['templeid'],
+        datadict['prasadam_name'] = request['datafrm']['prasadam_name'],
+        datadict['prasadam_amount'] = request['datafrm']['prasadam_amount'],
+        datadict['prasadam_description'] = request['datafrm']['prasadam_description']
+        datadict['prasadam_count'] = request['datafrm']['prasadam_count']
+        datadict['prasadam_measure'] = request['datafrm']['prasadam_measure']
+
+        print("Datadict*************",datadict)
+        datavalue = dbconstants.MongoAPI(request).write(datadict)
+        print("insert",datavalue)
+        respdict={}
+        respdict['respfrmdb'] = datadict
+        respdict['result']="Success"
+        del datadict['_id']
+        print("type------",type(datadict))
+        print("respdict!!!!!!!!!",datadict)
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        return str(e)
+
+
+def listTemplePrasadamApi(request):
+    try:
+        request['database'] = "temple"
+        request['collection'] = "temple_prasadam"
+        datavalue = dbconstants.MongoAPI(request).readAll()
+        print("listed",datavalue)
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        return str(e)
+
+def createDietyApi(request):
+    try:
+        request['database'] = "temple"
+        request['collection'] = "temple_diety"
+        datadict={}
+        datadict['templeid'] = request['datafrm']['templeid'],
+        datadict['diety_name'] = request['datafrm']['diety_name'],
+        datadict['diety_desc'] = request['datafrm']['diety_desc'],
+        datadict['diety_photo'] = request['datafrm']['diety_photo']
+        datadict['diety_oftemp'] = request['datafrm']['diety_oftemp']
+
+        print("Datadict*************",datadict)
+        datavalue = dbconstants.MongoAPI(request).write(datadict)
+        print("insert",datavalue)
+        respdict={}
+        respdict['respfrmdb'] = datadict
+        respdict['result']="Success"
+        del datadict['_id']
+        print("type------",type(datadict))
+        print("respdict!!!!!!!!!",datadict)
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        return str(e)
+def listTempleDietyApi(request):
+    try:
+        request['database'] = "temple"
+        request['collection'] = "temple_diety"
+        datavalue = dbconstants.MongoAPI(request).readAll()
+        print("listed",datavalue)
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        return str(e)
