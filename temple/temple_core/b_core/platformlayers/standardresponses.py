@@ -29,6 +29,14 @@ commonValues['HASH_MO'] = {
                             "methodtype" : "POST"
                         }
 
+commonValues['ACCOUNT_STATEMENT']={
+                            "checkUserServer": ipconstants.templeBcoreServers,
+                            "checkUserHeader":{"Content-Type":"application/json"},
+                            "checkUserEndpoint":"/checkuserLogin",
+                            "checkUserReqType":"ACCSTMTREQ",
+                            "checkUserMethodType":"POST",
+                            }
+
 
 
 commonValues['ADD_TEMPLE'] = {

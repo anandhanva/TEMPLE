@@ -20,11 +20,10 @@ def base():
 # USER LOGIN
 @app.route(urlconstants.ENDPOINT+'/user', methods = ['POST'])
 def user():
-    
+    print("Request from UI: ", request.json)
     # Check User credentials and perform login operation
-    return bllayer.processLoginRequest(request)
+    return bllayer.processLoginRequest(request.json)
 
-<<<<<<< HEAD
 @app.route(urlconstants.ENDPOINT+'/ac', methods = ['POST'])
 def ac():
     
@@ -32,7 +31,6 @@ def ac():
     return bllayer.accstmtfrmdb(request)
 
 
-=======
 
 # ADD TEMPLE
 @app.route(urlconstants.ENDPOINT+'/add_temple', methods = ['POST'])
@@ -70,4 +68,88 @@ def listaccount():
     
     return bllayer.listAccountApi(request)
 
->>>>>>> e2e4140eb9cfd2f2508e94c48bd2d601c92c2ba2
+#TEMPLE ADMIN
+#CREATE POOJA
+@app.route(urlconstants.ENDPOINT+'/create_pooja', methods = ['POST'])
+def addpooja():
+    
+    return bllayer.createPooja(request)
+
+#LIST POOJA
+@app.route(urlconstants.ENDPOINT+'/list_pooja', methods = ['POST'])
+def listpooja():
+    
+    return bllayer.listPooja(request)
+
+#CREATE PRASADAM
+@app.route(urlconstants.ENDPOINT+'/create_prasadam', methods = ['POST'])
+def addprasadam():
+    
+    return bllayer.createPrasadam(request)
+
+#LIST PRASADAM
+@app.route(urlconstants.ENDPOINT+'/list_prasadam', methods = ['POST'])
+def listprasadam():
+    
+    return bllayer.listPrasadam(request)
+
+#CREATE OFFERINGS
+@app.route(urlconstants.ENDPOINT+'/create_offerings', methods = ['POST'])
+def addofferings():
+    
+    return bllayer.createOfferings(request)
+
+#LIST OFFERINGS
+@app.route(urlconstants.ENDPOINT+'/list_offerings', methods = ['POST'])
+def listofferings():
+    
+    return bllayer.listOfferings(request)
+
+#CREATE DIETY
+@app.route(urlconstants.ENDPOINT+'/create_diety', methods = ['POST'])
+def adddiety():
+    
+    return bllayer.createDiety(request)
+
+#LIST DIETY
+@app.route(urlconstants.ENDPOINT+'/list_diety', methods = ['POST'])
+def listdiety():
+    
+    return bllayer.listDiety(request)
+
+#CREATE HISTORY
+@app.route(urlconstants.ENDPOINT+'/create_history', methods = ['POST'])
+def addhistory():
+    
+    return bllayer.createHistory(request)
+
+#LIST HISTORY
+@app.route(urlconstants.ENDPOINT+'/list_history', methods = ['POST'])
+def listhistory():
+    
+    return bllayer.listHistory(request)
+
+#CREATE STAY
+@app.route(urlconstants.ENDPOINT+'/create_stay', methods = ['POST'])
+def addstay():
+    
+    return bllayer.createstay(request)
+
+#LIST STAY
+@app.route(urlconstants.ENDPOINT+'/list_stay', methods = ['POST'])
+def liststay():
+    
+    return bllayer.listStay(request)
+
+#CREATE FESTIVAL
+@app.route(urlconstants.ENDPOINT+'/create_festival', methods = ['POST'])
+def addfestival():
+    
+    return bllayer.createFestival(request)
+
+#LIST FESTIVAL
+@app.route(urlconstants.ENDPOINT+'/list_festival', methods = ['POST'])
+def listfestival():
+    
+    return bllayer.listFestival(request)
+
