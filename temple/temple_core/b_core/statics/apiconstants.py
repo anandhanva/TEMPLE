@@ -15,4 +15,6 @@ createPrasadamapi="templecreateprasadamapi"
 listPrasadamapi="templelistprasadamapi"
 createDietyapi="templecreatedietyapi"
 listDietyapi="templelistdietyapi"
+createHistoryapi="templecreateHistoryapi"
+
 

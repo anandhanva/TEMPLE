@@ -1,5 +1,5 @@
 
-templeBcoreServers="192.168.0.238:8002/api/v1/temple"
+templeBcoreServers="192.168.0.184:8002/api/v1/temple"
 templeBcoreHeader={"content_Type":"application/json"}
 templeBcoreReqType=""
 templeBcoreMethodType="POST"

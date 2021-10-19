@@ -98,9 +98,9 @@ commonValues['ADD_FINADMIN'] = {
                             "methodtype" : "POST"
                         }
 
-commonValues['ADD_POOJA'] = {
+commonValues['CREATEPOOJA'] = {
                             # "modulename":"checkUser",
-                            "server" : ipconstants.hashServers,
+                            "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
                             "endpoint" : "/create_pooja",
                             "reqtype" : "CREATEPOOJAREQ",
@@ -109,7 +109,7 @@ commonValues['ADD_POOJA'] = {
 
 commonValues['LIST_POOJA'] = {
                             # "modulename":"checkUser",
-                            "server" : ipconstants.hashServers,
+                            "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
                             "endpoint" : "/list_pooja",
                             "reqtype" : "LISTPOOJAREQ",
@@ -117,18 +117,18 @@ commonValues['LIST_POOJA'] = {
                         }
 
 
-commonValues['CREATE_OFFERING'] = {
+commonValues['CREAOFFERINGS'] = {
                             # "modulename":"checkUser",
-                            "server" : ipconstants.hashServers,
+                            "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
                             "endpoint" : "/create_offerings",
                             "reqtype" : "CREATEOFFERINGREQ",
                             "methodtype" : "POST"
                         }
 
-commonValues['LIST_OFFERING'] = {
+commonValues['LISTOFFERINGs'] = {
                             # "modulename":"checkUser",
-                            "server" : ipconstants.hashServers,
+                            "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
                             "endpoint" : "/list_offerings",
                             "reqtype" : "LISTOFFERINGREQ",
@@ -165,6 +165,14 @@ commonValues['LIST_DIETY'] = {
                             "headerz" : {"Content-Type":"application/json"},
                             "endpoint" : "/list_diety",
                             "reqtype" : "LISTDIETYREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['CREATE_HISTORY'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.hashServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_history",
+                            "reqtype" : "CREATEHISTORYREQ",
                             "methodtype" : "POST"
                         }
                     

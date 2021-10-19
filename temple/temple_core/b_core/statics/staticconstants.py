@@ -185,9 +185,9 @@ schemas['templecreatepoojaapiSchema'] = {
     'ewire_reqid': {'type':'string'},
     'partner_reqid': {'type':'string'},
     'req_timestamp': {'type':'integer'},
-    'requestdata': { "templeid": {'type':'integer'},        
-        "pooja_amount": {'type':'integer'},
-        "pooja_description": {'type':'string'},
+    'requestdata': { "pooja_id": {'type':'integer'},        
+        "pooja_rateid": {'type':'integer'},
+        "pooja_descr": {'type':'string'},
         "pooja_name": {'type':'string'},        
                         },
     'authtoken': {'type':'string'},
@@ -253,7 +253,7 @@ schemas['templelistofferingapi'] = {
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-schemas['templecreateprasadamapiSchema'] = {
+schemas['templecreatedietyapiSchema'] = {
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"}, 
     'apiname': {'type':'string'},
@@ -274,7 +274,7 @@ schemas['templecreateprasadamapiSchema'] = {
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-schemas['templelistprasadamapi'] = {
+schemas['templelistprasadamapiSchema'] = {
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"}, 
     'apiname': {'type':'string'},
@@ -292,7 +292,7 @@ schemas['templelistprasadamapi'] = {
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-schemas['templelistdietyapi'] = {
+schemas['templelistdietyapiSchema'] = {
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"}, 
     'apiname': {'type':'string'},
@@ -300,6 +300,29 @@ schemas['templelistdietyapi'] = {
     'partner_reqid': {'type':'string'},
     'req_timestamp': {'type':'integer'},
     'requestdata': {"type":"all"
+                        },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+
+
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+
+schemas['templecreateHistoryapi'] = {
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"}, 
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata': {"templeid": {'type':'integer'},        
+        "diety_name": {'type':'string'},
+        "diety_desc": {'type':'integer'},
+        "diety_photo": {'type':'string'}, 
+        "diety_oftemp": {'type':'string'},
                         },
     'authtoken': {'type':'string'},
     'ewire_endpoint': {'type':'string'},

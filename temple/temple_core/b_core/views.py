@@ -4,9 +4,12 @@ from flask import Response
 import requests
 from b_core import app
 import json
-from b_core.statics import urlconstants
+from b_core.statics import urlconstants,staticfunctions
 from b_core.platformlayers import bllayer, constantslayer
 from b_core.responsemaster import responses
+# from temple.temple_core.b_core.statics.staticfunctions import coretobe_response
+from flask.json import jsonify
+
 
 
 
@@ -20,8 +23,19 @@ def base():
 # USER LOGIN
 @app.route(urlconstants.ENDPOINT+'/user', methods = ['POST'])
 def user():
-    print("Request from UI: ", request.json)
-    # Check User credentials and perform login operation
+    # valdata=staticfunctions.validateReq(request)
+    # #valdata=json.dumps(valdata)
+    # if(valdata['status']==200):
+    #     print("checklogin")
+    #     checklog=constantslayer.checkuserfrmdb(request)
+    #     print("checklog",checklog)
+    #     checklog['resp_type']=="SUCCESS"
+    #     return jsonify(coretobe_response(checklog))
+    # else:
+    #     request['resp_type']="FAIL"
+    #     return jsonify(coretobe_response())
+    # print("Request from UI: ", request.json)
+    # # Check User credentials and perform login operation
     return bllayer.processLoginRequest(request.json)
 
 @app.route(urlconstants.ENDPOINT+'/ac', methods = ['POST'])
