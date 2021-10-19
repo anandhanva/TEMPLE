@@ -63,8 +63,6 @@ class CommonResponse:
     resp_frm_yesb : dict
     resp_frm_ewire : dict
     def __init__(self, respdata):
-        print("DATARESp",respdata)
-        print("DATAAA",type(respdata))
         self.resp_code = respdata["resp_code"]
         self.resp_type = respdata["resp_type"]
         self.message = respdata["message"]
@@ -72,17 +70,17 @@ class CommonResponse:
             if respdata["em_reqid"] is None or respdata["em_reqid"] is None:
                  raise Exception("Attribute error,request param null")
             else:
-              self.em_reqid = respdata["em_reqid"]
-            self.em_custid = respdata["em_custid"]
-            self.resp_frm_bank = respdata["resp_frm_bank"]
-            self.resp_frm_ewire = respdata["resp_frm_ewire"]
-            self.resp_frm_cbs = respdata["resp_frm_cbs"]
-            self.resp_frm_ext = respdata["resp_frm_ext"]
-            self.resp_frm_maass = respdata["resp_frm_maass"]
-            self.resp_frm_blockc = respdata["resp_frm_blockc"]
-            self.resp_frm_mojaloop = respdata["resp_frm_mojaloop"]
-            self.resp_frm_rulengn = respdata["resp_frm_rulengn"]
-            self.timestamp = str(datetime.datetime.now())
+                self.em_reqid = respdata["em_reqid"]
+                self.em_custid = respdata["em_custid"]
+                self.resp_frm_bank = 'respdata["resp_frm_bank"]'
+                self.resp_frm_ewire = ''
+                self.resp_frm_cbs = 'respdata["resp_frm_cbs"]'
+                self.resp_frm_ext = 'respdata["resp_frm_ext"]'
+                self.resp_frm_maass = 'respdata["resp_frm_maass"]'
+                self.resp_frm_blockc = 'respdata["resp_frm_blockc"]'
+                self.resp_frm_mojaloop = 'respdata["resp_frm_mojaloop"]'
+                self.resp_frm_rulengn = 'respdata["resp_frm_rulengn"]'
+                self.timestamp = str(datetime.datetime.now())
         except ValueError :
             raise Exception("ValueError exception  while assigning timeStamp")
         except TypeError:
@@ -90,6 +88,7 @@ class CommonResponse:
         except Exception as e:
             print(e)
             raise Exception("exception while assigning timeStamp")
+
 def checkrequest(request):
     data = request
     if data is None or data == {}:
@@ -103,20 +102,19 @@ def checkrequest(request):
 def betoui_response(resptype):
     if(resptype['resp_type'] == "SUCCESS"):
         resptype['Response'] = {"request_status": "SUCCESS", "Status":" Login Successfully"}
-        return CommonResponse(resptype).__dict__
-    else:
-        respdata = {"request_status": "FAIL", "Status":" Login failed with errors"}
-        return CommonResponse(respdata).__dict__
+    return CommonResponse(resptype)
 
 def validateReq(req):
     # VALIDATE REQUEST
     try:
-        valdata = json.loads(json.dumps(req))
+        valdata = req
         # valdata=json.dumps(valdata)
         print("val Data ", valdata)
         SchemaConst=valdata['api_name']+"Schema"
+        print("SchemaConst", SchemaConst)
         Schema=staticconstants.schemas[SchemaConst]
         validatereq=constantslayer.validateJSON(validate,Schema)
+        print("validatereq", validatereq)
         # responses.standardErrorResponseToUI["sourceoflog"] = "bcore-checklogin"
         if(validatereq['respType'] == 'success'):
             valResp = {}

@@ -1,4 +1,4 @@
-
+import datetime
 from flask.globals import session
 from flask.json import jsonify
 from flask.wrappers import Request
@@ -10,7 +10,6 @@ from b_end.platformlayers import constantslayer
 from b_end.responsemaster import responses
 from b_end.statics.staticfunctions import betoui_response, validateReq
 from flask_cors import CORS
-
 
 baseUrl = '/api/v1/temple'
 
@@ -39,11 +38,27 @@ def user():
         checklog=constantslayer.checklogin(req)
         print("checklog",checklog)
         checklog = constantslayer.convinptodict(checklog)
-        checklog['resp_type']=="SUCCESS"
-        return jsonify(betoui_response(checklog))
+        if(checklog):
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)    
     else:
-        request['resp_type']="FAIL"
-        return jsonify(betoui_response())
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
 
 @app.route(baseUrl+'/temple_list', methods = ['POST'])
 def templelist_be():
@@ -158,26 +173,43 @@ def list_lords_be():
         return jsonify(betoui_response())
 # TEMPLE ADMIN>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 @app.route(baseUrl+'/create_pooja', methods = ['POST'])
-def create_pooja_be():
+def createpooja():
     req = request.json
     req = ast.literal_eval(req)
     req = constantslayer.convinptodict(req)
     valdata=validateReq(req)
     valdata=constantslayer.convinptodict(valdata)
+    
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.Createpooja(req)
         print("checklog",checklog)
         checklog = constantslayer.convinptodict(checklog)
-        checklog['resp_type']=="SUCCESS"
-        return jsonify(betoui_response(checklog))
+        if(checklog):
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)    
     else:
-        request['resp_type']="FAIL"
-        return jsonify(betoui_response())
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
    
 
 
-# LIST POOJA
+# LIST POOJA TEMPLE ADMIN
 
 @app.route(baseUrl+'/list_pooja', methods = ['POST'])
 def listpooja():
@@ -191,15 +223,29 @@ def listpooja():
         checklog=constantslayer.Listpooja(req)
         print("checklog",checklog)
         checklog = constantslayer.convinptodict(checklog)
-        checklog['resp_type']=="SUCCESS"
-        return jsonify(betoui_response(checklog))
+        if(checklog):
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)    
     else:
-        request['resp_type']="FAIL"
-        return jsonify(betoui_response())
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
 
-
-
-#CREATE PRASADAM
+#CREATE PRASADAM TEMPLE ADMIN
 
 @app.route(baseUrl+'/create_prasadam', methods = ['POST'])
 def createprasadam():
@@ -210,16 +256,32 @@ def createprasadam():
     valdata=constantslayer.convinptodict(valdata)
     if(valdata['status']==200):
         print("checklogin")
-        checklog=constantslayer.Createprasadam(req)
+        checklog=constantslayer. Createprasadam(req)
         print("checklog",checklog)
         checklog = constantslayer.convinptodict(checklog)
-        checklog['resp_type']=="SUCCESS"
-        return jsonify(betoui_response(checklog))
+        if(checklog):
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)    
     else:
-        request['resp_type']="FAIL"
-        return jsonify(betoui_response())
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
 
-#LIST PRASADAM
+#LIST PRASADAM TEMPLE ADMIN
 
 @app.route(baseUrl+'/list_prasadam', methods = ['POST'])
 def listprasadam():
@@ -233,14 +295,30 @@ def listprasadam():
         checklog=constantslayer.Listprasadam(req)
         print("checklog",checklog)
         checklog = constantslayer.convinptodict(checklog)
-        checklog['resp_type']=="SUCCESS"
-        return jsonify(betoui_response(checklog))
+        if(checklog):
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)    
     else:
-        request['resp_type']="FAIL"
-        return jsonify(betoui_response())
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
 
 
-#CTREATE OFFERINGS
+#CTREATE OFFERINGS TEMPLE ADMIN
 
 @app.route(baseUrl+'/create_offerings', methods = ['POST'])
 def createofferings():
@@ -254,14 +332,30 @@ def createofferings():
         checklog=constantslayer.Createofferings(req)
         print("checklog",checklog)
         checklog = constantslayer.convinptodict(checklog)
-        checklog['resp_type']=="SUCCESS"
-        return jsonify(betoui_response(checklog))
+        if(checklog):
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)    
     else:
-        request['resp_type']="FAIL"
-        return jsonify(betoui_response())
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
 
 
-#LIST OFFERINGS
+#LIST OFFERINGS  TEMPLE ADMIN
 @app.route(baseUrl+'/list_offerings', methods = ['POST'])
 def listofferings():
     req = request.json
@@ -274,11 +368,99 @@ def listofferings():
         checklog=constantslayer.Listofferings(req)
         print("checklog",checklog)
         checklog = constantslayer.convinptodict(checklog)
-        checklog['resp_type']=="SUCCESS"
-        return jsonify(betoui_response(checklog))
+        if(checklog):
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)    
     else:
-        request['resp_type']="FAIL"
-        return jsonify(betoui_response())
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+
+
+#ADD RATE TEMPLE ADMIN
+@app.route(baseUrl+'/add_rate', methods = ['POST'])
+def addrate():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata=validateReq(req)
+    valdata=constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.Addrate(req)
+        print("checklog",checklog)
+        checklog = constantslayer.convinptodict(checklog)
+        if(checklog):
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)    
+    else:
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+
+#LIST RATE TEMPLE ADMIN
+@app.route(baseUrl+'/list_rate', methods = ['POST'])
+def listrate():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata=validateReq(req)
+    valdata=constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.Listrate(req)
+        print("checklog",checklog)
+        checklog = constantslayer.convinptodict(checklog)
+        if(checklog):
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)    
+    else:
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+
 
 
 
