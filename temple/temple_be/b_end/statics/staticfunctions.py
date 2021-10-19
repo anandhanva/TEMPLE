@@ -115,7 +115,10 @@ def validateReq(req):
         # valdata=json.dumps(valdata)
         print("val Data ", valdata)
         SchemaConst=valdata['api_name']+"Schema"
+        print(">>>>>>>>>>>>>>>>>>>>>>>>",SchemaConst)
+
         Schema=staticconstants.schemas[SchemaConst]
+        print(">>>>>>>>>>>>>>>>>>>>>>>>",Schema)
         validatereq=constantslayer.validateJSON(validate,Schema)
         # responses.standardErrorResponseToUI["sourceoflog"] = "bcore-checklogin"
         if(validatereq['respType'] == 'success'):

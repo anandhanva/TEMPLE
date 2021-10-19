@@ -163,6 +163,7 @@ def create_pooja_be():
     req = ast.literal_eval(req)
     req = constantslayer.convinptodict(req)
     valdata=validateReq(req)
+    print("$$$$$$$$$$$$$valdata",valdata)
     valdata=constantslayer.convinptodict(valdata)
     if(valdata['status']==200):
         print("checklogin")
@@ -201,8 +202,28 @@ def listpooja():
 
 #CREATE PRASADAM
 
-@app.route(baseUrl+'/create_prasadam', methods = ['POST'])
-def listpooja():
+# @app.route(baseUrl+'/create_prasadam', methods = ['POST'])
+# def listpooja():
+#     req = request.json
+#     req = ast.literal_eval(req)
+#     req = constantslayer.convinptodict(req)
+#     valdata=validateReq(req)
+#     valdata=constantslayer.convinptodict(valdata)
+#     if(valdata['status']==200):
+#         print("checklogin")
+#         checklog=constantslayer.Listpooja(req)
+#         print("checklog",checklog)
+#         checklog = constantslayer.convinptodict(checklog)
+#         checklog['resp_type']=="SUCCESS"
+#         return jsonify(betoui_response(checklog))
+#     else:
+#         request['resp_type']="FAIL"
+#         return jsonify(betoui_response())
+
+#CREATE DIETY
+
+@app.route(baseUrl+'/create_diety', methods = ['POST'])
+def cre_diety():
     req = request.json
     req = ast.literal_eval(req)
     req = constantslayer.convinptodict(req)
@@ -210,7 +231,27 @@ def listpooja():
     valdata=constantslayer.convinptodict(valdata)
     if(valdata['status']==200):
         print("checklogin")
-        checklog=constantslayer.Listpooja(req)
+        checklog=constantslayer.crediety(req)
+        print("checklog",checklog)
+        checklog = constantslayer.convinptodict(checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(betoui_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(betoui_response())
+
+#LIST DIETY
+
+@app.route(baseUrl+'/list_diety', methods = ['POST'])
+def list_diety():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata=validateReq(req)
+    valdata=constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.listdiety(req)
         print("checklog",checklog)
         checklog = constantslayer.convinptodict(checklog)
         checklog['resp_type']=="SUCCESS"
@@ -1032,6 +1073,20 @@ def selectdevsom():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.checklogin(request)
+        print("checklog",checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(betoui_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(betoui_response()) 
+
+#create history temple admin
+@app.route(baseUrl+'/cre_history', methods = ['POST'])
+def cre_history():
+    valdata=validateReq(request)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.crehistory(request)
         print("checklog",checklog)
         checklog['resp_type']=="SUCCESS"
         return jsonify(betoui_response(checklog))
