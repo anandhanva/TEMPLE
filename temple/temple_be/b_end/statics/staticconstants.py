@@ -167,12 +167,11 @@ schemas['createpoojaapiSchema']={
     'modulename': {'type':'string'},
     'partner_reqid': {'type':'string'},
     'req_timestamp': {'type':'integer'},
-    'requestdata':  {'temple_id':{'type':'string'},
+    'requestdata':  {'diety':{'type':'string'},
                     'pooja_amount':{'type':'integer'},
                     'pooja_description':{'type':'string'},
-                    'pooja_name':{'type':'string'}
-                    
-                     },
+                    'pooja_name':{'type':'string'},
+                    'partnerid':{'type':'string'}},
     'authtoken': {'type':'string'},
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
@@ -1489,7 +1488,67 @@ templelistSchema={
     'ewire_custid': {'type':'string'},
     'txntype': {'type':'string'},
     'hashstr': {'type':'string'},
-    'checksum': {'type':'string'}
+    'checksum': {'type':'string'}}
 
+#create diety(TEMPLE_ADMIN)
+schemas['credietyapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {'templeid':{'type':'string'},
+                    'diety_name':{'type':'string'},
+                    'diety_desc':{'type':'string'},
+                    'diety_photo':{'type':'string'},
+                    'diety_oftemp':{'type':'string'}, },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
 
-}
+#list diety(TEMPLE_ADMIN)
+schemas['listdietyapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {'templeid':{'type':'string'},
+                    'diety_name':{'type':'string'},
+                    'diety_desc':{'type':'string'},
+                    'diety_photo':{'type':'string'},
+                    'diety_oftemp':{'type':'string'}, },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#create history(TEMPLE_ADMIN)
+schemas['createhistoryapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {'templeid':{'type':'string'},
+                    't_history':{'type':'string'},
+                    't_name':{'type':'string'},
+                    't_photo':{'type':'string'}
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}

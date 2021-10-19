@@ -93,7 +93,7 @@ commonValues['REQUESTMONEY']={
 commonValues['CREATEPOOJA']={
                                 "server" : ipconstants.checkUser,
                                 "headerz" : {"Content-Type":"application/json"},
-                                "endpoint" : "/createpooja",
+                                "endpoint" : "/create_pooja",
                                 "reqtype" : "CREPOOJA",
                                 "methodtype" : "POST"
 
@@ -102,7 +102,7 @@ commonValues['CREATEPOOJA']={
 commonValues['LISTPOOJA']={
                                 "server" : ipconstants.checkUser,
                                 "headerz" : {"Content-Type":"application/json"},
-                                "endpoint" : "/listpooja",
+                                "endpoint" : "/list_pooja",
                                 "reqtype" : "LISTPOOJA",
                                 "methodtype" : "POST"
 
@@ -678,6 +678,33 @@ commonValues['LISTBLOCKBANK']={
                             "headerz" : {"Content-Type":"application/json"},
                             "endpoint" : "/list_block_bank",
                             "reqtype" : "LISTBLOCKBANK",
+                            "methodtype" : "POST"
+                                }
+            
+commonValues['CREDIETY']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_diety",
+                            "reqtype" : "CREDIETY",
+                            "methodtype" : "POST"
+                                }
+
+commonValues['LISTDIETY']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_diety",
+                            "reqtype" : "LISTDIETY",
+                            "methodtype" : "POST"
+                                }
+
+commonValues['CREHISTORY']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/cre_history",
+                            "reqtype" : "CREHISTORY",
                             "methodtype" : "POST"
                                 }
 

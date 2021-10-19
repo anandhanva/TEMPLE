@@ -96,13 +96,14 @@ def accountstatement(req):
 
 
 def Createpooja(req):
-    # print('Req Type', type(req))
+    print('Req Type', type(req))
     request = convinptodict(req)
+    print("**********************************",request)
     try:
         modulename = 'CREATEPOOJA'
         datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
                     "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
-                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
                     "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
         obj = standardresponses.commonValues
         otherdata = {}
@@ -131,7 +132,7 @@ def Listpooja(req):
         modulename = 'LISTPOOJA'
         datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
                     "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
-                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
                     "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
         obj = standardresponses.commonValues
         otherdata = {}
@@ -152,6 +153,92 @@ def Listpooja(req):
         print("EXCEPTION2",str(e))
         return str(e)
 
+def crediety(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'CREDIETY'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        TempleBeResp =convinptodict(TempleBeResp)
+        # print("ivide ethi 1",TempleBeResp)
+        return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return str(e)
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return str(e)
+
+def listdiety(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'CREDIETY'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        TempleBeResp =convinptodict(TempleBeResp)
+        # print("ivide ethi 1",TempleBeResp)
+        return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return str(e)
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return str(e)
+
+def crehistory(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'CREDIETY'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        TempleBeResp =convinptodict(TempleBeResp)
+        # print("ivide ethi 1",TempleBeResp)
+        return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return str(e)
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return str(e)
 
 
 
