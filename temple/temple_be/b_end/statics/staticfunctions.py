@@ -102,6 +102,8 @@ def checkrequest(request):
 def betoui_response(resptype):
     if(resptype['resp_type'] == "SUCCESS"):
         resptype['Response'] = {"request_status": "SUCCESS", "Status":" Login Successfully"}
+    # return CommonResponse(resptype).__dict__
+   
     return CommonResponse(resptype)
 
 def validateReq(req):
@@ -111,8 +113,11 @@ def validateReq(req):
         # valdata=json.dumps(valdata)
         print("val Data ", valdata)
         SchemaConst=valdata['api_name']+"Schema"
+        print(">>>>>>>>>>>>>>>>>>>>>>>>",SchemaConst)
+
         print("SchemaConst", SchemaConst)
         Schema=staticconstants.schemas[SchemaConst]
+        print(">>>>>>>>>>>>>>>>>>>>>>>>",Schema)
         validatereq=constantslayer.validateJSON(validate,Schema)
         print("validatereq", validatereq)
         # responses.standardErrorResponseToUI["sourceoflog"] = "bcore-checklogin"

@@ -172,8 +172,7 @@ schemas['createpoojaapiSchema']={
                     'pooja_rateid':{'type':'integer'},
                     'pooja_descr':{'type':'string'},
                     'pooja_name':{'type':'string'}
-                    
-                     },
+                    },
     'authtoken': {'type':'string'},
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
@@ -403,8 +402,7 @@ schemas['listlordsapiSchema']={
 'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
 
 #devaswom add temple 
-
-devaswomaddtempleschema={
+schemas['devaswomaddtempleapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -429,8 +427,8 @@ devaswomaddtempleschema={
 'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
 
 #devaswom block temple 
+schemas['devaswomblocktempleapiSchema']={
 
-devaswomblocktempleschema={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -448,8 +446,8 @@ devaswomblocktempleschema={
 'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
 
 #devaswom block temple admin
+schemas['devaswomblocktempleadminapiSchema']={
 
-devaswomblocktempleadminschema={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -467,8 +465,8 @@ devaswomblocktempleadminschema={
 'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
 
 #create finance admin
+schemas['createfinanceadminapiSchema']={
 
-financeadminschema={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -493,8 +491,9 @@ financeadminschema={
 'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
 
 #create temple admin devaswom
+schemas['createtempleadminapiSchema']={
 
-createtempleadminschema={
+
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -517,8 +516,8 @@ createtempleadminschema={
     'checksum': {'type':'string'}}
 
 #create account devaswom
+schemas['createaccdevaswomapiSchema']={
 
-createaccdevschema={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -537,8 +536,8 @@ createaccdevschema={
     'txntype': {'type':'string'},
 'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
 #list add temple
+schemas['listaddtempleapiSchema']={
 
-listtempleschema={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -551,10 +550,26 @@ listtempleschema={
     'ewire_custid': {'type':'string'},
     'txntype': {'type':'string'},
 'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
-#list block temple
 
-listblocktempleschema={
+#list block temple
+schemas['listblocktempleapiSchema']={
     'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata': {'prasadham_counts': {'type':'string'},
+                     'd_comment': {'type':'string'}},
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
+
+
+schemas['listblockadminapiSchema']={
+         'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
     'ewire_reqid': {'type':'string'},
@@ -571,10 +586,31 @@ listblocktempleschema={
 
 
 
-
 #list fin admin
 
-listfinadminschema={
+schemas['listfinadminapiSchema']={    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata': {'tmpname': {'type':'string'},
+                    'ad_name': {'type':'string'},
+                    'd_add1': {'type':'string'},
+                    'd_add2': {'type':'string'},
+                    'd_state': {'type':'string'},
+                    'bank_name': {'type':'string'},
+                    'd_accno': {'type':'string'},
+                    'ifsc': {'type':'string'}},
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
+
+#list temple admin
+
+schemas['listtempleadminapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -594,11 +630,7 @@ listfinadminschema={
     'ewire_custid': {'type':'string'},
     'txntype': {'type':'string'},
 'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
-#create fin admin
 
-listtempleadminschema={
-    'hashstr': {'type':'string'},
-    'checksum': {'type':'string'}}
 
     #list_total
 
@@ -623,13 +655,28 @@ schemas['list_totalapiSchema']={
 
 #list account devaswom
 
-listaccdevasschema={
-    'hashstr': {'type':'string'},
-    'checksum': {'type':'string'}}
+schemas['listaccdevaswomapiSchema']={
+     'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata': 
+                    {'list': {'type':'string'},
+                     
+                     
+                      },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
+  
 
 #create_account
 
-schemas['createaccountapichema']={
+schemas['createaccountapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -651,7 +698,7 @@ schemas['createaccountapichema']={
 
 #temple data by virtual acc number
 
-tempdatavaschema={
+schemas['templedatabyvaapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -668,7 +715,7 @@ tempdatavaschema={
 
 #move money to devaswom
 
-movemoneyschema={
+schemas['movemoneyapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -688,7 +735,7 @@ movemoneyschema={
 
 #moneyload list
 
-moneyloadschema={
+schemas['moneyloadapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -709,7 +756,7 @@ moneyloadschema={
 
 #withdraw details
 
-withdrawdetsschema={
+schemas['withdrawdetsapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -725,7 +772,7 @@ withdrawdetsschema={
 
 #temple details by id
 
-tempdetbyidsschema={
+schemas['templedetbyidapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -743,7 +790,7 @@ tempdetbyidsschema={
 
 #devaswom fund transfer
 
-fundtxnschema={
+schemas['fundtxnapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -765,7 +812,7 @@ fundtxnschema={
 
 #select temple admin
 
-selecttempleadminschema={
+schemas['selecttempleadminapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -783,7 +830,7 @@ selecttempleadminschema={
 
 #select bank
 
-selectbankschema={
+schemas['selectbankapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -800,7 +847,7 @@ selectbankschema={
 'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
 
 #create devaswom admin
-credevadminschema={
+schemas['credevadminapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -821,7 +868,7 @@ credevadminschema={
 'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
 
 #list devaswom admin
-listdevadminschema={
+schemas['listdevadminapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -842,7 +889,7 @@ listdevadminschema={
 'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
 
 #create acc statement
-creaccstatementschema={
+schemas['creaccstatementapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -862,7 +909,7 @@ creaccstatementschema={
 'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
 
 #list acc statement
-listaccstatementschema={
+schemas['listaccstatementapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -881,8 +928,8 @@ listaccstatementschema={
     'txntype': {'type':'string'},
 'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
 
-#create devaswom
-createdevaswomschema={
+#create devaswom 
+schemas['createdevaswomapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -902,7 +949,7 @@ createdevaswomschema={
 'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
 
 #list devaswom
-listdevaswomschema={
+schemas['listdevaswomapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -922,7 +969,7 @@ listdevaswomschema={
 'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
 
 #forgot pin by phone
-pinbyphoneschema={
+schemas['forpinbyphoneapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -947,7 +994,7 @@ pinbyphoneschema={
     'checksum': {'type':'string'}}
 
 #forgot pin request
-pinbyreqschema={
+schemas['forpinbyreqapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -966,7 +1013,7 @@ pinbyreqschema={
     'checksum': {'type':'string'}}
 
 #fund transfer
-fundtransSchema={
+schemas['fundtransapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -1007,7 +1054,7 @@ schemas['listaccountapiSchema']={
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-#createtranstemp
+#createtranstemp superadmin
 
 schemas['createtranstempapiSchema']={
     'req_type': {'type':'string'},
@@ -1019,7 +1066,7 @@ schemas['createtranstempapiSchema']={
     'requestdata': 
                    {'devaswom': {'type':'string'},
                      'temple': {'type':'string'},
-                     'comment': {'type':'string'},
+                     'comment': {'type':'string'}
                      
                      },
     'authtoken': {'type':'string'},
@@ -1029,7 +1076,7 @@ schemas['createtranstempapiSchema']={
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-#list trans 
+#list trans superadmin
 
 schemas['listtranstempapiSchema']={
     'req_type': {'type':'string'},
@@ -1040,6 +1087,9 @@ schemas['listtranstempapiSchema']={
     'req_timestamp': {'type':'integer'},
     'requestdata': 
                    {'list': {'type':'string'},
+                   'devaswom': {'type':'string'},
+                     'temple': {'type':'string'},
+                     'comment': {'type':'string'}
                      
                      
                      },
@@ -1050,7 +1100,7 @@ schemas['listtranstempapiSchema']={
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-#create_devaswom
+#create_devaswom_superadmin
 
 schemas['createdevaswomapiSchema']={
     'req_type': {'type':'string'},
@@ -1061,10 +1111,7 @@ schemas['createdevaswomapiSchema']={
     'req_timestamp': {'type':'integer'},
     'requestdata': 
                    {'devaswom': {'type':'string'},
-                   'date':{'type':'string'}
-                     
-                     
-                     },
+                   'date':{'type':'string'}},
     'authtoken': {'type':'string'},
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
@@ -1072,7 +1119,7 @@ schemas['createdevaswomapiSchema']={
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-#list_devaswom
+#list_devaswom_superadmin
 
 schemas['listevaswomapiSchema']={
     'req_type': {'type':'string'},
@@ -1082,10 +1129,9 @@ schemas['listevaswomapiSchema']={
     'partner_reqid': {'type':'string'},
     'req_timestamp': {'type':'integer'},
     'requestdata': 
-                   {'list': {'type':'string'}
-                     
-                     
-                     },
+                   {'list': {'type':'string'},
+                   'devaswom': {'type':'string'},
+                   'date':{'type':'string'}},
     'authtoken': {'type':'string'},
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
@@ -1093,7 +1139,7 @@ schemas['listevaswomapiSchema']={
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
- #create_bank_admin
+ #create_bank_admin superadmin
 
 schemas['createbankadminapiSchema']={
     'req_type': {'type':'string'},
@@ -1103,10 +1149,13 @@ schemas['createbankadminapiSchema']={
     'partner_reqid': {'type':'string'},
     'req_timestamp': {'type':'integer'},
     'requestdata': 
-                   {'list': {'type':'string'}
-                     
-                     
-                     },
+                   {'bankname': {'type':'string'},
+                   'ifsc': {'type':'string'},
+                   'mail': {'type':'string'},
+                   'phone': {'type':'string'},
+                   'addr1': {'type':'string'},
+                   'addr2': {'type':'string'},
+                   'state': {'type':'string'}},
     'authtoken': {'type':'string'},
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
@@ -1115,7 +1164,7 @@ schemas['createbankadminapiSchema']={
     'checksum': {'type':'string'}}
 
 
-#list_manage_bank_admin_schema
+#list_manage_bank_admin_schema superadmin
 
 schemas['list_manage_bank_admin_apiSchema']={
     'req_type': {'type':'string'},
@@ -1125,8 +1174,14 @@ schemas['list_manage_bank_admin_apiSchema']={
     'partner_reqid': {'type':'string'},
     'req_timestamp': {'type':'integer'},
     'requestdata': 
-                   {'list': {'type':'string'}
-                     
+                   {'list': {'type':'string'},
+                     'bankname': {'type':'string'},
+                   'ifsc': {'type':'string'},
+                   'mail': {'type':'string'},
+                   'phone': {'type':'string'},
+                   'addr1': {'type':'string'},
+                   'addr2': {'type':'string'},
+                   'state': {'type':'string'}
                      
                      },
     'authtoken': {'type':'string'},
@@ -1136,7 +1191,7 @@ schemas['list_manage_bank_admin_apiSchema']={
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-#card_allocate_schema
+#card_allocate_schema_superadmin
 
 schemas['card_allocate_apiSchema']={
     'req_type': {'type':'string'},
@@ -1158,7 +1213,7 @@ schemas['card_allocate_apiSchema']={
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-#list_card_allocate_schema
+#list_card_allocate_schema_superadmin
 
 schemas['list_card_allocate_apiSchema']={
     'req_type': {'type':'string'},
@@ -1168,9 +1223,10 @@ schemas['list_card_allocate_apiSchema']={
     'partner_reqid': {'type':'string'},
     'req_timestamp': {'type':'integer'},
     'requestdata': 
-                   {'list': {'type':'string'}
-                     
-                     },
+                   {'list': {'type':'string'},
+                   'count': {'type':'string'},
+                   'devaswom': {'type':'string'},
+                   'temple': {'type':'string'}},
     'authtoken': {'type':'string'},
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
@@ -1178,7 +1234,7 @@ schemas['list_card_allocate_apiSchema']={
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-#create_block_temple
+#create_block_temple_ssuperadmin
 
 schemas['create_block_temple_apiSchema']={
     'req_type': {'type':'string'},
@@ -1200,7 +1256,7 @@ schemas['create_block_temple_apiSchema']={
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-#list_block_temple
+#list_block_temple_superadmin
 
 schemas['list_block_temple_apiSchema']={
     'req_type': {'type':'string'},
@@ -1210,7 +1266,10 @@ schemas['list_block_temple_apiSchema']={
     'partner_reqid': {'type':'string'},
     'req_timestamp': {'type':'integer'},
     'requestdata': 
-                   {'list': {'type':'string'}
+                   {'list': {'type':'string'},
+                   'devaswom': {'type':'string'},
+                   'temple': {'type':'string'},
+                   'comment':{'type':'string'}
                      
                      },
     'authtoken': {'type':'string'},
@@ -1220,7 +1279,7 @@ schemas['list_block_temple_apiSchema']={
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-#create_block_devaswom
+#create_block_devaswom_superadmin
 
 
 schemas['create_block_devaswom_apiSchema']={
@@ -1232,6 +1291,7 @@ schemas['create_block_devaswom_apiSchema']={
     'req_timestamp': {'type':'integer'},
     'requestdata': 
                    {'devaswom': {'type':'string'},
+                   
                    'comment': {'type':'string'}
                      
                      },
@@ -1404,8 +1464,8 @@ schemas['listofferingsapiSchema']={
     'txntype': {'type':'string'},
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
-
-selectdevaswomSchema={
+#select devasswom
+schemas['selectdevsomapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -1421,7 +1481,9 @@ selectdevaswomSchema={
     'txntype': {'type':'string'},
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
-listloadpoolschema={ 
+
+#list load pool
+schemas['listloadpoolapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -1440,7 +1502,28 @@ listloadpoolschema={
 
 
 }
-loadpoolschema={ 
+
+#load pool
+schemas['loadpoolapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {'type':{'type':'all'}
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}
+}
+
+#list fund transfer api
+schemas['listfundtransapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -1459,7 +1542,8 @@ loadpoolschema={
 
 
 }
-listfundtransSchema={ 
+#temple admin
+schemas['templeadminapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -1474,11 +1558,10 @@ listfundtransSchema={
     'ewire_custid': {'type':'string'},
     'txntype': {'type':'string'},
     'hashstr': {'type':'string'},
-    'checksum': {'type':'string'}
+    'checksum': {'type':'string'}}
 
-
-}
-templeadminSchema={ 
+#temple list api
+schemas['templelistapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -1493,11 +1576,10 @@ templeadminSchema={
     'ewire_custid': {'type':'string'},
     'txntype': {'type':'string'},
     'hashstr': {'type':'string'},
-    'checksum': {'type':'string'}
+    'checksum': {'type':'string'}}
 
-
-}
-templelistSchema={ 
+#create diety(TEMPLE_ADMIN)
+schemas['credietyapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -1505,14 +1587,326 @@ templelistSchema={
     'modulename': {'type':'string'},
     'partner_reqid': {'type':'string'},
     'req_timestamp': {'type':'integer'},
-    'requestdata':  {'type':{'type':'all'}
+    'requestdata':  {'templeid':{'type':'string'},
+                    'diety_name':{'type':'string'},
+                    'diety_desc':{'type':'string'},
+                    'diety_photo':{'type':'string'},
+                    'diety_oftemp':{'type':'string'}, },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#list diety(TEMPLE_ADMIN)
+schemas['listdietyapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {'templeid':{'type':'string'},
+                    'diety_name':{'type':'string'},
+                    'diety_desc':{'type':'string'},
+                    'diety_photo':{'type':'string'},
+                    'diety_oftemp':{'type':'string'}, },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#create history(TEMPLE_ADMIN)
+schemas['createhistoryapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {'templeid':{'type':'string'},
+                    't_history':{'type':'string'},
+                    't_name':{'type':'string'},
+                    't_photo':{'type':'string'}
                      },
     'authtoken': {'type':'string'},
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
     'txntype': {'type':'string'},
     'hashstr': {'type':'string'},
-    'checksum': {'type':'string'}
+    'checksum': {'type':'string'}}
 
+#CREATE ACCOUNT(SUPER_ADMIN)
+schemas['createaccountapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {'bank_name':{'type':'string'},
+                    'ifsc':{'type':'string'},
+                    'date1':{'type':'string'},
+                    'date2':{'type':'string'}
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
 
-}
+#LIST ACCOUNT(SUPER_ADMIN)
+schemas['listaccountapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {'bank_name':{'type':'string'},
+                    'ifsc':{'type':'string'},
+                    'date1':{'type':'string'},
+                    'date2':{'type':'string'}
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#REPORT BY DIETY
+schemas['reportdietyapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                    
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#REPORT BY DATE
+schemas['reportdateapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                    
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#REPORT BY CUSTOMER CITY
+schemas['reportcustcityapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                    
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#invoice view
+schemas['invoiceviewapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                    
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#invoice list
+schemas['invoicelistapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                    
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#invoice search
+schemas['invoicesearchapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                    
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#create parking
+schemas['createparkingapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                    
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#list parking
+schemas['listparkingapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                    
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#create sightseeing
+schemas['createsightseeingapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                    
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#list sightseeing
+schemas['listsightseeingapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                    
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#drop diety
+schemas['dropdietyapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                    
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#drop rate
+schemas['droprateapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                    
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
