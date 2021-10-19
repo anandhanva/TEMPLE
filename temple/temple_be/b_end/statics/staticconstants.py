@@ -5,7 +5,7 @@ ENCRYPTION_KEY = "WHENTHESKIESAREBLUESEEYOUONCEAGA"
 # SchemaConst=['api_name']+"Schema"
 # print("||||||||||||||||||||||||||||||||||||",SchemaConst)
 schemas = {}
-#FINANCE ADMIN
+
 schemas['templeloginapiSchema'] = {
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
@@ -22,6 +22,7 @@ schemas['templeloginapiSchema'] = {
     'txntype': {'type':'string'},
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
+#FINANCE ADMIN
 
 schemas['accstatementapiSchema']={
     'req_type': {'type':'string'},
@@ -167,9 +168,9 @@ schemas['createpoojaapiSchema']={
     'modulename': {'type':'string'},
     'partner_reqid': {'type':'string'},
     'req_timestamp': {'type':'integer'},
-    'requestdata':  {'temple_id':{'type':'string'},
-                    'pooja_amount':{'type':'integer'},
-                    'pooja_description':{'type':'string'},
+    'requestdata':  {'templeid':{'type':'string'},
+                    'pooja_rateid':{'type':'integer'},
+                    'pooja_descr':{'type':'string'},
                     'pooja_name':{'type':'string'}
                     
                      },
@@ -189,7 +190,7 @@ schemas['listpoojaapiSchema']={
     'modulename': {'type':'string'},
     'partner_reqid': {'type':'string'},
     'req_timestamp': {'type':'integer'},
-    'requestdata':  {'pooja_id':{'type':'string'}
+    'requestdata':  {
                    
                     
                      },
@@ -268,6 +269,50 @@ schemas['createofferingsapiSchema']={
     'txntype': {'type':'string'},
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
+
+
+#add rate(TEMPLE_ADMIN)
+schemas['addrateapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':{'temple_id':{'type':'string'},
+                    
+                    'rate':{'type':'string'}
+                    
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#list rate(TEMPLE_ADMIN)
+schemas['listrateapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':{'temple_id':{'type':'string'},
+                    
+                    
+                    
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
 
 #super_admin
 
@@ -523,31 +568,9 @@ listblocktempleschema={
     'txntype': {'type':'string'},
 'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
 
-#list block admin
 
-listblockadminschema={
-    'hashstr': {'type':'string'},
-    'checksum': {'type':'string'}}
 
-#create_pooja
 
-schemas['createpoojaapiSchema']={
-    'req_type': {'type':'string'},
-    'req_code': {"type":"integer"},
-    'apiname': {'type':'string'},
-    'ewire_reqid': {'type':'string'},
-    'partner_reqid': {'type':'string'},
-    'req_timestamp': {'type':'integer'},
-    'requestdata': {'poojaname': {'type':'string'},
-                     'poojaDescrip': {'type':'string'},
-                     'amount': {'type':'string'}
-                     
-                      },
-    'authtoken': {'type':'string'},
-    'ewire_endpoint': {'type':'string'},
-    'ewire_custid': {'type':'string'},
-    'txntype': {'type':'string'},
-'hashstr': {'type':'string'},    'checksum': {'type':'string'}}
 
 #list fin admin
 

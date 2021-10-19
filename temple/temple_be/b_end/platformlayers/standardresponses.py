@@ -102,7 +102,7 @@ commonValues['CREATEPOOJA']={
 commonValues['LISTPOOJA']={
                                 "server" : ipconstants.checkUser,
                                 "headerz" : {"Content-Type":"application/json"},
-                                "endpoint" : "/listpooja",
+                                "endpoint" : "/list_pooja",
                                 "reqtype" : "LISTPOOJA",
                                 "methodtype" : "POST"
 
@@ -138,11 +138,27 @@ commonValues['CREAOFFERINGS']={
 
                                 }
 #listofferings(TEMPLE ADMIN)
-commonValues['LISTOFFERINGs']={
+commonValues['LISTOFFERINGS']={
                                 "server" : ipconstants.checkUser,
                                 "headerz" : {"Content-Type":"application/json"},
                                 "endpoint" : "/listofferings",
                                 "reqtype" : "LSTOFFRNG",
+                                "methodtype" : "POST"
+}
+#Add Rate (TEMPLE ADMIN)
+commonValues['ADDRATE']={
+                                "server" : ipconstants.checkUser,
+                                "headerz" : {"Content-Type":"application/json"},
+                                "endpoint" : "/add_rate",
+                                "reqtype" : "ADRATE",
+                                "methodtype" : "POST"
+}
+#list rate (TEMPLE ADMIN)
+commonValues['LISTRATE']={
+                                "server" : ipconstants.checkUser,
+                                "headerz" : {"Content-Type":"application/json"},
+                                "endpoint" : "/list_rate",
+                                "reqtype" : "LSTRATE",
                                 "methodtype" : "POST"
 }
 
