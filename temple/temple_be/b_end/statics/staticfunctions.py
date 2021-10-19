@@ -103,10 +103,8 @@ def checkrequest(request):
 def betoui_response(resptype):
     if(resptype['resp_type'] == "SUCCESS"):
         resptype['Response'] = {"request_status": "SUCCESS", "Status":" Login Successfully"}
-        return CommonResponse(resptype).__dict__
-    else:
-        respdata = {"request_status": "FAIL", "Status":" Login failed with errors"}
-        return CommonResponse(respdata).__dict__
+    return CommonResponse(resptype).__dict__
+   
 
 def validateReq(req):
     # VALIDATE REQUEST
