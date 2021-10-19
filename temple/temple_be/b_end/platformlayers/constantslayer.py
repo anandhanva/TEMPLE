@@ -151,7 +151,117 @@ def Listpooja(req):
     except Exception as e:
         print("EXCEPTION2",str(e))
         return str(e)
+    
+def Createprasadam(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'CREAPRASADAM'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        TempleBeResp =convinptodict(TempleBeResp)
+        # print("ivide ethi 1",TempleBeResp)
+        return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return str(e)
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return str(e)
+def Listprasadam(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'LISTPRASADAM'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        TempleBeResp =convinptodict(TempleBeResp)
+        # print("ivide ethi 1",TempleBeResp)
+        return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return str(e)
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return str(e)
 
+def Createofferings(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'CREAOFFERINGS'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        TempleBeResp =convinptodict(TempleBeResp)
+        # print("ivide ethi 1",TempleBeResp)
+        return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return str(e)
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return str(e)
+
+def Listofferings(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'LISTOFFERINGS'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        TempleBeResp =convinptodict(TempleBeResp)
+        # print("ivide ethi 1",TempleBeResp)
+        return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return str(e)
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return str(e)
 
 
 

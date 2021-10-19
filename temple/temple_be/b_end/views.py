@@ -202,7 +202,7 @@ def listpooja():
 #CREATE PRASADAM
 
 @app.route(baseUrl+'/create_prasadam', methods = ['POST'])
-def listpooja():
+def createprasadam():
     req = request.json
     req = ast.literal_eval(req)
     req = constantslayer.convinptodict(req)
@@ -210,7 +210,68 @@ def listpooja():
     valdata=constantslayer.convinptodict(valdata)
     if(valdata['status']==200):
         print("checklogin")
-        checklog=constantslayer.Listpooja(req)
+        checklog=constantslayer.Createprasadam(req)
+        print("checklog",checklog)
+        checklog = constantslayer.convinptodict(checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(betoui_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(betoui_response())
+
+#LIST PRASADAM
+
+@app.route(baseUrl+'/list_prasadam', methods = ['POST'])
+def listprasadam():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata=validateReq(req)
+    valdata=constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.Listprasadam(req)
+        print("checklog",checklog)
+        checklog = constantslayer.convinptodict(checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(betoui_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(betoui_response())
+
+
+#CTREATE OFFERINGS
+
+@app.route(baseUrl+'/create_offerings', methods = ['POST'])
+def createofferings():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata=validateReq(req)
+    valdata=constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.Createofferings(req)
+        print("checklog",checklog)
+        checklog = constantslayer.convinptodict(checklog)
+        checklog['resp_type']=="SUCCESS"
+        return jsonify(betoui_response(checklog))
+    else:
+        request['resp_type']="FAIL"
+        return jsonify(betoui_response())
+
+
+#LIST OFFERINGS
+@app.route(baseUrl+'/list_offerings', methods = ['POST'])
+def listofferings():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata=validateReq(req)
+    valdata=constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.Listofferings(req)
         print("checklog",checklog)
         checklog = constantslayer.convinptodict(checklog)
         checklog['resp_type']=="SUCCESS"
