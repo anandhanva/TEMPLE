@@ -870,7 +870,7 @@ def listOfferings(req):
         if(len(comparedResults) >= 1):
             comparedResults['result'] = "Success"
     except Exception as exCompareUser:
-        maasslogger(request, str(exCompareUser),"LISTOFFERINGs", "FAILURE")
+        maasslogger(request, str(exCompareUser),"CREAOFFERINGS", "FAILURE")
         return str(exCompareUser)
     errresp = "Error-Response"
     if(errresp in comparedResult):
@@ -945,7 +945,7 @@ def createPrasadam(req):
         # if(checksumcompare == "true"):
     try:
 
-        comparedResults = blconstants.createPrasadam(hashchecksumNdata)
+        comparedResults = blconstants.createPrasadamApi(hashchecksumNdata)
         comparedResults = constantslayer.convinptodict(comparedResults)
         # if(isinstance(comparedResults) == str):compared
         #     comparedResults = json.loads(comparedResults)
@@ -955,7 +955,7 @@ def createPrasadam(req):
         # print(">>>>>>>",type(comparedResults))
     except Exception as exCompareUser:
         print("EXCEPTION12345")
-        maasslogger(request, str(exCompareUser), "LOGIN", "FAILURE")
+        maasslogger(request, str(exCompareUser), "CREAPRASADAM", "FAILURE")
         return str(exCompareUser)
     print(">>>>>>>",comparedResults)
     errresp = "Error-Response"
@@ -1003,7 +1003,6 @@ def createPrasadam(req):
     #     return responses.standardErrorResponseToBE("LOGIN","Hash Mismatch, Incorrect Request")
 # LIST PRASADAM
 def listPrasadam(req):
-    #Parse Request and  extract hash, checksum and data
     request = req.get_json()
     print("REQUEST",request)
     try:
@@ -1033,32 +1032,51 @@ def listPrasadam(req):
     try:
 
         comparedResults = blconstants.listTemplePrasadamApi(hashchecksumNdata)
+        comparedResult = constantslayer.convinptodict(comparedResults)
+        if(len(comparedResults) >= 1):
+            comparedResults['result'] = "Success"
     except Exception as exCompareUser:
-        maasslogger(request, str(exCompareUser))
+        maasslogger(request, str(exCompareUser),"CREAPRASADAM", "FAILURE")
         return str(exCompareUser)
-    if(comparedResults['result'] == "Success"):
-        print("compare*************",comparedResults)
-
-
-        comparedResults['resp_code'] = 800
-        comparedResults['resp_type'] = "SUCCESS"
-        comparedResults['message'] = "Successfully login"
-        print(">>>>>>Request",request)
-        comparedResults['em_reqid'] = request['em_reqid']
-        comparedResults['em_custid'] = request['em_custid']
-        comparedResults['resp_frm_bank'] = ""
-        comparedResults['resp_frm_ewire'] = comparedResults['respfrmdb']
-        comparedResults['resp_frm_cbs'] = ""
-        comparedResults['resp_frm_ext'] = ['resp_frm_ext']
-        comparedResults['resp_frm_maass'] = ['resp_frm_maass']
-        comparedResults['resp_frm_blockc'] = ['resp_frm_blockc']
-        comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
-        comparedResults['resp_frm_rulengn'] = ['resp_frm_rulengn']
+    errresp = "Error-Response"
+    if(errresp in comparedResult):
+        failureResults = {}
+        failureResults['em_reqid'] = req['em_reqid']
+        failureResults['em_custid'] = req['em_custid']
+        failureResults['resp_frm_bank'] = ""
+        failureResults['resp_frm_ewire'] = {"LISTED": "Wrong Credentials"}
+        failureResults['resp_frm_cbs'] = ""
+        failureResults['resp_frm_ext'] = ['resp_frm_ext']
+        failureResults['resp_frm_maass'] = ['resp_frm_maass']
+        failureResults['resp_frm_blockc'] = ['resp_frm_blockc']
+        failureResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        failureResults['resp_frm_rulengn'] = ['resp_frm_rulengn']
         # comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
-        return staticfunctions.coretobe_response(comparedResults)
+        print("ComparedResultFail",comparedResult)
+        return staticfunctions.coretobe_response(comparedResult)
+
+    elif(comparedResult['result'] == "Success"):
+        comparedResultz = {}
+
+        comparedResultz['resp_code'] = 800
+        comparedResultz['resp_type'] = "SUCCESS"
+        comparedResultz['message'] = "Successfully listed"
+        comparedResultz['em_reqid'] = request['em_reqid']
+        comparedResultz['em_custid'] = request['em_custid']
+        comparedResultz['resp_frm_bank'] = ""
+        comparedResultz['resp_frm_ewire'] = comparedResult
+        comparedResultz['resp_frm_cbs'] = ""
+        comparedResultz['resp_frm_ext'] = ['resp_frm_ext']
+        comparedResultz['resp_frm_maass'] = ['resp_frm_maass']
+        comparedResultz['resp_frm_blockc'] = ['resp_frm_blockc']
+        comparedResultz['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        comparedResultz['resp_frm_rulengn'] = ['resp_frm_rulengn']
+        # comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        print("ComparedResult",comparedResultz)
+        return staticfunctions.coretobe_response(comparedResultz)
     else:
         maasslogger(request, "Wrong Credentials")
-        return responses.standardErrorResponseToBE("LOGIN","Wrong Credentials")
+        return responses.standardErrorResponseToBE("LISTED","Wrong Credentials")
     
     # else:
     #     maasslogger(request, str("Hash Mismatch, Incorrect Request"))
@@ -1066,6 +1084,7 @@ def listPrasadam(req):
 
 # CREATE DIETY
 def createDiety(req):
+    
     #Parse Request and  extract hash, checksum and data
     # request = req.get_json()
     print("REQUEST",req)
@@ -1088,7 +1107,7 @@ def createDiety(req):
     #Decode hash obtained from input and from created hash and compare
     # valHash = staticfunctions.validateHash(hashchecksumNdata['hashstr'],createdhash)
     # if(valHash == "true"):
-    maasslogger(req, "Hashing Passed",req['modulename'],"SUCCESS")
+    maasslogger(req, "Hashing Passed","CREATEPOOJA","SUCCESS")
     #     # checking checksum
     #     createdchecksum = staticfunctions.validateHash(hashchecksumNdata['hashstr'],createdhash)
     #     checksumcompare = staticfunctions.validatechecksum(hashchecksumNdata['checksum'], createdchecksum)
@@ -1112,7 +1131,7 @@ def createDiety(req):
     if(errresp in comparedResults):
         failureResults = {}
         failureResults['resp_code'] = 810
-        # failureResults['resp_type'] = "FAIL"
+        failureResults['resp_type'] = "FAIL"
         failureResults['message'] = "Login Fail"
         failureResults['em_reqid'] = req['em_reqid']
         failureResults['em_custid'] = req['em_custid']
@@ -1299,6 +1318,170 @@ def createHistory(req):
         maasslogger(request, "Wrong Credentials")
         return responses.standardErrorResponseToBE("LOGIN","Wrong Credentials")
 
+    # else:
+    #     maasslogger(request, str("Hash Mismatch, Incorrect Request"))
+    #     return responses.standardErrorResponseToBE("LOGIN","Hash Mismatch, Incorrect Request")
+
+# DROPDOWN DIETY
+def dropdownDietyApi(req):
+    #Parse Request and  extract hash, checksum and data
+    request = req.get_json()
+    print("REQUEST",request)
+    try:
+        print("REQQUEST",request)
+        hashchecksumNdata = constantslayer.parseRequestHCRD(request)
+        print("HASHHHH",hashchecksumNdata)
+    except Exception as e:
+        # maasslogger(req, str(e))
+        return responses.standardErrorResponseToBE("DROPDOWN",str(e))
+    #Create hash from data
+    try:
+        createdhash = constantslayer.createHashfromData(request,"HASH_MO")
+        print("HASH@@@",createdhash)
+    except Exception as e:
+        # maasslogger(req, str(e))
+        return responses.standardErrorResponseToBE("CREATELOGINHASH",str(e))
+    maasslogger(request,"hashing passes",request['modulename'],"SUCCESS")
+
+    #Decode hash obtained from input and from created hash and compare
+    # valHash = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
+    # if(valHash == "true"):
+    #     maasslogger(request, "Hashing Passed")
+    #     # checking checksum
+    #     createdchecksum = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
+    #     checksumcompare = staticfunctions.validatechecksum(hashchecksumNdata['checksum'], createdchecksum)
+    #     if(checksumcompare == "true"):
+    try:
+
+        comparedResults = blconstants.drpdwnTempdietyApi(hashchecksumNdata)
+        comparedResult = constantslayer.convinptodict(comparedResults)
+        if(len(comparedResults) >= 1):
+            comparedResults['result'] = "Success"
+    except Exception as exCompareUser:
+        maasslogger(request, str(exCompareUser),"DROPDOWNDIETY", "FAILURE")
+        return str(exCompareUser)
+    errresp = "Error-Response"
+    if(errresp in comparedResult):
+        failureResults = {}
+        failureResults['em_reqid'] = req['em_reqid']
+        failureResults['em_custid'] = req['em_custid']
+        failureResults['resp_frm_bank'] = ""
+        failureResults['resp_frm_ewire'] = {"LISTED": "Wrong Credentials"}
+        failureResults['resp_frm_cbs'] = ""
+        failureResults['resp_frm_ext'] = ['resp_frm_ext']
+        failureResults['resp_frm_maass'] = ['resp_frm_maass']
+        failureResults['resp_frm_blockc'] = ['resp_frm_blockc']
+        failureResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        failureResults['resp_frm_rulengn'] = ['resp_frm_rulengn']
+        # comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        print("ComparedResultFail",comparedResult)
+        return staticfunctions.coretobe_response(comparedResult)
+
+    elif(comparedResult['result'] == "Success"):
+        comparedResultz = {}
+
+        comparedResultz['resp_code'] = 800
+        comparedResultz['resp_type'] = "SUCCESS"
+        comparedResultz['message'] = "Successfully listed"
+        comparedResultz['em_reqid'] = request['em_reqid']
+        comparedResultz['em_custid'] = request['em_custid']
+        comparedResultz['resp_frm_bank'] = ""
+        comparedResultz['resp_frm_ewire'] = comparedResult
+        comparedResultz['resp_frm_cbs'] = ""
+        comparedResultz['resp_frm_ext'] = ['resp_frm_ext']
+        comparedResultz['resp_frm_maass'] = ['resp_frm_maass']
+        comparedResultz['resp_frm_blockc'] = ['resp_frm_blockc']
+        comparedResultz['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        comparedResultz['resp_frm_rulengn'] = ['resp_frm_rulengn']
+        # comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        print("ComparedResult",comparedResultz)
+        return staticfunctions.coretobe_response(comparedResultz)
+    else:
+        maasslogger(request, "Wrong Credentials")
+        return responses.standardErrorResponseToBE("LISTED","Wrong Credentials")
+    
+    # else:
+    #     maasslogger(request, str("Hash Mismatch, Incorrect Request"))
+    #     return responses.standardErrorResponseToBE("LOGIN","Hash Mismatch, Incorrect Request")
+
+    # DROPDOWN DIETY
+def dropdownRateApi(req):
+    #Parse Request and  extract hash, checksum and data
+    request = req.get_json()
+    print("REQUEST",request)
+    try:
+        print("REQQUEST",request)
+        hashchecksumNdata = constantslayer.parseRequestHCRD(request)
+        print("HASHHHH",hashchecksumNdata)
+    except Exception as e:
+        # maasslogger(req, str(e))
+        return responses.standardErrorResponseToBE("DROPDOWN",str(e))
+    #Create hash from data
+    try:
+        createdhash = constantslayer.createHashfromData(request,"HASH_MO")
+        print("HASH@@@",createdhash)
+    except Exception as e:
+        # maasslogger(req, str(e))
+        return responses.standardErrorResponseToBE("CREATELOGINHASH",str(e))
+    maasslogger(request,"hashing passes",request['modulename'],"SUCCESS")
+
+    #Decode hash obtained from input and from created hash and compare
+    # valHash = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
+    # if(valHash == "true"):
+    #     maasslogger(request, "Hashing Passed")
+    #     # checking checksum
+    #     createdchecksum = staticfunctions.validateHash(hashchecksumNdata['hash'],createdhash)
+    #     checksumcompare = staticfunctions.validatechecksum(hashchecksumNdata['checksum'], createdchecksum)
+    #     if(checksumcompare == "true"):
+    try:
+
+        comparedResults = blconstants.drpdwnTemprateApi(hashchecksumNdata)
+        comparedResult = constantslayer.convinptodict(comparedResults)
+        if(len(comparedResults) >= 1):
+            comparedResults['result'] = "Success"
+    except Exception as exCompareUser:
+        maasslogger(request, str(exCompareUser),"DROPDOWNRATE", "FAILURE")
+        return str(exCompareUser)
+    errresp = "Error-Response"
+    if(errresp in comparedResult):
+        failureResults = {}
+        failureResults['em_reqid'] = req['em_reqid']
+        failureResults['em_custid'] = req['em_custid']
+        failureResults['resp_frm_bank'] = ""
+        failureResults['resp_frm_ewire'] = {"LISTED": "Wrong Credentials"}
+        failureResults['resp_frm_cbs'] = ""
+        failureResults['resp_frm_ext'] = ['resp_frm_ext']
+        failureResults['resp_frm_maass'] = ['resp_frm_maass']
+        failureResults['resp_frm_blockc'] = ['resp_frm_blockc']
+        failureResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        failureResults['resp_frm_rulengn'] = ['resp_frm_rulengn']
+        # comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        print("ComparedResultFail",comparedResult)
+        return staticfunctions.coretobe_response(comparedResult)
+
+    elif(comparedResult['result'] == "Success"):
+        comparedResultz = {}
+
+        comparedResultz['resp_code'] = 800
+        comparedResultz['resp_type'] = "SUCCESS"
+        comparedResultz['message'] = "Successfully listed"
+        comparedResultz['em_reqid'] = request['em_reqid']
+        comparedResultz['em_custid'] = request['em_custid']
+        comparedResultz['resp_frm_bank'] = ""
+        comparedResultz['resp_frm_ewire'] = comparedResult
+        comparedResultz['resp_frm_cbs'] = ""
+        comparedResultz['resp_frm_ext'] = ['resp_frm_ext']
+        comparedResultz['resp_frm_maass'] = ['resp_frm_maass']
+        comparedResultz['resp_frm_blockc'] = ['resp_frm_blockc']
+        comparedResultz['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        comparedResultz['resp_frm_rulengn'] = ['resp_frm_rulengn']
+        # comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        print("ComparedResult",comparedResultz)
+        return staticfunctions.coretobe_response(comparedResultz)
+    else:
+        maasslogger(request, "Wrong Credentials")
+        return responses.standardErrorResponseToBE("LISTED","Wrong Credentials")
+    
     # else:
     #     maasslogger(request, str("Hash Mismatch, Incorrect Request"))
     #     return responses.standardErrorResponseToBE("LOGIN","Hash Mismatch, Incorrect Request")

@@ -40,7 +40,9 @@ def checkuserfrmdb(request):
                         "user_prof_pic":usrSelect['userpic'],
                         "user_role":usrSelect['userRole'],
                         "success_url":successurl['success_url'],
-                        "user_status":usrSelect['userstatus']}
+                        "user_status":usrSelect['userstatus'],
+                        "templeid":usrSelect['templeid']
+                        }
 
 
             respdict = {}
@@ -263,9 +265,11 @@ def createPoojaApi(request):
         return str(e)
 def listTemplePoojaApi(request):
     try:
-        dbQuery = {"pooja_templeid":request['datafrm']['temple_id']}
+        dbQuery = {"pooja_templeid":request['datafrm']['templeid']}
         request['database'] = "temple"
         request['collection'] = "pooja"
+        modulename='LISTPOOJA'
+        request['modulename'] = modulename
         datavalue = dbconstants.MongoAPI(request).read(dbQuery)
         print("listed",datavalue)
         return datavalue        
@@ -330,14 +334,19 @@ def createPrasadamApi(request):
     try:
         request['database'] = "temple"
         request['collection'] = "prasadam"
-        datadict={}
-        datadict['templeid'] = request['datafrm']['templeid'],
-        datadict['prasadam_name'] = request['datafrm']['prasadam_name'],
-        datadict['prasadam_amount'] = request['datafrm']['prasadam_amount'],
-        datadict['prasadam_description'] = request['datafrm']['prasadam_description']
-        datadict['prasadam_count'] = request['datafrm']['prasadam_count']
-        datadict['prasadam_measure'] = request['datafrm']['prasadam_measure']
+        modulename='CREAPRASADAM'
 
+        request['modulename'] = modulename
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+        print(request['datafrm']['prasadam_name'])
+        datadict={}
+        datadict['prasadam_name'] = request['datafrm']['prasadam_name']
+        datadict['prasadam_rateid'] = request['datafrm']['prasadam_rateid']
+        datadict['prasadam_descr'] = request['datafrm']['prasadam_descr']
+        datadict['prasadam_templeid'] = request['datafrm']['prasadam_templeid']
+        countdocs = dbconstants.MongoAPI(request).count({})
+        datadict['offering_id'] = int(countdocs) + 1
+        datadict['status'] = 1
         print("Datadict*************",datadict)
         datavalue = dbconstants.MongoAPI(request).write(datadict)
         print("insert",datavalue)
@@ -355,30 +364,40 @@ def createPrasadamApi(request):
         print("FAILED")
         return str(e)
 
-
 def listTemplePrasadamApi(request):
     try:
+        dbQuery = {"prasadam_templeid":request['datafrm']['temple_id']}
         request['database'] = "temple"
         request['collection'] = "prasadam"
-        datavalue = dbconstants.MongoAPI(request).readAll()
+        datavalue = dbconstants.MongoAPI(request).read(dbQuery)
         print("listed",datavalue)
+        return datavalue        
     except ValueError as e:
         print("EXCEPTION1")
         return str(e)
     except Exception as e:
-        print("FAILED")
+        print("FAILED",str(e))
         return str(e)
+
 
 def createDietyApi(request):
     try:
+    
         request['database'] = "temple"
         request['collection'] = "diety"
+        modulename='CREATEDIETY'
+        request['modulename'] = modulename
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+        print(request['datafrm']['diety_name'])
         datadict={}
-        datadict['templeid'] = request['datafrm']['templeid'],
-        datadict['diety_name'] = request['datafrm']['diety_name'],
-        datadict['diety_desc'] = request['datafrm']['diety_desc'],
-        datadict['diety_photo'] = request['datafrm']['diety_photo']
-        datadict['diety_oftemp'] = request['datafrm']['diety_oftemp']
+        datadict['diety_name'] = request['datafrm']['diety_name']
+        datadict['diety_rateid'] = request['datafrm']['diety_rateid']
+        datadict['diety_descr'] = request['datafrm']['diety_descr']
+        datadict['diety_templeid'] = request['datafrm']['templeid']
+        countdocs = dbconstants.MongoAPI(request).count({})
+        datadict['diety_id'] = int(countdocs) + 1
+        datadict['status'] = 1
+         
 
         print("Datadict*************",datadict)
         datavalue = dbconstants.MongoAPI(request).write(datadict)
@@ -430,6 +449,39 @@ def createHistoryApi(request):
         print("type------",type(datadict))
         print("respdict!!!!!!!!!",datadict)
         return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        return str(e)
+
+ #=========================================================================
+ # DROPDOWN DIETY       
+def drpdwnTempdietyApi(request):
+    try:
+        dbQuery = {}
+        request['database'] = "temple"
+        request['collection'] = "diety"
+        datavalue = dbconstants.MongoAPI(request).read(dbQuery)
+        print("listed",datavalue)
+        return datavalue  
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        return str(e)
+
+ # DROPDOWN RATE      
+def drpdwnTemprateApi(request):
+    try:
+        dbQuery = {}
+        request['database'] = "temple"
+        request['collection'] = "rate"
+        datavalue = dbconstants.MongoAPI(request).read(dbQuery)
+        print("listed",datavalue)
+        return datavalue  
     except ValueError as e:
         print("EXCEPTION1")
         return str(e)

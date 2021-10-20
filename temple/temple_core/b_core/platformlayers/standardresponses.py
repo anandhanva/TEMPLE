@@ -107,7 +107,7 @@ commonValues['CREATEPOOJA'] = {
                             "methodtype" : "POST"
                         }
 
-commonValues['LIST_POOJA'] = {
+commonValues['LISTPOOJA'] = {
                             # "modulename":"checkUser",
                             "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
@@ -134,25 +134,25 @@ commonValues['LISTOFFERINGs'] = {
                             "reqtype" : "LISTOFFERINGREQ",
                             "methodtype" : "POST"
                         }
-commonValues['CREATE_PRASADAM'] = {
+commonValues['CREAPRASADAM'] = {
                             # "modulename":"checkUser",
-                            "server" : ipconstants.hashServers,
+                            "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
                             "endpoint" : "/create_prasadam",
                             "reqtype" : "CREATEPRASADAMREQ",
                             "methodtype" : "POST"
                         }
-commonValues['LIST_PRASADAM'] = {
+commonValues['LISTPRASADAM'] = {
                             # "modulename":"checkUser",
-                            "server" : ipconstants.hashServers,
+                            "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
                             "endpoint" : "/list_prasadam",
                             "reqtype" : "LISTPRASADAMREQ",
                             "methodtype" : "POST"
                         }
-commonValues['CREATE_DIETY'] = {
+commonValues['CREATEDIETY'] = {
                             # "modulename":"checkUser",
-                            "server" : ipconstants.hashServers,
+                            "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
                             "endpoint" : "/create_diety",
                             "reqtype" : "CREATEDIETYREQ",
@@ -161,7 +161,7 @@ commonValues['CREATE_DIETY'] = {
 
 commonValues['LIST_DIETY'] = {
                             # "modulename":"checkUser",
-                            "server" : ipconstants.hashServers,
+                            "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
                             "endpoint" : "/list_diety",
                             "reqtype" : "LISTDIETYREQ",
@@ -169,10 +169,26 @@ commonValues['LIST_DIETY'] = {
                         }
 commonValues['CREATE_HISTORY'] = {
                             # "modulename":"checkUser",
-                            "server" : ipconstants.hashServers,
+                            "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
                             "endpoint" : "/create_history",
                             "reqtype" : "CREATEHISTORYREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['DROPDOWNDIETY'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/dropdown_diety",
+                            "reqtype" : "DROPDOWNDIETYREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['DROPDOWNRATE'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/dropdown_rate",
+                            "reqtype" : "DROPDOWNRATEREQ",
                             "methodtype" : "POST"
                         }
                     

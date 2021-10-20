@@ -16,5 +16,8 @@ listPrasadamapi="templelistprasadamapi"
 createDietyapi="templecreatedietyapi"
 listDietyapi="templelistdietyapi"
 createHistoryapi="templecreateHistoryapi"
+dropDownDietyapi="templedropdowndietyapi"
+dropDownRateapi="templedropdownrateapi"
+
 
 

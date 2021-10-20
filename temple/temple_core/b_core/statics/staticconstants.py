@@ -274,6 +274,27 @@ schemas['templecreatedietyapiSchema'] = {
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
+schemas['templecreateprasadamapiSchema'] = {
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"}, 
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata': { "templeid": {'type':'integer'},        
+        "prasadam_name": {'type':'string'},
+        "prasadam_desc": {'type':'string'},
+        "prasadam_photo": {'type':'string'}, 
+        "prasadam_oftemp": {'type':'string'},        
+       
+                        },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
 schemas['templelistprasadamapiSchema'] = {
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"}, 
@@ -323,6 +344,47 @@ schemas['templecreateHistoryapi'] = {
         "diety_desc": {'type':'integer'},
         "diety_photo": {'type':'string'}, 
         "diety_oftemp": {'type':'string'},
+                        },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+
+
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+schemas['templedropdowndietyapiSchema'] = {
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"}, 
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata': {"diety_name":{'type':'string'},
+    "diety_id":{'type':'integer'},
+
+                        },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+
+
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+
+schemas['templedropdownrateapiSchema'] = {
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"}, 
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata': {"diety_name":{'type':'string'},
+    "diety_id":{'type':'integer'},
+
                         },
     'authtoken': {'type':'string'},
     'ewire_endpoint': {'type':'string'},

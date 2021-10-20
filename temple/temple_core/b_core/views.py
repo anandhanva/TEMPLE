@@ -174,3 +174,17 @@ def listfestival():
     
     return bllayer.listFestival(request)
 
+# DROPDOWN - -DIETY
+
+@app.route(urlconstants.ENDPOINT+'/dropdown_diety', methods = ['POST'])
+def dropDiety():
+    
+    return bllayer.dropdownDietyApi(request)
+
+
+# DROPDOWN - -RATE
+
+@app.route(urlconstants.ENDPOINT+'/dropdown_rate', methods = ['POST'])
+def dropRate():
+    
+    return bllayer.dropdownRateApi(request)
