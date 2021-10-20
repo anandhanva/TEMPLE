@@ -312,7 +312,325 @@ schemas['listrateapiSchema']={
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
+#create diety(TEMPLE_ADMIN)
+schemas['credietyapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {'templeid':{'type':'string'},
+                    'diety_name':{'type':'string'},
+                    'diety_desc':{'type':'string'},
+                    'diety_photo':{'type':'string'},
+                    'diety_oftemp':{'type':'string'}, },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
 
+#list diety(TEMPLE_ADMIN)
+schemas['listdietyapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {'templeid':{'type':'string'},
+                    'diety_name':{'type':'string'},
+                    'diety_desc':{'type':'string'},
+                    'diety_photo':{'type':'string'},
+                    'diety_oftemp':{'type':'string'}, },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+#################################################################################################################################
+
+#REPORT BY DIETY
+schemas['reportdietyapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+#REPORT BY DATE
+schemas['reportdateapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+#REPORT BY CUSTOMER CITY
+schemas['reportcustcityapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+#invoice view
+schemas['invoiceviewapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+#invoice list
+schemas['invoicelistapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+#invoice search
+schemas['invoicesearchapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+#create parking
+schemas['createparkingapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+#list parking
+schemas['listparkingapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+#create sightseeing
+schemas['createsightseeingapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+#list sightseeing
+schemas['listsightseeingapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+#drop diety
+schemas['dropdietyapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+#drop rate
+schemas['droprateapiSchema']={
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"},
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'modulename': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata':  {
+                     },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###############################################################################################################################
 #super_admin
 
 #create_bank
@@ -1578,47 +1896,6 @@ schemas['templelistapiSchema']={
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-#create diety(TEMPLE_ADMIN)
-schemas['credietyapiSchema']={
-    'req_type': {'type':'string'},
-    'req_code': {"type":"integer"},
-    'apiname': {'type':'string'},
-    'ewire_reqid': {'type':'string'},
-    'modulename': {'type':'string'},
-    'partner_reqid': {'type':'string'},
-    'req_timestamp': {'type':'integer'},
-    'requestdata':  {'templeid':{'type':'string'},
-                    'diety_name':{'type':'string'},
-                    'diety_desc':{'type':'string'},
-                    'diety_photo':{'type':'string'},
-                    'diety_oftemp':{'type':'string'}, },
-    'authtoken': {'type':'string'},
-    'ewire_endpoint': {'type':'string'},
-    'ewire_custid': {'type':'string'},
-    'txntype': {'type':'string'},
-    'hashstr': {'type':'string'},
-    'checksum': {'type':'string'}}
-
-#list diety(TEMPLE_ADMIN)
-schemas['listdietyapiSchema']={
-    'req_type': {'type':'string'},
-    'req_code': {"type":"integer"},
-    'apiname': {'type':'string'},
-    'ewire_reqid': {'type':'string'},
-    'modulename': {'type':'string'},
-    'partner_reqid': {'type':'string'},
-    'req_timestamp': {'type':'integer'},
-    'requestdata':  {'templeid':{'type':'string'},
-                    'diety_name':{'type':'string'},
-                    'diety_desc':{'type':'string'},
-                    'diety_photo':{'type':'string'},
-                    'diety_oftemp':{'type':'string'}, },
-    'authtoken': {'type':'string'},
-    'ewire_endpoint': {'type':'string'},
-    'ewire_custid': {'type':'string'},
-    'txntype': {'type':'string'},
-    'hashstr': {'type':'string'},
-    'checksum': {'type':'string'}}
 
 #create history(TEMPLE_ADMIN)
 schemas['createhistoryapiSchema']={
