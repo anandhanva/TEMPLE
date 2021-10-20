@@ -126,7 +126,7 @@ commonValues['CREAOFFERINGS'] = {
                             "methodtype" : "POST"
                         }
 
-commonValues['LISTOFFERINGs'] = {
+commonValues['LISTOFFERINGS'] = {
                             # "modulename":"checkUser",
                             "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
@@ -159,7 +159,7 @@ commonValues['CREATEDIETY'] = {
                             "methodtype" : "POST"
                         }
 
-commonValues['LIST_DIETY'] = {
+commonValues['LISTDIETY'] = {
                             # "modulename":"checkUser",
                             "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
@@ -167,12 +167,20 @@ commonValues['LIST_DIETY'] = {
                             "reqtype" : "LISTDIETYREQ",
                             "methodtype" : "POST"
                         }
-commonValues['CREATE_HISTORY'] = {
+commonValues['CREHISTORY'] = {
                             # "modulename":"checkUser",
                             "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
                             "endpoint" : "/create_history",
                             "reqtype" : "CREATEHISTORYREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['LISTHISTORY'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_history",
+                            "reqtype" : "LISTHISTORYREQ",
                             "methodtype" : "POST"
                         }
 commonValues['DROPDOWNDIETY'] = {
@@ -191,4 +199,11 @@ commonValues['DROPDOWNRATE'] = {
                             "reqtype" : "DROPDOWNRATEREQ",
                             "methodtype" : "POST"
                         }
+commonValues['CREATE_TRAVEL_BY_AIR'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/add_airport",
+                            "reqtype" : "CREATEAIRPORTREQ",
+                            "methodtype" : "POST"}
                     

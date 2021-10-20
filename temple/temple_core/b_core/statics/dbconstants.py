@@ -25,6 +25,9 @@ class MongoAPI:
         log.info("Counting rows")
         countdocs = self.collection.count(query)
         return countdocs
+
+    # def disable(self):
+    #     log.info("Status")
         
     def read(self, query):
         log.info('Reading All Data')
