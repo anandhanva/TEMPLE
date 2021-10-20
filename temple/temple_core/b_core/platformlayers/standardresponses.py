@@ -87,4 +87,108 @@ commonValues['LIST_ACCOUNT'] = {
                             "reqtype" : "LISTACCOUNTREQ",
                             "methodtype" : "POST"
                         }
+
+
+commonValues['ADD_FINADMIN'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.hashServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/add_finadmin",
+                            "reqtype" : "CREATEFINADMINREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['CREATEPOOJA'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_pooja",
+                            "reqtype" : "CREATEPOOJAREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LISTPOOJA'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_pooja",
+                            "reqtype" : "LISTPOOJAREQ",
+                            "methodtype" : "POST"
+                        }
+
+
+commonValues['CREAOFFERINGS'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_offerings",
+                            "reqtype" : "CREATEOFFERINGREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LISTOFFERINGs'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_offerings",
+                            "reqtype" : "LISTOFFERINGREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['CREAPRASADAM'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_prasadam",
+                            "reqtype" : "CREATEPRASADAMREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['LISTPRASADAM'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_prasadam",
+                            "reqtype" : "LISTPRASADAMREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['CREATEDIETY'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_diety",
+                            "reqtype" : "CREATEDIETYREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LIST_DIETY'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_diety",
+                            "reqtype" : "LISTDIETYREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['CREATE_HISTORY'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_history",
+                            "reqtype" : "CREATEHISTORYREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['DROPDOWNDIETY'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/dropdown_diety",
+                            "reqtype" : "DROPDOWNDIETYREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['DROPDOWNRATE'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/dropdown_rate",
+                            "reqtype" : "DROPDOWNRATEREQ",
+                            "methodtype" : "POST"
+                        }
                     

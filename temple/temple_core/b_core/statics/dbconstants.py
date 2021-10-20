@@ -2,6 +2,8 @@ from flask import Flask, request, json, Response
 from pymongo import MongoClient
 import logging as log
 
+from pymongo.message import query
+
 class MongoAPI:
     def __init__(self, settings):
         log.basicConfig(level=log.DEBUG, format='%(asctime)s %(levelname)s:\n%(message)s\n')
@@ -19,11 +21,27 @@ class MongoAPI:
         self.collection = cursor[collection]
         self.data = settings
 
-    def read(self):
+    def count(self, query):
+        log.info("Counting rows")
+        countdocs = self.collection.count(query)
+        return countdocs
+        
+    def read(self, query):
         log.info('Reading All Data')
-        documents = self.collection.find()
-        output = [{item: data[item] for item in data if item != '_id'} for data in documents]
-        return output
+        log.info(query)
+        countdocs = self.collection.count(query)
+        if(countdocs >=1):
+            documents = self.collection.find(query)
+            print(":::::::", countdocs)
+            output = {}
+            i=0
+            for doc in documents:
+                output[str(i)] =  doc
+                output[str(i)].pop('_id')
+                i+=1
+        else:
+            output= {"item": "None"}
+        return output        
     
     def readAll(self, query):
         log.info('Reading All Data')

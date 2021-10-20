@@ -4,9 +4,12 @@ from flask import Response
 import requests
 from b_core import app
 import json
-from b_core.statics import urlconstants
+from b_core.statics import urlconstants,staticfunctions
 from b_core.platformlayers import bllayer, constantslayer
 from b_core.responsemaster import responses
+# from temple.temple_core.b_core.statics.staticfunctions import coretobe_response
+from flask.json import jsonify
+
 
 
 
@@ -20,8 +23,19 @@ def base():
 # USER LOGIN
 @app.route(urlconstants.ENDPOINT+'/user', methods = ['POST'])
 def user():
-    print("Request from UI: ", request.json)
-    # Check User credentials and perform login operation
+    # valdata=staticfunctions.validateReq(request)
+    # #valdata=json.dumps(valdata)
+    # if(valdata['status']==200):
+    #     print("checklogin")
+    #     checklog=constantslayer.checkuserfrmdb(request)
+    #     print("checklog",checklog)
+    #     checklog['resp_type']=="SUCCESS"
+    #     return jsonify(coretobe_response(checklog))
+    # else:
+    #     request['resp_type']="FAIL"
+    #     return jsonify(coretobe_response())
+    # print("Request from UI: ", request.json)
+    # # Check User credentials and perform login operation
     return bllayer.processLoginRequest(request.json)
 
 @app.route(urlconstants.ENDPOINT+'/ac', methods = ['POST'])
@@ -68,12 +82,19 @@ def listaccount():
     
     return bllayer.listAccountApi(request)
 
+
+
+# CREATE FIN ADMIN
+@app.route(urlconstants.ENDPOINT+'/add_finadmin', methods = ['POST'])
+def createfinadmins():
+    
+    return bllayer.createFinAdmin(request)
 #TEMPLE ADMIN
 #CREATE POOJA
 @app.route(urlconstants.ENDPOINT+'/create_pooja', methods = ['POST'])
 def addpooja():
     
-    return bllayer.createPooja(request)
+    return bllayer.createPooja(request.json)
 
 #LIST POOJA
 @app.route(urlconstants.ENDPOINT+'/list_pooja', methods = ['POST'])
@@ -85,7 +106,7 @@ def listpooja():
 @app.route(urlconstants.ENDPOINT+'/create_prasadam', methods = ['POST'])
 def addprasadam():
     
-    return bllayer.createPrasadam(request)
+    return bllayer.createPrasadam(request.json)
 
 #LIST PRASADAM
 @app.route(urlconstants.ENDPOINT+'/list_prasadam', methods = ['POST'])
@@ -97,7 +118,7 @@ def listprasadam():
 @app.route(urlconstants.ENDPOINT+'/create_offerings', methods = ['POST'])
 def addofferings():
     
-    return bllayer.createOfferings(request)
+    return bllayer.createOfferings(request.json)
 
 #LIST OFFERINGS
 @app.route(urlconstants.ENDPOINT+'/list_offerings', methods = ['POST'])
@@ -109,7 +130,7 @@ def listofferings():
 @app.route(urlconstants.ENDPOINT+'/create_diety', methods = ['POST'])
 def adddiety():
     
-    return bllayer.createDiety(request)
+    return bllayer.createDiety(request.json)
 
 #LIST DIETY
 @app.route(urlconstants.ENDPOINT+'/list_diety', methods = ['POST'])
@@ -153,3 +174,17 @@ def listfestival():
     
     return bllayer.listFestival(request)
 
+# DROPDOWN - -DIETY
+
+@app.route(urlconstants.ENDPOINT+'/dropdown_diety', methods = ['POST'])
+def dropDiety():
+    
+    return bllayer.dropdownDietyApi(request)
+
+
+# DROPDOWN - -RATE
+
+@app.route(urlconstants.ENDPOINT+'/dropdown_rate', methods = ['POST'])
+def dropRate():
+    
+    return bllayer.dropdownRateApi(request)
