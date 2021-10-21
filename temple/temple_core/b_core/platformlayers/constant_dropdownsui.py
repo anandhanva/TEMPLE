@@ -12,3 +12,12 @@ def getKanikkabyDietyid(req):
 
 def getPrasadambyTempleid(req):
     return req
+
+def getPackageSizebyPrasadam(req):
+    return req
+
+def getOfferingbyTempleid(req):
+    return req
+
+def getOfferingbyDietyid(req):
+    return req
