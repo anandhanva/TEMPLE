@@ -165,7 +165,54 @@ def createPooja(req):
     except Exception as e:
         print("EXCEPTION2",str(e))
         return {"resp":"ERROR"}
+
+#list pooja
+
     
+def Listpoojas(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'LISTPOOJA'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+    
+#create prasadam
+
 def Createprasadam(req):
     # print('Req Type', type(req))
     request = convinptodict(req)
@@ -173,7 +220,7 @@ def Createprasadam(req):
         modulename = 'CREAPRASADAM'
         datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
                     "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
-                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
                     "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
         obj = standardresponses.commonValues
         otherdata = {}
@@ -208,7 +255,7 @@ def Createprasadam(req):
         print("EXCEPTION2",str(e))
         return {"resp":"ERROR"}
 
-
+#list prasadam
 
 def Listprasadam(req):
     # print('Req Type', type(req))
