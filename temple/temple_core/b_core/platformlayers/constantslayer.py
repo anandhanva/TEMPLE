@@ -31,7 +31,6 @@ def parseRequestHCRD(request):
     return retaftrParsed
 
 def convinptodict(input):
-    print("Input",  input)
     #check input data type
     if(isinstance(input, dict)):
         #it is already dict

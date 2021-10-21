@@ -63,6 +63,8 @@ class CommonResponse:
     resp_frm_yesb : dict
     resp_frm_ewire : dict
     def __init__(self, respdata):
+        print("DATARESp",respdata)
+        print("DATAAA---",type(respdata))
         self.resp_code = respdata["resp_code"]
         self.resp_type = respdata["resp_type"]
         self.message = respdata["message"]
