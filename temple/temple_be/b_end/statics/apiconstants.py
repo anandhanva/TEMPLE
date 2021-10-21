@@ -81,6 +81,7 @@ listofferings="listofferingsapi"
 credietyapi="credietyapi"
 listdietyapi="listdietyapi"
 createhistoryapi="createhistoryapi"
+listhistoryapi="listhistoryapi"
 reportdietyapi="reportdietyapi"
 reportdateapi="reportdateapi"
 reportcustcityapi="reportcustcityapi"
@@ -91,10 +92,9 @@ createparkingapi="createparkingapi"
 listparkingapi="listparkingapi"
 createsightseeingapi="createsightseeingapi"
 listsightseeingapi="listsightseeingapi"
-dropdietyapi="dropdietyapi"
-droprateapi="droprateapi"
-addrate="addrateapi"
-listrate="listrateapi"
+
+
+
 ####################################################################################################################################
 
 reportdietyapi="reportdietyapi"
@@ -112,6 +112,7 @@ droprateapi="droprateapi"
 addrate="addrateapi"
 listrate="listrateapi"
 
+<<<<<<< HEAD
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #USER API
 
@@ -141,3 +142,20 @@ nearbyattraction="nearbyatrtinapi"
 neareststay="neareststayapi"
 #lord
 lord="lordapi"
+=======
+#####################################################################################################
+create_travel_byair="create_travel_byairapi"
+create_travel_bytrain="create_travel_bytrainapi"
+create_travel_byroad_public="create_travel_byroad_public"
+create_travel_byroad_private="create_travel_byroad_private"
+list_travel_byair="list_travel_byair"
+list_travel_bytrain="list_travel_bytrain"
+list_travel_byroad_public="list_travel_bypublic"
+list_travel_byroad_private="list_travel_byprivate"
+liststay="liststayapi"
+
+###
+
+addkaanikkaapi="addkaanikkaapi"
+listkaanikkaapi="listkaanikkaapi"
+>>>>>>> 1aa0f88c507fba2f3d19960448393cfc3b0fd5c2

@@ -1,4 +1,5 @@
 import datetime
+from logging import exception
 from flask.globals import session
 from flask.json import jsonify
 from flask.wrappers import Request
@@ -177,23 +178,25 @@ def list_lords_be():
 
 
 @app.route(baseUrl+'/create_pooja', methods = ['POST'])
-def createpooja():
+def create_pooja_be():
     req = request.json
     req = ast.literal_eval(req)
     req = constantslayer.convinptodict(req)
     valdata=validateReq(req)
-    print("$$$$$$$$$$$$$valdata",valdata)
     valdata=constantslayer.convinptodict(valdata)
-    
     if(valdata['status']==200):
         print("checklogin")
-        checklog=constantslayer.Createpooja(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        checklog=constantslayer.createPooja(req)
+        print("checklog data is",checklog)
+        if(isinstance(checklog, str)):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp'] = "SUCCESS"
+        if(checklog['resp'] and checklog['resp']!='ERROR' or checklog['resp_type'] == "SUCCESS"):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -226,12 +229,14 @@ def listpooja():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.Listpooja(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -262,12 +267,14 @@ def createprasadam():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer. Createprasadam(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -298,12 +305,14 @@ def listprasadam():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.Listprasadam(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -326,7 +335,7 @@ def listprasadam():
 #CTREATE OFFERINGS TEMPLE ADMIN
 
 @app.route(baseUrl+'/create_offerings', methods = ['POST'])
-def createofferings():
+def create_offering_be():
     req = request.json
     req = ast.literal_eval(req)
     req = constantslayer.convinptodict(req)
@@ -334,13 +343,17 @@ def createofferings():
     valdata=constantslayer.convinptodict(valdata)
     if(valdata['status']==200):
         print("checklogin")
-        checklog=constantslayer.Createofferings(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        checklog=constantslayer.createoffering(req)
+        print("checklog data is",checklog)
+        if(isinstance(checklog, str)):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp'] = "SUCCESS"
+        if(checklog['resp'] and checklog['resp']!='ERROR' or checklog['resp_type'] == "SUCCESS"):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -362,7 +375,7 @@ def createofferings():
 
 #LIST OFFERINGS  TEMPLE ADMIN
 @app.route(baseUrl+'/list_offerings', methods = ['POST'])
-def listofferings():
+def list_offering_be():
     req = request.json
     req = ast.literal_eval(req)
     req = constantslayer.convinptodict(req)
@@ -370,13 +383,99 @@ def listofferings():
     valdata=constantslayer.convinptodict(valdata)
     if(valdata['status']==200):
         print("checklogin")
-        checklog=constantslayer.Listofferings(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        checklog=constantslayer.listofferings(req)
+        print("checklog data is",checklog)
+        if(isinstance(checklog, str)):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp'] = "SUCCESS"
+        if(checklog['resp'] and checklog['resp']!='ERROR' or checklog['resp_type'] == "SUCCESS"):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)    
+    else:
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+
+#add_kanikka
+
+
+@app.route(baseUrl+'/add_kaanikka', methods = ['POST'])
+def add_kaanikka_be():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata=validateReq(req)
+    valdata=constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.add_kaanikka(req)
+        print("checklog data is",checklog)
+        if(isinstance(checklog, str)):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp'] = "SUCCESS"
+        if(checklog['resp'] and checklog['resp']!='ERROR' or checklog['resp_type'] == "SUCCESS"):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            print("/////////////////////////////////")
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)    
+    else:
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+
+#list_kanikka
+
+
+@app.route(baseUrl+'/list_kaanikka', methods = ['POST'])
+def list_kaanikka_be():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata=validateReq(req)
+    valdata=constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.list_kaanikka(req)
+        print("checklog data is",checklog)
+        if(isinstance(checklog, str)):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp'] = "SUCCESS"
+        if(checklog['resp'] and checklog['resp']!='ERROR' or checklog['resp_type'] == "SUCCESS"):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -396,6 +495,7 @@ def listofferings():
         return jsonify(req)
 
 
+
 #ADD RATE TEMPLE ADMIN
 @app.route(baseUrl+'/add_rate', methods = ['POST'])
 def addrate():
@@ -407,12 +507,14 @@ def addrate():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.Addrate(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -442,12 +544,14 @@ def listrate():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.Listrate(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -469,7 +573,7 @@ def listrate():
 #CREATE DIETY TEMPLE ADMIN
 
 @app.route(baseUrl+'/create_diety', methods = ['POST'])
-def creatediety():
+def create_diety_be():
     req = request.json
     req = ast.literal_eval(req)
     req = constantslayer.convinptodict(req)
@@ -477,13 +581,17 @@ def creatediety():
     valdata=constantslayer.convinptodict(valdata)
     if(valdata['status']==200):
         print("checklogin")
-        checklog=constantslayer.CreateDiety(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        checklog=constantslayer.createDiety(req)
+        print("checklog data is",checklog)
+        if(isinstance(checklog, str)):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp'] = "SUCCESS"
+        if(checklog['resp'] and checklog['resp']!='ERROR' or checklog['resp_type'] == "SUCCESS"):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -503,8 +611,9 @@ def creatediety():
         return jsonify(req)
 
 #DROP DIETY TEMPLE ADMIN
-@app.route(baseUrl+'/drop_diety', methods = ['POST'])
-def drop_diety():
+
+@app.route(baseUrl+'/dropdown_diety', methods = ['POST'])
+def drop_diety_be():
     req = request.json
     req = ast.literal_eval(req)
     req = constantslayer.convinptodict(req)
@@ -513,12 +622,16 @@ def drop_diety():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.dropdiety(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        print("checklog data is",checklog)
+        if(isinstance(checklog, str)):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp'] = "SUCCESS"
+        if(checklog['resp'] and checklog['resp']!='ERROR' or checklog['resp_type'] == "SUCCESS"):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -529,7 +642,7 @@ def drop_diety():
             respn['em_custid']=req["em_custid"]
             respn['resp_frm_yesb']=""
             respn['resp_frm_ewire']="Error Captured during execution"
-            return jsonify(respn)
+            return jsonify(respn)    
     else:
         req['resp_type']="FAIL"
         req['resp_code']=0
@@ -541,7 +654,7 @@ def drop_diety():
 #LIST DIETY TEMPLE ADMIN
 
 @app.route(baseUrl+'/list_diety', methods = ['POST'])
-def listdiety():
+def list_diety_be():
     req = request.json
     req = ast.literal_eval(req)
     req = constantslayer.convinptodict(req)
@@ -549,13 +662,17 @@ def listdiety():
     valdata=constantslayer.convinptodict(valdata)
     if(valdata['status']==200):
         print("checklogin")
-        checklog=constantslayer.Listdiety(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        checklog=constantslayer.listdiety(req)
+        print("checklog data is",checklog)
+        if(isinstance(checklog, str)):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp'] = "SUCCESS"
+        if(checklog['resp'] and checklog['resp']!='ERROR' or checklog['resp_type'] == "SUCCESS"):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -566,7 +683,7 @@ def listdiety():
             respn['em_custid']=req["em_custid"]
             respn['resp_frm_yesb']=""
             respn['resp_frm_ewire']="Error Captured during execution"
-            return jsonify(respn)
+            return jsonify(respn)    
     else:
         req['resp_type']="FAIL"
         req['resp_code']=0
@@ -625,12 +742,14 @@ def rep_diety():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.repbydiety(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -659,13 +778,15 @@ def rep_date():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.repbydate(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
-            respn = {}
+            print("/////////////////////////////////")
+            respn={}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
             respn['message']="Request Failed Due to Unknown Error"
@@ -693,13 +814,17 @@ def rep_custcity():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.Listpooja(req)
-        print("checklog",checklog)
-        checklog = constantslayer.repbycustcity(checklog)
-        if(checklog):
+        print("checklogin")
+        checklog=constantslayer.repbydate(req)
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
-            respn = {}
+            print("/////////////////////////////////")
+            respn={}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
             respn['message']="Request Failed Due to Unknown Error"
@@ -727,12 +852,14 @@ def invoice_view():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.invoiceview(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -761,12 +888,14 @@ def invoice_list():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.invoicelist(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -795,12 +924,14 @@ def invoice_search():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.invoicesearch(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -829,12 +960,14 @@ def create_parking():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.createparking(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -863,12 +996,14 @@ def list_parking():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.listparking(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -897,12 +1032,14 @@ def create_sightseeing():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.createsightseeing(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -931,12 +1068,14 @@ def list_sightseeing():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.listsightseeing(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -956,8 +1095,9 @@ def list_sightseeing():
         return jsonify(req)
 
 #drop rate
-@app.route(baseUrl+'/drop_rate', methods = ['POST'])
-def drop_rate():
+
+@app.route(baseUrl+'/dropdown_rate', methods = ['POST'])
+def drop_rate_be():
     req = request.json
     req = ast.literal_eval(req)
     req = constantslayer.convinptodict(req)
@@ -966,12 +1106,16 @@ def drop_rate():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.droprate(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        print("checklog data is",checklog)
+        if(isinstance(checklog, str)):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp'] = "SUCCESS"
+        if(checklog['resp'] and checklog['resp']!='ERROR' or checklog['resp_type'] == "SUCCESS"):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
+            print("/////////////////////////////////")
             respn = {}
             respn['resp_type']="FAIL"
             respn['resp_code']="0"
@@ -982,7 +1126,7 @@ def drop_rate():
             respn['em_custid']=req["em_custid"]
             respn['resp_frm_yesb']=""
             respn['resp_frm_ewire']="Error Captured during execution"
-            return jsonify(respn)
+            return jsonify(respn)    
     else:
         req['resp_type']="FAIL"
         req['resp_code']=0
@@ -1942,18 +2086,420 @@ def selectdevsom():
         return jsonify(betoui_response()) 
 
 #create history temple admin
-@app.route(baseUrl+'/cre_history', methods = ['POST'])
-def cre_history():
-    valdata=validateReq(request)
+
+@app.route(baseUrl+'/create_history', methods = ['POST'])
+def create_history_be():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata=validateReq(req)
+    valdata=constantslayer.convinptodict(valdata)
     if(valdata['status']==200):
         print("checklogin")
-        checklog=constantslayer.crehistory(request)
-        print("checklog",checklog)
-        checklog['resp_type']=="SUCCESS"
-        return jsonify(betoui_response(checklog))
+        checklog=constantslayer.create_history(req)
+        print("checklog data is",checklog)
+        if(isinstance(checklog, str)):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp'] = "SUCCESS"
+        if(checklog['resp'] and checklog['resp']!='ERROR' or checklog['resp_type'] == "SUCCESS"):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            print("/////////////////////////////////")
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)    
     else:
-        request['resp_type']="FAIL"
-        return jsonify(betoui_response()) 
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+
+
+
+
+##list_history
+
+
+@app.route(baseUrl+'/list_history', methods = ['POST'])
+def list_history_be():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata=validateReq(req)
+    valdata=constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.listhistory(req)
+        print("checklog data is",checklog)
+        if(isinstance(checklog, str)):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp'] = "SUCCESS"
+            print("CHECKLOG///////////",checklog)
+        if(checklog['resp'] and checklog['resp']!='ERROR' or checklog['resp_type'] == "SUCCESS"):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            print("/////////////////////////////////")
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)    
+    else:
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+
+
+
+
+###########################################################################################################################################
+#create_travel_by_air
+@app.route(baseUrl+'/create_travel_by_air', methods=['POST'])
+def create_travel_by_air_be():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata = validateReq(req)
+    valdata = constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.create_travel_by_air(req)
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            print("/////////////////////////////////")
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)
+    else:
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+#create_travel_by_train
+@app.route(baseUrl+'/create_travel_by_train', methods=['POST'])
+def create_travel_by_train_be():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata = validateReq(req)
+    valdata = constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.create_travel_by_train(req)
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            print("/////////////////////////////////")
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)
+    else:
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+#create_travel_by_road_public
+@app.route(baseUrl+'/ create_travel_by_road_public_be', methods=['POST'])
+def create_travel_by_road_public_be():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata = validateReq(req)
+    valdata = constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.create_travel_by_road_public(req)
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            print("/////////////////////////////////")
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)
+    else:
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+#create_travel_by_road_public
+@app.route(baseUrl+'/create_travel_by_road_private', methods=['POST'])
+def create_travel_by_road_private_be():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata = validateReq(req)
+    valdata = constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.create_travel_by_road_private(req)
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            print("/////////////////////////////////")
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)
+    else:
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+#list_travel
+#list_travel_by_air
+@app.route(baseUrl+'/list_travel_by_air', methods=['POST'])
+def list_travel_by_air_be():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata = validateReq(req)
+    valdata = constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.list_travel_by_air(req)
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            print("/////////////////////////////////")
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)
+    else:
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+#list_travel_by_train
+@app.route(baseUrl+'/list_travel_by_train', methods=['POST'])
+def list_travel_by_train_be():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata = validateReq(req)
+    valdata = constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.list_travel_by_train(req)
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            print("/////////////////////////////////")
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)
+    else:
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+#list_travel_by_road_public
+@app.route(baseUrl+'/list_travel_by_road_public_be', methods=['POST'])
+def list_travel_by_road_public_be():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata = validateReq(req)
+    valdata = constantslayer.list_travel_by_road_public(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.create_travel_by_air(req)
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            print("/////////////////////////////////")
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)
+    else:
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+#list_travel_by_road_public
+@app.route(baseUrl+'/list_travel_by_road_private', methods=['POST'])
+def list_travel_by_road_private_be():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata = validateReq(req)
+    valdata = constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.list_travel_by_road_private(req)
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            print("/////////////////////////////////")
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)
+    else:
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+
+# list_stay
+@app.route(baseUrl+'/list_stay', methods=['POST'])
+def list_stay_be():
+    req = request.json
+    req = ast.literal_eval(req)
+    req = constantslayer.convinptodict(req)
+    valdata = validateReq(req)
+    valdata = constantslayer.convinptodict(valdata)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.list_stay(req)
+        print("checklog data is",checklog)
+        
+        if(checklog['resp']!='ERROR'):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            print("/////////////////////////////////")
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)
+    else:
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
 
 
 

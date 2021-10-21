@@ -21,6 +21,7 @@ from b_core.statics.urlconstants import ENDPOINT, IP_DEV
 
 
 
+
 # COMMON RESPONSE CLASS
 class CommonReq2be:
     req_type : str
@@ -78,14 +79,16 @@ class CommonResponse:
     def __init__(self, respdata):       
         print("DATARESp",respdata)
         print("DATAAA",type(respdata))        
-        self.resp_code = respdata["resp_code"]
-        self.resp_type = respdata["resp_type"]
-        self.message = respdata["message"]        
+        self.resp_code = ''
+        self.resp_type = ''
+        self.message = ''        
         try:
-
             if respdata["em_reqid"] is None or respdata["em_reqid"] is None:
                  raise Exception("Attribute error,request param null")
             else:
+                self.resp_code = respdata['resp_code']
+                self.resp_type = respdata['resp_type']
+                self.message = respdata['message']
                 self.em_reqid = respdata["em_reqid"]
                 self.em_custid = respdata["em_custid"]
                 self.resp_frm_bank = respdata["resp_frm_bank"]
@@ -117,15 +120,13 @@ def checkrequest(request):
                         "status" : 200,
                         "mimetype" : 'application/json'}
 
-def coretobe_response(resptype):
-    
-    if(resptype['resp_type'] == "SUCCESS"):
-        resptype['message'] = {"request_status": "SUCCESS", "Status":" Login Successfull"}
-        return CommonResponse(resptype).__dict__
+def coretobe_response(resp_type):
+    print(resp_type)
+    if(resp_type['resp_type'] == "SUCCESS"):
+        resp_type['message'] = " Successfully Processed Response"
     else:
-        respdata = {"request_status": "FAIL", "Status":" Login failed with errors"}
-
-        return CommonResponse(respdata).__dict__
+        resp_type['message'] = "Some error Occured"
+    return CommonResponse(resp_type).__dict__
 
 def logger_srv(logData):
     
@@ -189,44 +190,22 @@ def validateReq(req):
 
     # VALIDATE REQUEST
     try:
-        valdata = json.loads(req.data.decode('utf-8'))
-        
-
-        if valdata['apiname'] == apiconstants.userLogin:
-            validatereq = constantslayer.validateJSON(valdata, staticconstants.userSchema)   
-        elif valdata['apiname'] == apiconstants.accStatement:
-            validatereq = constantslayer.validateJSON(valdata, staticconstants.accStatementSchema)
-            # responses.standardErrorResponseToUI["sourceoflog"] = "bcore-checklogin"
-        elif valdata['apiname'] == apiconstants.addTempleapi:
-            validatereq = constantslayer.validateJSON(valdata,staticconstants.addTempleSchema)
-        elif valdata['apiname'] == apiconstants.listTempleapi:
-            validatereq = constantslayer.validateJSON(valdata,staticconstants.listTempleSchema)
-        elif valdata['apiname'] == apiconstants.createTempleAdminapi:
-            validatereq = constantslayer.validateJSON(valdata,staticconstants.addTempleAdminSchema)
-        elif valdata['apiname'] == apiconstants.listTempleAdminapi:
-            validatereq = constantslayer.validateJSON(valdata,staticconstants.listTempleAdminSchema)
-        elif valdata['apiname'] == apiconstants.createAccountapi:
-            validatereq = constantslayer.validateJSON(valdata,staticconstants.createAccountSchema)
-        elif valdata['apiname'] == apiconstants.listAccountapi:
-            validatereq = constantslayer.validateJSON(valdata,staticconstants.listAccountSchema)
-
-
-                
-        if(validatereq['respType'] == 'success'):
+        valdata = json.loads(json.dumps(req))
+        # valdata=json.dumps(valdata)
+        print("val Data ", valdata)
+        SchemaConst=valdata['api_name']+"Schema"
+        Schema=staticconstants.schemas[SchemaConst]
+        validatereq=constantslayer.validateJSON(validate,Schema)
+        # responses.standardErrorResponseToUI["sourceoflog"] = "bcore-checklogin"
+        if(validatereq['resp_type'] == 'success'):
             valResp = {}
             valResp['response'] = responses.upGetResponse()
             valResp['status'] = 200
-            
         else:
-            responses.standardErrorResponseToBE["sourceoflog"] = "fail"
-            valResp = responses.standardErrorResponseToBE()
-
-        
+            responses.standardErrorResponseToUI["sourceoflog"] = "fail"
+            valResp = responses.standardErrorResponseToUI()
         logging.info(" :::VALIDATION SUCCESSFULL::: ",valResp)
-
         return valResp
-
-    
     except ValueError as e:
         return str(e)
     except Exception as e:
@@ -341,9 +320,3 @@ def validatechecksum(requestchecksum,createdchecksum):
         return "true"
     else:
         return "false"
-
-
-
-
-
-
