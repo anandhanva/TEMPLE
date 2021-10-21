@@ -320,3 +320,11 @@ def validatechecksum(requestchecksum,createdchecksum):
         return "true"
     else:
         return "false"
+
+
+# ==============================================================
+# ================== User static functions =====================
+# ==============================================================
+
+def prepareQRdatafrmcheckout(request):
+    print("@@");
