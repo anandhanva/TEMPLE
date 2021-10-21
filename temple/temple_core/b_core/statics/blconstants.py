@@ -869,22 +869,3 @@ def  createQntyApi(request):
 #USER
 #=========================================================================
 #INDEX
-def userIndexApi(request):
-    try:
-        dbQuery = {"prasadam_templeid":request['datafrm']['templeid']}
-        # request['database'] = "temple"
-        # request['collection'] = "prasadam"
-        # modulename="LISTPRASADAM"
-        # request['modulename']=modulename
-        datavalue =dbmodules.prasadam(dbQuery,"","l","prasadam")
-        print("listed",datavalue)
-        return datavalue        
-    except ValueError as e:
-        print("EXCEPTION1")
-        return str(e)
-    except Exception as e:
-        print("FAILED",str(e))
-        for frame in traceback.extract_tb(sys.exc_info()[2]):
-            fname,lineno,fn,text = frame
-            print( "Error in %s on line %d", fname, lineno)
-        return str(e)
