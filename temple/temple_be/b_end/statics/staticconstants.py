@@ -27,7 +27,7 @@ schemas['templeloginapiSchema'] = {
 #USER API
 
 #INDEX
-schemas['indexapiSchema']={
+schemas['userindexapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -230,7 +230,7 @@ schemas['nearbyatrtinapiSchema']={
     'checksum': {'type':'string'}}
 
 #nearest stay
-schemas['nearbyatrtinapiSchema']={
+schemas['neareststayapiSchema']={
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"},
     'apiname': {'type':'string'},
@@ -238,8 +238,10 @@ schemas['nearbyatrtinapiSchema']={
     'modulename': {'type':'string'},
     'partner_reqid': {'type':'string'},
     'req_timestamp': {'type':'integer'},
-    'requestdata': {
-                     },
+    'requestdata': {'temple_id': {'type': 'string'},
+                    'userid': {'type': 'string'},
+                    'roleid': {'type': 'string'}
+                    },
     'authtoken': {'type':'string'},
     'ewire_endpoint': {'type':'string'},
     'ewire_custid': {'type':'string'},
@@ -247,8 +249,10 @@ schemas['nearbyatrtinapiSchema']={
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
-#lord
-schemas['listkaanikkaapiSchema'] = {
+
+
+#diety
+schemas['userdietyapiSchema'] = {
     'req_type': {'type': 'string'},
     'req_code': {"type": "integer"},
     'apiname': {'type': 'string'},
@@ -256,10 +260,46 @@ schemas['listkaanikkaapiSchema'] = {
     'modulename': {'type': 'string'},
     'partner_reqid': {'type': 'string'},
     'req_timestamp': {'type': 'integer'},
-    'requestdata': {'bank_name': {'type': 'string'},
-                    'ifsc': {'type': 'string'},
-                    'date1': {'type': 'string'},
-                    'date2': {'type': 'string'}
+    'requestdata': {'temple_id': {'type': 'string'},
+                    'userid': {'type': 'string'},
+                    'roleid': {'type': 'string'}
+                    },
+    'authtoken': {'type': 'string'},
+    'ewire_endpoint': {'type': 'string'},
+    'ewire_custid': {'type': 'string'},
+    'txntype': {'type': 'string'},
+    'hashstr': {'type': 'string'},
+    'checksum': {'type': 'string'}}
+#location 
+schemas['locationapiSchema'] = {
+    'req_type': {'type': 'string'},
+    'req_code': {"type": "integer"},
+    'apiname': {'type': 'string'},
+    'ewire_reqid': {'type': 'string'},
+    'modulename': {'type': 'string'},
+    'partner_reqid': {'type': 'string'},
+    'req_timestamp': {'type': 'integer'},
+    'requestdata': {'temple_id': {'type': 'string'},
+                    'userid': {'type': 'string'}
+                    },
+    'authtoken': {'type': 'string'},
+    'ewire_endpoint': {'type': 'string'},
+    'ewire_custid': {'type': 'string'},
+    'txntype': {'type': 'string'},
+    'hashstr': {'type': 'string'},
+    'checksum': {'type': 'string'}}
+
+#map
+schemas['mapapiSchema'] = {
+    'req_type': {'type': 'string'},
+    'req_code': {"type": "integer"},
+    'apiname': {'type': 'string'},
+    'ewire_reqid': {'type': 'string'},
+    'modulename': {'type': 'string'},
+    'partner_reqid': {'type': 'string'},
+    'req_timestamp': {'type': 'integer'},
+    'requestdata': {'temple_id': {'type': 'string'},
+                    'userid': {'type': 'string'}
                     },
     'authtoken': {'type': 'string'},
     'ewire_endpoint': {'type': 'string'},

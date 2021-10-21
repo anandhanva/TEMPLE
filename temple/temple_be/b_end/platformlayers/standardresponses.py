@@ -25,7 +25,7 @@ commonValues['CORELOGIN']={
 commonValues['INDEX']={
                             "server" : ipconstants.checkUser,
                             "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/index",
+                            "endpoint" : "/user_index",
                             "reqtype" : "INDEX",
                             "methodtype" : "POST"
                                 }
@@ -124,21 +124,36 @@ commonValues['NEARESTSTAY']={
                                 }
 
 
-#lord
-commonValues['LORD']={
+#DIETY
+commonValues['USERDIETY']={
                             "server" : ipconstants.checkUser,
                             "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/lord",
-                            "reqtype" : "LORD",
+                            "endpoint" : "/user_diety",
+                            "reqtype" : "USERDIETY",
                             "methodtype" : "POST"
                                 }
 
 
+#location
+
+commonValues['LOCATION']={
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/location",
+                            "reqtype" : "LOCATION",
+                            "methodtype" : "POST"
+                                }
 
 
+#map
 
-
-
+commonValues['MAP']={
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/map",
+                            "reqtype" : "MAP",
+                            "methodtype" : "POST"
+                                }
 
 
 

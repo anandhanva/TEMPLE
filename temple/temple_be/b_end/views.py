@@ -37,9 +37,12 @@ def user():
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.checklogin(req)
-        print("checklog",checklog)
-        checklog = constantslayer.convinptodict(checklog)
-        if(checklog):
+        print("checklog data is",checklog)
+        if(isinstance(checklog, str)):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp'] = "SUCCESS"
+        if(checklog['resp'] and checklog['resp']!='ERROR' or checklog['resp_type'] == "SUCCESS"):
+            checklog = constantslayer.convinptodict(checklog)
             checklog['resp_type']=="SUCCESS"
             return jsonify(checklog)
         else:
@@ -72,14 +75,21 @@ def user():
 @app.route(baseUrl+'/index', methods = ['POST'])
 def user_index():
     req = request.json
-    req = ast.literal_eval(req)
+    print(">>>>>>>>>>>",req)
+    rqJson = json.dumps(req)
+    print("ASSSSasssdf",rqJson)
+    req = ast.literal_eval(rqJson)
+    print("ASSSSasssdf",req)
     req = constantslayer.convinptodict(req)
     valdata=validateReq(req)
-    valdata=constantslayer.index(valdata)
+    print("valdata>>>>>>>>>>>>>>>>>>>>>>>>>>>>//////////",valdata)
+    
+    
     if(valdata['status']==200):
-        print("checklogin")
-        checklog=constantslayer.createoffering(req)
-        print("checklog data is",checklog)
+        print("pppppppppppppppppppppppppppppppp>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+
+        checklog=constantslayer.index(req)
+        print("checklog data is???????????????????????????",checklog)
         if(isinstance(checklog, str)):
             checklog = constantslayer.convinptodict(checklog)
             checklog['resp'] = "SUCCESS"
@@ -110,10 +120,11 @@ def user_index():
 @app.route(baseUrl+'/user_kanikka', methods = ['POST'])
 def user_kanikka():
     req = request.json
-    req = ast.literal_eval(req)
-    req = constantslayer.convinptodict(req)
+    rqJson = json.dumps(req)
+    req = ast.literal_eval(rqJson)
+    req = constantslayer.convinptodict(rqJson)
     valdata=validateReq(req)
-    valdata=constantslayer.convinptodict(valdata)
+    
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.userkanikka(req)
@@ -263,10 +274,14 @@ def userlistkanikka():
 @app.route(baseUrl+'/history', methods = ['POST'])
 def history():
     req = request.json
-    req = ast.literal_eval(req)
+    print(">>>>>>>>>>>",req)
+    rqJson = json.dumps(req)
+    print("ASSSSasssdf",rqJson)
+    req = ast.literal_eval(rqJson)
+    print("ASSSSasssdf",req)
     req = constantslayer.convinptodict(req)
     valdata=validateReq(req)
-    valdata=constantslayer.convinptodict(valdata)
+    
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.userhistory(req)
@@ -413,10 +428,13 @@ def offeringbill():
 @app.route(baseUrl+'/nearby_attraction', methods = ['POST'])
 def nearbyatrctin():
     req = request.json
-    req = ast.literal_eval(req)
+    print(">>>>>>>>>>>",req)
+    rqJson = json.dumps(req)
+    print("ASSSSasssdf",rqJson)
+    req = ast.literal_eval(rqJson)
+    print("ASSSSasssdf",req)
     req = constantslayer.convinptodict(req)
     valdata=validateReq(req)
-    valdata=constantslayer.convinptodict(valdata)
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.nearbyattraction(req)
@@ -450,13 +468,138 @@ def nearbyatrctin():
 @app.route(baseUrl+'/nearest_stay', methods = ['POST'])
 def neareststay():
     req = request.json
-    req = ast.literal_eval(req)
+    print(">>>>>>>>>>>",req)
+    rqJson = json.dumps(req)
+    print("ASSSSasssdf",rqJson)
+    req = ast.literal_eval(rqJson)
+    print("ASSSSasssdf",req)
     req = constantslayer.convinptodict(req)
     valdata=validateReq(req)
-    valdata=constantslayer.convinptodict(valdata)
     if(valdata['status']==200):
         print("checklogin")
         checklog=constantslayer.neareststay(req)
+        print("checklog data is",checklog)
+        if(isinstance(checklog, str)):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp'] = "SUCCESS"
+        if(checklog['resp'] and checklog['resp']!='ERROR' or checklog['resp_type'] == "SUCCESS"):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)
+    else:
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+#diety
+@app.route(baseUrl+'/user_diety', methods = ['POST'])
+def dietylist():
+    req = request.json
+    print(">>>>>>>>>>>",req)
+    rqJson = json.dumps(req)
+    print("ASSSSasssdf",rqJson)
+    req = ast.literal_eval(rqJson)
+    print("ASSSSasssdf",req)
+    req = constantslayer.convinptodict(req)
+    valdata=validateReq(req)
+    
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.listdiety(req)
+        print("checklog data is",checklog)
+        if(isinstance(checklog, str)):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp'] = "SUCCESS"
+        if(checklog['resp'] and checklog['resp']!='ERROR' or checklog['resp_type'] == "SUCCESS"):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)
+    else:
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+#location
+@app.route(baseUrl+'/location', methods = ['POST'])
+def loctn():
+    req = request.json
+    print(">>>>>>>>>>>",req)
+    rqJson = json.dumps(req)
+    print("ASSSSasssdf",rqJson)
+    req = ast.literal_eval(rqJson)
+    print("ASSSSasssdf",req)
+    req = constantslayer.convinptodict(req)
+    valdata=validateReq(req)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.location(req)
+        print("checklog data is",checklog)
+        if(isinstance(checklog, str)):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp'] = "SUCCESS"
+        if(checklog['resp'] and checklog['resp']!='ERROR' or checklog['resp_type'] == "SUCCESS"):
+            checklog = constantslayer.convinptodict(checklog)
+            checklog['resp_type']=="SUCCESS"
+            return jsonify(checklog)
+        else:
+            respn = {}
+            respn['resp_type']="FAIL"
+            respn['resp_code']="0"
+            respn['message']="Request Failed Due to Unknown Error"
+            respn['requestdata']="Error Captured during execution"
+            respn['em_reqid']=req["em_reqid"]
+            respn['timestamp']=str(datetime.datetime.now())
+            respn['em_custid']=req["em_custid"]
+            respn['resp_frm_yesb']=""
+            respn['resp_frm_ewire']="Error Captured during execution"
+            return jsonify(respn)
+    else:
+        req['resp_type']="FAIL"
+        req['resp_code']=0
+        req['message']="Request Failed Due to Unknown Error"
+        req['responsedata']="Error Captured during execution"
+        return jsonify(req)
+
+#map
+@app.route(baseUrl+'/map', methods = ['POST'])
+def map():
+    req = request.json
+    print(">>>>>>>>>>>",req)
+    rqJson = json.dumps(req)
+    print("ASSSSasssdf",rqJson)
+    req = ast.literal_eval(rqJson)
+    print("ASSSSasssdf",req)
+    req = constantslayer.convinptodict(req)
+    valdata=validateReq(req)
+    if(valdata['status']==200):
+        print("checklogin")
+        checklog=constantslayer.map(req)
         print("checklog data is",checklog)
         if(isinstance(checklog, str)):
             checklog = constantslayer.convinptodict(checklog)

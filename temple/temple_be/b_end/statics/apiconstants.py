@@ -9,11 +9,11 @@ userLogin = "templeloginapi"
 #USER API
 
 #home_page
-index="indexapi"
+index="userindexapi"
 #history
 history="historyapi"
 #kanikka
-userkanika="userkanikaapi"
+userkanikka="userkanikaapi"
 #get_star (drop)
 getstar="getstardropapi"
 #get_prasadam_bill_list
@@ -32,6 +32,14 @@ offerbill="offerbillapi"
 nearbyattraction="nearbyatrtinapi"
 #nearest_stay
 neareststay="neareststayapi"
-#lord
-lord="lordapi"
+#diety
+userdiety="userdietyapi"
+#location
+location="locationapi"
+#map
+map="mapapi"
 
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+#22/10/2021
+getpoojabydiety="gepjbydtyapi"
