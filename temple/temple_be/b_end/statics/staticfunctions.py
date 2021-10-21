@@ -137,8 +137,6 @@ def validateReq(req):
 
 
 def performRequest(request, modulename):
-    
-
     server = request['parameters'][modulename]['server']
     headerz = request['parameters'][modulename]['headerz']
     endpoint = request['parameters'][modulename]['endpoint']
@@ -158,7 +156,9 @@ def performRequest(request, modulename):
         print("PL = ",payload)
         try:
             r = requests.post(url, data = payload, headers=headerz)
-            if(r.status_code == 200):                
+            print(">>>SCSCSCS>>>>>>>>>>>>>>>>>>>?????????????????????///////////")
+            if(r.status_code == 200): 
+                print("/////////////////////////////////////////////////////////////")               
                 return r.text
             else:
                 print(r.text)
