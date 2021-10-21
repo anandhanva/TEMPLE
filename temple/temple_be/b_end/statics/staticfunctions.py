@@ -116,8 +116,6 @@ def validateReq(req):
         print("val Data ", valdata)
         SchemaConst=valdata['api_name']+"Schema"
         print(">>>>>>>>>>>>>>>>>>>>>>>>",SchemaConst)
-
-        print("SchemaConst", SchemaConst)
         Schema=staticconstants.schemas[SchemaConst]
         print(">>>>>>>>>>>>>>>>>>>>>>>>",Schema)
         validatereq=constantslayer.validateJSON(validate,Schema)
