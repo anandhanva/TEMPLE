@@ -5,6 +5,7 @@ from b_end.statics import staticfunctions
 from b_end.platformlayers import standardresponses
 from b_end.statics import urlconstants
 from jsonschema import validate
+import traceback, sys
 def parseRequestHCRD(request):
     
     try:
@@ -26,46 +27,2277 @@ def parseRequestHCRD(request):
     return retaftrParsed
 def convinptodict(input):
     #check input data type
-    if(isinstance(input,dict)):
+    if(isinstance(input, dict)):
         #it is already dict
         return input
-    elif(isinstance(input,str)):
+    elif(isinstance(input, str)):
         #convert string to dictionary
         return json.loads(input)
-    elif(isinstance(input,int)):
+    elif(isinstance(input, int)):
         #convert iny to dictionary
         return json.loads(input)
 
 
 def checklogin(req):
-    request = req.get_json()
+    # print('Req Type', type(req))
+    request = convinptodict(req)
     try:
+        modulename = 'LOGIN'
         datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
-                    "apiname":request['apiname'],"modulename":request['modulename'],"em_reqid":request['em_reqid'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
                     "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
                     "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
         obj = standardresponses.commonValues
         otherdata = {}
-        # modulename = 'LOGIN'
+        # 
         otherdata['parameters'] = obj
         otherdata['data'] = datadict
-        print('otherdata', otherdata)
-        BuildBeResp = staticfunctions.performRequest(otherdata,request['modulename'])
-        print("ivide ethi 1",BuildBeResp)
-        return BuildBeResp
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        # print("Temple Resp ", TempleBeResp)
+        TempleBeResp =convinptodict(TempleBeResp)
+        print("ivide ethi 1",TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            return TempleBeResp 
     except ValueError as e:
         print("EXCEPTION1",str(e))
-        return str(e)
+        
     except Exception as e:
         print("EXCEPTION2",str(e))
         return str(e)
 
+def accountstatement(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'ACCSTATEMENT'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+
+    
+def createPooja(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'CREATEPOOJA'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+    
+def Createprasadam(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'CREAPRASADAM'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+
+def Listprasadam(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'LISTPRASADAM'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+        
+
+def crediety(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'CREDIETY'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+
+
+def createoffering(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'CREAOFFERINGS'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def listdiety(req):
+    request = convinptodict(req)
+    try:
+        modulename = 'LISTDIETY'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+   
+def listofferings(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'LISTOFFERINGS'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+#add_kaanikka
+
+def add_kaanikka(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'ADDKAANIKKA'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+
+#list_kaanikka
+
+def list_kaanikka(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'LISTKAANIKKA'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+
+
+#####
+
+def Addrate(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'ADDRATE'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+def Listrate(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'LISTRATE'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+
+def createDiety(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'CREATEDIETY'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+
+def create_history(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'CREHISTORY'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+#list_history
+
+def listhistory(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'LISTHISTORY'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print ("Error in %s on line %d",fname, lineno)
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+
+def listtotal(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'LISTTOTAL'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def creaccsuper(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'CREATECCOUNT'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def listaccsuper(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'LISTACCOUNT'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+#create trans temp superadmin
+
+def cretranstemp(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'CREATETRANSTEMP'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def listtranstemp(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'LISTTRANSTEMP'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def credevaswomsuper(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'CREATEDEVASWOM'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def listdevaswomsuper(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'LISTDEVASWOM'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def crebankadminsuper(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'CREATEBANKADMIN'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def listmaangebankadminsuper(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'LISTMNGBANKADMIN'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def cardallocate(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'CARDALLOCATE'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def listcardallocate(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'LISTCARDALLOCATE'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def creblocktemple(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'CREATEBLOCKTEMPLE'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def listblocktemple(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'LISTBLOCKTEMPLE'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def repbydiety(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'REPDIETY'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def repbydate(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'REPDATE'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def repbycustcity(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'REPCUSTCITY'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def invoiceview(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'INVOICEVIEW'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def invoicelist(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'INVOICELIST'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def invoicesearch(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'INVOICESEARCH'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def createparking(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'CREPARKING'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def listparking(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'LISTPARKING'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def createsightseeing(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'CRESIGHTSEEING'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def listsightseeing(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename = 'LISTSIGHTSEEING'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['req_data'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+def dropdiety(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    try:
+        modulename = 'DROPDOWNDIETY'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+
+
+def droprate(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request",request)
+    try:
+        modulename ='DROPDOWNRATE'
+        datadict = {"req_type":request['req_type'],"req_code":request['req_code'],
+                    "apiname":request['api_name'],"modulename":modulename,"em_reqid":request['em_reqid'],
+                    "partner_reqid":request['partner_reqid'],"requestdata":request['requestdata'],"authToken":request['authtoken'],"em_endpoint":request['em_endpoint'],
+                    "em_custid":request['em_custid'],"txntype":request["txntype"],"hashstr":request['hashstr'],"checksum":request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        # 
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata,modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+############################################################################################################################
+# create_travel_by_air
+def create_travel_by_air(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request", request)
+    try:
+        modulename = 'CREATETRAVELBYAIR'
+        datadict = {"req_type": request['req_type'], "req_code": request['req_code'],
+                    "apiname": request['api_name'], "modulename": modulename, "em_reqid": request['em_reqid'],
+                    "partner_reqid": request['partner_reqid'], "requestdata": request['req_data'], "authToken": request['authtoken'], "em_endpoint": request['em_endpoint'],
+                    "em_custid": request['em_custid'], "txntype": request["txntype"], "hashstr": request['hashstr'], "checksum": request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        #
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata, modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata, modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+# create_travel_by_train
+def create_travel_by_train(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request", request)
+    try:
+        modulename = 'CREATETRAVELBYTRAIN'
+        datadict = {"req_type": request['req_type'], "req_code": request['req_code'],
+                    "apiname": request['api_name'], "modulename": modulename, "em_reqid": request['em_reqid'],
+                    "partner_reqid": request['partner_reqid'], "requestdata": request['req_data'], "authToken": request['authtoken'], "em_endpoint": request['em_endpoint'],
+                    "em_custid": request['em_custid'], "txntype": request["txntype"], "hashstr": request['hashstr'], "checksum": request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        #
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata, modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata, modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+# create_travel_by_road_public
+def create_travel_by_road_public(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request", request)
+    try:
+        modulename = 'CREATETRAVELBYROADPUBLIC'
+        datadict = {"req_type": request['req_type'], "req_code": request['req_code'],
+                    "apiname": request['api_name'], "modulename": modulename, "em_reqid": request['em_reqid'],
+                    "partner_reqid": request['partner_reqid'], "requestdata": request['req_data'], "authToken": request['authtoken'], "em_endpoint": request['em_endpoint'],
+                    "em_custid": request['em_custid'], "txntype": request["txntype"], "hashstr": request['hashstr'], "checksum": request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        #
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata, modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata, modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+# create_travel_by_road_private
+def create_travel_by_road_private(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request", request)
+    try:
+        modulename = 'CREATETRAVELBYROADPRIVATE'
+        datadict = {"req_type": request['req_type'], "req_code": request['req_code'],
+                    "apiname": request['api_name'], "modulename": modulename, "em_reqid": request['em_reqid'],
+                    "partner_reqid": request['partner_reqid'], "requestdata": request['req_data'], "authToken": request['authtoken'], "em_endpoint": request['em_endpoint'],
+                    "em_custid": request['em_custid'], "txntype": request["txntype"], "hashstr": request['hashstr'], "checksum": request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        #
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata, modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata, modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+
+# list_travel_by_air
+def list_travel_by_air(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request", request)
+    try:
+        modulename = 'LISTTRAVELBYAIR'
+        datadict = {"req_type": request['req_type'], "req_code": request['req_code'],
+                    "apiname": request['api_name'], "modulename": modulename, "em_reqid": request['em_reqid'],
+                    "partner_reqid": request['partner_reqid'], "requestdata": request['req_data'], "authToken": request['authtoken'], "em_endpoint": request['em_endpoint'],
+                    "em_custid": request['em_custid'], "txntype": request["txntype"], "hashstr": request['hashstr'], "checksum": request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        #
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata, modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata, modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+# list_travel_by_train
+def list_travel_by_train(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request", request)
+    try:
+        modulename = 'LISTTRAVELBYTRAIN'
+        datadict = {"req_type": request['req_type'], "req_code": request['req_code'],
+                    "apiname": request['api_name'], "modulename": modulename, "em_reqid": request['em_reqid'],
+                    "partner_reqid": request['partner_reqid'], "requestdata": request['req_data'], "authToken": request['authtoken'], "em_endpoint": request['em_endpoint'],
+                    "em_custid": request['em_custid'], "txntype": request["txntype"], "hashstr": request['hashstr'], "checksum": request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        #
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata, modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata, modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+# list_travel_by_road_public
+def list_travel_by_road_public(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request", request)
+    try:
+        modulename = 'LISTTRAVELBYROADPUBLIC'
+        datadict = {"req_type": request['req_type'], "req_code": request['req_code'],
+                    "apiname": request['api_name'], "modulename": modulename, "em_reqid": request['em_reqid'],
+                    "partner_reqid": request['partner_reqid'], "requestdata": request['req_data'], "authToken": request['authtoken'], "em_endpoint": request['em_endpoint'],
+                    "em_custid": request['em_custid'], "txntype": request["txntype"], "hashstr": request['hashstr'], "checksum": request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        #
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata, modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata, modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
+
+
+# list_travel_by_road_private
+def list_travel_by_road_private(req):
+    # print('Req Type', type(req))
+    request = convinptodict(req)
+    print(">>>>>>>>>>>>>>>request", request)
+    try:
+        modulename = 'LISTTRAVELBYROADPRIVATE'
+        datadict = {"req_type": request['req_type'], "req_code": request['req_code'],
+                    "apiname": request['api_name'], "modulename": modulename, "em_reqid": request['em_reqid'],
+                    "partner_reqid": request['partner_reqid'], "requestdata": request['req_data'], "authToken": request['authtoken'], "em_endpoint": request['em_endpoint'],
+                    "em_custid": request['em_custid'], "txntype": request["txntype"], "hashstr": request['hashstr'], "checksum": request['checksum']}
+        obj = standardresponses.commonValues
+        otherdata = {}
+        #
+        otherdata['parameters'] = obj
+        otherdata['data'] = datadict
+        print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata, modulename)
+        print("Temple Resp Type", type(TempleBeResp))
+        # print('otherdata', otherdata)
+        TempleBeResp = staticfunctions.performRequest(otherdata, modulename)
+        # print("Build Resp Type", type(TempleBeResp))
+        print("Temple Resp ", TempleBeResp)
+        erresp="ERROR Response"
+        if(erresp in TempleBeResp):
+            failureRespToui={}
+            failureRespToui['resp_type']="FAIL"
+            failureRespToui['resp_code']=800
+            failureRespToui['message']="couldn't connect to servers"
+            failureRespToui['em_reqid']=request["em_reqid"]
+            failureRespToui['timestamp']=request["timestamp"]
+            failureRespToui['em_custid']=request["em_custid"]
+            failureRespToui['resp_frm_yesb']=""
+            failureRespToui['resp_frm_ewire']=""
+            return staticfunctions.betoui_response(failureRespToui)
+        else:
+            if("HTTPConnectionPool" in TempleBeResp):
+                return {"resp":"ERROR"}
+            else:
+                return TempleBeResp 
+    except ValueError as e:
+        print("EXCEPTION1",str(e))
+        return {"resp":"ERROR"}
+    except Exception as e:
+        print("EXCEPTION2",str(e))
+        return {"resp":"ERROR"}
 
 
 def validateJSON(jsonData, schemaname):
     str1 = {}
     try:
         validated = validate(instance=jsonData, schema=schemaname)
+        return {"respType": "success"}
     except jsonschema.exceptions.ValidationError as err:
         return {"respType": "failure"}
-    return {"respType": "success"}
+
