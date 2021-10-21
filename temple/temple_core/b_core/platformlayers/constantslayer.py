@@ -7,6 +7,14 @@ import re
 from b_core.statics import dbconstants
 import json,jsonschema
 from jsonschema import validate
+import qrcode
+from PIL import Image
+import random
+ 
+#Install pip3 install qrcode
+#Install pip3 install pillow
+# Needs a folder qrcodes/generated in the same location as this file
+ 
 
 
 def parseRequestHCRD(request):
@@ -100,3 +108,42 @@ def callmaass4hashing(hashinput, modulename):
     return respfrmmasshash
     # print("RESPFROMMAASS",respfrmmasshash)
 
+# Function to create a qr code image 
+def createQRCode(data):
+    # Logo_link = imgurl
+    # logo = Image.open(Logo_link)  
+    # taking base width
+    basewidth = 100  
+    # adjust image size
+    # wpercent = (basewidth/float(logo.size[0]))
+    # hsize = int((float(logo.size[1])*float(wpercent)))
+    # logo = logo.resize((basewidth, hsize), Image.ANTIALIAS)
+    QRcode = qrcode.QRCode(
+        error_correction=qrcode.constants.ERROR_CORRECT_H
+    )  
+    # taking url or text
+    url = data
+    # addingg URL or text to QRcode
+    QRcode.add_data(url)
+    # generating QR code
+    QRcode.make()
+    # Choosing color for QR
+    QRcolor = 'Black'
+    # adding color to QR code
+    QRimg = QRcode.make_image(
+        fill_color=QRcolor, back_color="white").convert('RGB')
+   
+    # set size of QR code
+    # pos = ((QRimg.size[0] - logo.size[0]) // 2,
+    #     (QRimg.size[1] - logo.size[1]) // 2)
+    # QRimg.paste(logo, pos)
+    pathName = "qrcodes/generated/"
+    fileName = str(random.randint(10000000,9999999999)) +'.png'
+    # save the QR code generated
+    pathofQRFile = pathName + fileName
+    QRimg.save(pathofQRFile)
+    # print('QR code generated!')
+   
+    return pathofQRFile
+ 
+# qrdata = createQRCode("DSFYGD9SFGBTDS9G6DFG7TDFB7GTDS7BTDSFGBT6SDFGDS7TVSADNF6GSADF")
