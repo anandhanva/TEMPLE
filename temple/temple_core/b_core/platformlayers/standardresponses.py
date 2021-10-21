@@ -206,4 +206,48 @@ commonValues['CREATE_TRAVEL_BY_AIR'] = {
                             "endpoint" : "/add_airport",
                             "reqtype" : "CREATEAIRPORTREQ",
                             "methodtype" : "POST"}
-                    
+commonValues['CREATESTAY'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_stay",
+                            "reqtype" : "CREATESTAYREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['LISTSTAY'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_stay",
+                            "reqtype" : "LISTSTAYREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['ADDRATE'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/add_rate",
+                            "reqtype" : "CREATERATEREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['QUANTITYLIST'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/add_quantity",
+                            "reqtype" : "CREATEQNTYREQ",
+                            "methodtype" : "POST"
+                        }
+
+
+#=======================================================================
+#USER
+#INDEX
+commonValues['USERINDEX'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/user_index",
+                            "reqtype" : "USERINDEXREQ",
+                            "methodtype" : "POST"
+                        }

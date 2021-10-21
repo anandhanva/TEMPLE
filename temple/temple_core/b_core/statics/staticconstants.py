@@ -226,7 +226,8 @@ schemas['templecreateofferingapiSchema'] = {
     'requestdata': { "templeid": {'type':'integer'},        
         "offering_name": {'type':'string'},
         "offering_amount": {'type':'integer'},
-        "offering_description": {'type':'string'},        
+        "offering_description": {'type':'string'},
+        "offering_rateid": {'type' : 'integer'},      
                         },
     'authtoken': {'type':'string'},
     'ewire_endpoint': {'type':'string'},
@@ -417,5 +418,82 @@ schemas['templedropdownrateapiSchema'] = {
     'txntype': {'type':'string'},
 
 
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+
+schemas['templecreatestayapiSchema'] = {
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"}, 
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata': { "stay_name": {'type':'integer'},        
+        "stay_photo": {'type':'integer'},
+        "stay_desc": {'type':'string'},
+        "stay_amount": {'type':'string'},  
+        "stay_templeid": {'type':'string'},        
+      
+                        },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+
+schemas['templeliststayapiSchema'] = {
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"}, 
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata': {"type":"all"
+                        },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+
+
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+schemas['templecreaterateapiSchema'] = {
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"}, 
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata': { "templeid": {'type':'integer'},        
+        "rate": {'type':'integer'}       
+      
+                        },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+schemas['templecreateqntyapiSchema'] = {
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"}, 
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata': { "templeid": {'type':'integer'},        
+        "qnty": {'type':'integer'}       
+      
+                        },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
