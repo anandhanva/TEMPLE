@@ -78,7 +78,7 @@ class CommonResponse:
     resp_frm_ewire : dict    
     def __init__(self, respdata):       
         print("DATARESp",respdata)
-        print("DATAAA",type(respdata))        
+        print("DATAAA****",type(respdata))        
         self.resp_code = ''
         self.resp_type = ''
         self.message = ''        

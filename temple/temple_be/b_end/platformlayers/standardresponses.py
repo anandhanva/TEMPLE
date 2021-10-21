@@ -145,6 +145,41 @@ commonValues['LISTOFFERINGS']={
                                 "reqtype" : "LSTOFFRNG",
                                 "methodtype" : "POST"
 }
+
+
+#####
+
+
+#createofferings(TEMPLE ADMIN)
+commonValues['ADDKAANIKKA']={
+                                "server" : ipconstants.checkUser,
+                                "headerz" : {"Content-Type":"application/json"},
+                                "endpoint" : "/add_kaanikka",
+                                "reqtype" : "CREAOFFRNG",
+                                "methodtype" : "POST"
+
+                                }
+#listofferings(TEMPLE ADMIN)
+commonValues['LISTKAANIKKA']={
+                                "server" : ipconstants.checkUser,
+                                "headerz" : {"Content-Type":"application/json"},
+                                "endpoint" : "/list_kaanikka",
+                                "reqtype" : "LSTOFFRNG",
+                                "methodtype" : "POST"
+}
+
+
+
+
+
+######
+
+
+
+
+
+
+
 #Add Rate (TEMPLE ADMIN)
 commonValues['ADDRATE']={
                                 "server" : ipconstants.checkUser,
@@ -242,20 +277,14 @@ commonValues['LISTSIGHTSEEING']={
                             "reqtype" : "LISTSIGHTSEEING",
                             "methodtype" : "POST"
                                 }
+                           
 #drop diety
 commonValues['DROPDOWNDIETY']={
+                        
                             "server" : ipconstants.checkUser,
                             "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/drop_diety",
+                            "endpoint" : "/dropdwon_diety",
                             "reqtype" : "DROPDIETY",
-                            "methodtype" : "POST"
-                                }
-#drop RATE
-commonValues['DROPDOWNRATE']={
-                            "server" : ipconstants.checkUser,
-                            "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/drop_rate",
-                            "reqtype" : "DROPRATE",
                             "methodtype" : "POST"
                                 }
 
@@ -854,14 +883,7 @@ commonValues['LISTBLOCKBANK']={
                             "methodtype" : "POST"
                                 }
             
-commonValues['CREDIETY']={
-                        
-                            "server" : ipconstants.checkUser,
-                            "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/create_diety",
-                            "reqtype" : "CREDIETY",
-                            "methodtype" : "POST"
-                                }
+
 
 commonValues['LISTDIETY']={
                         
@@ -876,10 +898,20 @@ commonValues['CREHISTORY']={
                         
                             "server" : ipconstants.checkUser,
                             "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/cre_history",
-                            "reqtype" : "CREHISTORY",
+                            "endpoint" : "/create_history",
+                            "reqtype" : "CREATEHISTORY",
                             "methodtype" : "POST"
                                 }
+commonValues['LISTHISTORY']={
+                        
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_history",
+                            "reqtype" : "LIST_HISTORY",
+                            "methodtype" : "POST"
+                                }
+
+    
 #REPORT BY DIETY
 commonValues['REPDIETY']={
                         
@@ -976,21 +1008,21 @@ commonValues['LISTSIGHTSEEING']={
                             "methodtype" : "POST"
                                 }
                             
-#drop diety
+#drop diety temple admin
 commonValues['DROPDOWNDIETY']={
                         
                             "server" : ipconstants.checkUser,
                             "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/drop_diety",
+                            "endpoint" : "/dropdown_diety",
                             "reqtype" : "DROPDIETY",
                             "methodtype" : "POST"
                                 }
-#drop RATE
+#drop RATE temple admin
 commonValues['DROPDOWNRATE']={
                         
                             "server" : ipconstants.checkUser,
                             "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/drop_rate",
+                            "endpoint" : "/dropdown_rate",
                             "reqtype" : "DROPRATE",
                             "methodtype" : "POST"
                                 
@@ -1002,9 +1034,74 @@ commonValues['CREATEDIETY']={
                             "server" : ipconstants.checkUser,
                             "headerz" : {"Content-Type":"application/json"},
                             "endpoint" : "/create_diety",
-                            "reqtype" : "DROPRATE",
+                            "reqtype" : "CREATEDIETY",
                             "methodtype" : "POST"
                                 
 
 }
 ###################################################################################################33
+#travel
+commonValues['CREATE_TRAVEL_BY_AIR']={
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_travel_by_air",
+                            "reqtype" : "CREATE_TRAVEL_BY_AIR",
+                            "methodtype" : "POST"
+                    }
+commonValues['CREATE_TRAVEL_BY_TRAIN']={
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_travel_by_train",
+                            "reqtype" : "CREATE_TRAVEL_BY_TRAIN",
+                            "methodtype" : "POST"
+                    }
+commonValues['CREATE_TRAVEL_BY_ROAD_PUBLIC']={
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_travel_by_road_public",
+                            "reqtype" : "CREATE_TRAVEL_BY_ROAD_PUBLIC",
+                            "methodtype" : "POST"
+                    }
+commonValues['CREATE_TRAVEL_BY_ROAD_PRIVATE']={
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_travel_by_road_private",
+                            "reqtype" : "CREATE_TRAVEL_BY_ROAD_PRIVATE",
+                            "methodtype" : "POST"
+                    }
+                    #list_travel
+commonValues['LIST_TRAVEL_BY_AIR']={
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_travel_by_air",
+                            "reqtype" : "LIST_TRAVEL_BY_AIR",
+                            "methodtype" : "POST"
+                    }
+commonValues['LIST_TRAVEL_BY_TRAIN']={
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_travel_by_train",
+                            "reqtype" : "LIST_TRAVEL_BY_TRAIN",
+                            "methodtype" : "POST"
+                    }
+commonValues['LIST_TRAVEL_BY_ROAD_PUBLIC']={
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_travel_by_road_public",
+                            "reqtype" : "LIST_TRAVEL_BY_ROAD_PUBLIC",
+                            "methodtype" : "POST"
+                    }
+commonValues['LIST_TRAVEL_BY_ROAD_PRIVATE']={
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_travel_by_road_private",
+                            "reqtype" : "LIST_TRAVEL_BY_ROAD_PRIVATE",
+                            "methodtype" : "POST"
+                    }
+commonValues['LIST_STAY']={
+                            "server" : ipconstants.checkUser,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_stay",
+                            "reqtype" : "LIST_STAY",
+                            "methodtype" : "POST"
+                    }

@@ -7,6 +7,7 @@ def maasslogger(data, msg, modulename, logtype):
     #Log the error and the request data parameters
     config = {}
     srvr = standardresponses.commonValues[modulename]
+    print("MODULENAME",modulename)
     config[modulename] = {}
     config[modulename]['parameters'] = srvr
     reqdta = {}

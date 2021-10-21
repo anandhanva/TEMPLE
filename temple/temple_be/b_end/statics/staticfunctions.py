@@ -63,6 +63,8 @@ class CommonResponse:
     resp_frm_yesb : dict
     resp_frm_ewire : dict
     def __init__(self, respdata):
+        print("DATARESp",respdata)
+        print("DATAAA---",type(respdata))
         self.resp_code = respdata["resp_code"]
         self.resp_type = respdata["resp_type"]
         self.message = respdata["message"]
@@ -137,8 +139,6 @@ def validateReq(req):
 
 
 def performRequest(request, modulename):
-    
-
     server = request['parameters'][modulename]['server']
     headerz = request['parameters'][modulename]['headerz']
     endpoint = request['parameters'][modulename]['endpoint']
@@ -158,7 +158,9 @@ def performRequest(request, modulename):
         print("PL = ",payload)
         try:
             r = requests.post(url, data = payload, headers=headerz)
-            if(r.status_code == 200):                
+            print(">>>SCSCSCS>>>>>>>>>>>>>>>>>>>?????????????????????///////////")
+            if(r.status_code == 200): 
+                print("/////////////////////////////////////////////////////////////")               
                 return r.text
             else:
                 print(r.text)

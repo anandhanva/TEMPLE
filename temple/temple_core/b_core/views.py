@@ -142,7 +142,7 @@ def listdiety():
 @app.route(urlconstants.ENDPOINT+'/create_history', methods = ['POST'])
 def addhistory():
     
-    return bllayer.createHistory(request)
+    return bllayer.createHistory(request.json)
 
 #LIST HISTORY
 @app.route(urlconstants.ENDPOINT+'/list_history', methods = ['POST'])
@@ -188,3 +188,20 @@ def dropDiety():
 def dropRate():
     
     return bllayer.dropdownRateApi(request)
+
+#DROPDOWN - - QTY
+@app.route(urlconstants.ENDPOINT+'/dropdown_qty', methods = ['POST'])
+def dropQty():
+    
+    return bllayer.dropdownPrasadamQtyApi(request)
+
+#CREATE KANIKKA
+@app.route(urlconstants.ENDPOINT+'/create_kanikka', methods = ['POST'])
+def createKanikka():
+    
+    return bllayer.createKanikkaApi(request)
+#CREATE AIRPORT
+@app.route(urlconstants.ENDPOINT+'/add_airport', methods = ['POST'])
+def addAirport():
+    
+    return bllayer.addAirportApi(request)
