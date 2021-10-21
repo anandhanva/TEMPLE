@@ -281,11 +281,12 @@ schemas['templecreateprasadamapiSchema'] = {
     'ewire_reqid': {'type':'string'},
     'partner_reqid': {'type':'string'},
     'req_timestamp': {'type':'integer'},
-    'requestdata': { "templeid": {'type':'integer'},        
+    'requestdata': {        
         "prasadam_name": {'type':'string'},
-        "prasadam_desc": {'type':'string'},
-        "prasadam_photo": {'type':'string'}, 
-        "prasadam_oftemp": {'type':'string'},        
+        "prasadam_descr": {'type':'string'},
+        # "prasadam_templeid": {'type':'string'},  
+        "prasadam_rateid": {'type':'string'},        
+      
        
                         },
     'authtoken': {'type':'string'},
@@ -332,7 +333,7 @@ schemas['templelistdietyapiSchema'] = {
     'checksum': {'type':'string'}}
 
 
-schemas['templecreateHistoryapi'] = {
+schemas['templecreateHistoryapiSchema'] = {
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"}, 
     'apiname': {'type':'string'},
@@ -340,10 +341,12 @@ schemas['templecreateHistoryapi'] = {
     'partner_reqid': {'type':'string'},
     'req_timestamp': {'type':'integer'},
     'requestdata': {"templeid": {'type':'integer'},        
-        "diety_name": {'type':'string'},
-        "diety_desc": {'type':'integer'},
-        "diety_photo": {'type':'string'}, 
-        "diety_oftemp": {'type':'string'},
+        "history_title": {'type':'string'},
+        "history_image1": {'type':'integer'},
+        "history_image2": {'type':'string'}, 
+        "history_image3": {'type':'string'},
+        "history_descr": {'type':'string'},
+
                         },
     'authtoken': {'type':'string'},
     'ewire_endpoint': {'type':'string'},
@@ -354,6 +357,27 @@ schemas['templecreateHistoryapi'] = {
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
 
+
+schemas['templelistHistoryapiSchema'] = {
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"}, 
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata': {"type":"all"
+                        },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+
+
+    'hashstr': {'type':'string'},
+    'checksum': {'type':'string'}}
+
+
+
 schemas['templedropdowndietyapiSchema'] = {
     'req_type': {'type':'string'},
     'req_code': {"type":"integer"}, 
@@ -361,7 +385,8 @@ schemas['templedropdowndietyapiSchema'] = {
     'ewire_reqid': {'type':'string'},
     'partner_reqid': {'type':'string'},
     'req_timestamp': {'type':'integer'},
-    'requestdata': {"diety_name":{'type':'string'},
+    'requestdata': {"diety_name":
+    {'type':'string'},
     "diety_id":{'type':'integer'},
 
                         },
