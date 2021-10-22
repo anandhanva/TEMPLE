@@ -320,3 +320,19 @@ def validatechecksum(requestchecksum,createdchecksum):
         return "true"
     else:
         return "false"
+
+# Check if the user from session has necessary permissions to access the current page
+# Common for admin and other users that access the system after session is created
+def checkUserforPermissions(requestuser, urlrequested, requestdata):
+    Data = requestdata + urlrequested + requestuser
+    return Data
+
+# ==============================================================
+# ================== User static functions =====================
+# ==============================================================
+
+def prepareQRdatafrmcheckout(request):
+    print("@@");
+
+
+    

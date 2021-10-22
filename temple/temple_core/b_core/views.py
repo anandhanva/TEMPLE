@@ -100,7 +100,7 @@ def addpooja():
 @app.route(urlconstants.ENDPOINT+'/list_pooja', methods = ['POST'])
 def listpooja():
     
-    return bllayer.listPooja(request)
+    return bllayer.listPooja(request.json)
 
 #CREATE PRASADAM
 @app.route(urlconstants.ENDPOINT+'/create_prasadam', methods = ['POST'])
@@ -199,9 +199,32 @@ def dropQty():
 @app.route(urlconstants.ENDPOINT+'/create_kanikka', methods = ['POST'])
 def createKanikka():
     
-    return bllayer.createKanikkaApi(request)
+    return bllayer.createKanikkaApi(request.json)
 #CREATE AIRPORT
 @app.route(urlconstants.ENDPOINT+'/add_airport', methods = ['POST'])
 def addAirport():
     
-    return bllayer.addAirportApi(request)
+    return bllayer.addAirportApi(request.json)
+
+#CREATE RATE
+@app.route(urlconstants.ENDPOINT+'/add_rate', methods = ['POST'])
+def addRate():
+    
+    return bllayer.addRateApi(request.json)
+
+#CREATE RATE
+@app.route(urlconstants.ENDPOINT+'/add_quantity', methods = ['POST'])
+def addQnty():
+    
+    return bllayer.addQntyApi(request.json)
+
+
+
+#USER
+#=============================================================================
+#INDEX
+@app.route(urlconstants.ENDPOINT+'/user_index', methods = ['POST'])
+def userIndex():
+    
+    return bllayer.userIndexApi(request.json)
+

@@ -34,17 +34,17 @@ class MongoAPI:
         log.info(query)
         countdocs = self.collection.count(query)
         if(countdocs >=1):
-            documents = self.collection.find(query)
+            documents = self.collection.find(query, {'_id':0})
             print(":::::::", countdocs)
             output = {}
             i=0
             for doc in documents:
-                output[str(i)] =  doc
-                output[str(i)].pop('_id')
+                output[str(i)] =  json.dumps(doc)
+                print("Reading value ", i, " from db : ",output[str(i)])
                 i+=1
         else:
             output= {"item": "None"}
-        return output        
+        return json.dumps(output)        
     
     def readAll(self, query):
         log.info('Reading All Data')

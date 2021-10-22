@@ -9,6 +9,7 @@ import re
 import traceback, sys
 # from temple.temple_core import b_core
 from b_core.statics import dbmodules
+from datetime import datetime
 
 
 #=======================================================================
@@ -33,11 +34,11 @@ def checkuserfrmdb(request):
             request2['database'] = "temple"
             request2['collection'] = "roles"
             successurl = dbconstants.MongoAPI(request2).readOne(dbQuery2)
-            print("@!@!@!", successurl)
-            print(usrSelect['username'])
-            print(usrSelect['userpic'])
-            print(usrSelect['userRole'])
-            print(usrSelect['userstatus'])
+            # print("@!@!@!", successurl)
+            # print(usrSelect['username'])
+            # print(usrSelect['userpic'])
+            # print(usrSelect['userRole'])
+            # print(usrSelect['userstatus'])
             datadict = {"username":usrSelect['username'],
                         "user_prof_pic":usrSelect['userpic'],
                         "user_role":usrSelect['userRole'],
@@ -124,6 +125,7 @@ def createTempleAdminApi(request):
         datadict['d_add1'] = request['datafrm']['d_add1'],
         datadict['d_add2'] = request['datafrm']['d_add2'],
         datadict['d_state'] = request['datafrm']['d_state'],
+        datadict['createdat'] = str(datetime.now()) 
         print("Datadict*************",datadict)
         datavalue = dbconstants.MongoAPI(request).write(datadict)
         print("insert",datavalue)
@@ -230,6 +232,8 @@ def createFinAdminApi(request):
         return str(e)
 
 
+#=========================================================================
+#CREATE POOJA
 def createPoojaApi(request):
     try:
     
@@ -244,10 +248,15 @@ def createPoojaApi(request):
         datadict['pooja_rateid'] = request['datafrm']['pooja_rateid']
         datadict['pooja_descr'] = request['datafrm']['pooja_descr']
         datadict['pooja_templeid'] = request['datafrm']['templeid']
+        datadict['pooja_dietyid'] = request['datafrm']['deity']
+        datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+        datadict['amount'] = getAmoutName(request['datafrm']['pooja_rateid'])
+        datadict['createdat'] = str(datetime.now())
         countdocs = dbmodules.pooja({},datadict,"c","pooja")
         print("Count of returned docs: ",countdocs)
         datadict['pooja_id'] = int(countdocs) + 1
         datadict['status'] = 1
+       
         print("Datadict*************",datadict)
         datavalue =dbmodules.pooja("",datadict,"i","pooja")
         print("insert",datavalue)
@@ -266,16 +275,42 @@ def createPoojaApi(request):
             fname,lineno,fn,text = frame
             print( "Error in %s on line %d", fname, lineno)
         return str(e)
+
+
+
+def getAmoutName(id):
+    request2 = {}
+    dbQuery2 = {"rate_id":int(id)}
+    request2['database'] = "temple"
+    request2['collection'] = "rate"
+    amount = dbconstants.MongoAPI(request2).readOne(dbQuery2)
+    return amount['rate_amt']
+
+def getDietyName(id):
+    request3 = {}
+    dbQuery3 = {"diety_id":int(id)}
+    request3['database'] = "temple"
+    request3['collection'] = "diety"
+    diety_name = dbconstants.MongoAPI(request3).readOne(dbQuery3)
+    return diety_name['diety_name']
+    
+#=========================================================================
+#LISTPOOJA
 def listTemplePoojaApi(request):
     try:
         dbQuery = {"pooja_templeid":request['datafrm']['templeid']}
         modulename='LISTPOOJA'
         request['modulename'] = modulename
-        datavalue =dbmodules.pooja({},dbQuery,"l","pooja")
+        print("DALIDAJSDLASIJDLAISJDLASIJDLAISJDILASJDLASDJALSIDJALSDIASILDJASLDJ => ",dbQuery)
+        datavalue =dbmodules.pooja(dbQuery, "","l","pooja")
         print("listed",datavalue)
         return datavalue        
     except ValueError as e:
         print("EXCEPTION1")
+        print(str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
         return str(e)
     except Exception as e:
         print("FAILED",str(e))
@@ -284,8 +319,9 @@ def listTemplePoojaApi(request):
             print( "Error in %s on line %d", fname, lineno)
         return str(e)
 
-
-def createOfferingApi(request):
+#=========================================================================
+#CREATE OFFERINGS
+def  createOfferingApi(request):
     try:
         # request['database'] = "temple"
         # request['collection'] = "offering"
@@ -295,14 +331,21 @@ def createOfferingApi(request):
         print(request['datafrm']['offering_name'])
         datadict={}
         datadict['offering_name'] = request['datafrm']['offering_name']
-        datadict['offering_rateid'] = request['datafrm']['offering_amount']
+        print("OFFERINGID",datadict)
+        datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+        print("OFFERINGrateid",datadict)
         datadict['offering_descr'] = request['datafrm']['offering_description']
+        print("OFFERINGrateid",datadict)
         datadict['offering_templeid'] = request['datafrm']['templeid']
+        print("OFFERINGrateid",datadict)
+        datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+        datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+        datadict['createdat'] = str(datetime.now())
         countdocs = dbmodules.offering({},datadict,"c","offering")
         datadict['offering_id'] = int(countdocs) + 1
         datadict['status'] = 1
         print("Datadict*************",datadict)
-        datavalue =dbmodules.offering({},datadict,"i","offering")
+        datavalue =dbmodules.offering("",datadict,"i","offering")
         print("insert",datavalue)
         respdict={}
         respdict['respfrmdb'] = {"response":"Success"}
@@ -321,15 +364,16 @@ def createOfferingApi(request):
             print( "Error in %s on line %d", fname, lineno)
         return str(e)
 
-
+#=========================================================================
+#LIST OFFERINGS
 def listTempleOfferingApi(request):
     try:
         dbQuery = {"offering_templeid":request['datafrm']['templeid']}
         # request['database'] = "temple"
         # request['collection'] = "offering"
-        modulename='LISTOFFERINGS'
-        request['modulename'] = modulename
-        datavalue =dbmodules.offering({},dbQuery,"l","offering")
+        # modulename='LISTOFFERINGS'
+        # request['modulename'] = modulename
+        datavalue =dbmodules.offering(dbQuery,"","l","offering")
         print("listed",datavalue)
         return datavalue  
     except ValueError as e:
@@ -341,6 +385,9 @@ def listTempleOfferingApi(request):
             fname,lineno,fn,text = frame
             print( "Error in %s on line %d", fname, lineno)
         return str(e)
+
+#=========================================================================
+#CREATE PRASADAM
 def createPrasadamApi(request):
     try:
         # request['database'] = "temple"
@@ -357,6 +404,9 @@ def createPrasadamApi(request):
         datadict['prasadam_descr'] = request['datafrm']['prasadam_descr']
         datadict['prasadam_templeid'] = request['datafrm']['templeid']
         datadict['prasadam_count'] = request['datafrm']['prasadam_count']
+        datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+        datadict['amount'] = getAmoutName(request['datafrm']['prasadam_rateid'])
+        datadict['createdat'] = str(datetime.now())
         countdocs = dbmodules.prasadam({},datadict,"c","prasadam")
         datadict['prasadam_id'] = int(countdocs) + 1
         datadict['status'] = 1
@@ -380,14 +430,16 @@ def createPrasadamApi(request):
             print( "Error in %s on line %d", fname, lineno)
         return str(e)
 
+#=========================================================================
+#LIST PRASADAM
 def listTemplePrasadamApi(request):
     try:
         dbQuery = {"prasadam_templeid":request['datafrm']['templeid']}
         # request['database'] = "temple"
         # request['collection'] = "prasadam"
-        modulename="LISTPRASADAM"
-        request['modulename']=modulename
-        datavalue =dbmodules.prasadam({},dbQuery,"l","prasadam")
+        # modulename="LISTPRASADAM"
+        # request['modulename']=modulename
+        datavalue =dbmodules.prasadam(dbQuery,"","l","prasadam")
         print("listed",datavalue)
         return datavalue        
     except ValueError as e:
@@ -400,26 +452,29 @@ def listTemplePrasadamApi(request):
             print( "Error in %s on line %d", fname, lineno)
         return str(e)
 
+#=========================================================================
+#CREATE DIETY
 def createDietyApi(request):
     try:
     
-        request['database'] = "temple"
-        request['collection'] = "diety"
+        # request['database'] = "temple"
+        # request['collection'] = "diety"
         modulename='CREATEDIETY'
         request['modulename'] = modulename
         print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
         print(request['datafrm']['diety_name'])
         datadict={}
         datadict['diety_name'] = request['datafrm']['diety_name']
-        datadict['diety_rateid'] = request['datafrm']['diety_rateid']
+        datadict['diety_oftemp'] = request['datafrm']['diety_oftemp']
         datadict['diety_photo'] = request['datafrm']['diety_photo']
-        datadict['diety_descr'] = request['datafrm']['diety_descr']
+        datadict['diety_descr'] = request['datafrm']['diety_desc']
         datadict['diety_templeid'] = request['datafrm']['templeid']
+        datadict['createdat'] = str(datetime.now())
         countdocs = dbmodules.diety({},datadict,"c","diety")
         datadict['diety_id'] = int(countdocs) + 1
         datadict['status'] = 1
         print("Datadict*************",datadict)
-        datavalue = dbconstants.MongoAPI(request).write(datadict)
+        datavalue =dbmodules.diety({},datadict,"i","diety")
         print("insert",datavalue)
         respdict={}
         respdict['respfrmdb'] = {"response":"Success"}
@@ -438,16 +493,16 @@ def createDietyApi(request):
             print( "Error in %s on line %d", fname, lineno)
         return str(e)
 
-
-
+#=========================================================================
+#LIST DIETY
 def listTempleDietyApi(request):
     try:
         dbQuery = {"diety_templeid":request['datafrm']['templeid']}
         # request['database'] = "temple"
         # request['collection'] = "diety"
-        modulename="LISTDIETY"
-        request['modulename']=modulename
-        datavalue =dbmodules.diety({},dbQuery,"l","diety")
+        # modulename="LISTDIETY"
+        # request['modulename']=modulename
+        datavalue =dbmodules.diety(dbQuery,"","l","diety")
         print("listed",datavalue)
     except ValueError as e:
         print("EXCEPTION1")
@@ -459,7 +514,8 @@ def listTempleDietyApi(request):
             print( "Error in %s on line %d", fname, lineno)
         return str(e)
 
-
+#=========================================================================
+#CREATE HISTORY
 def createHistoryApi(request):
     try:
         # request['database'] = "temple"
@@ -473,6 +529,7 @@ def createHistoryApi(request):
         datadict['history_image2'] = request['datafrm']['t_photo2']
         datadict['history_image3'] = request['datafrm']['t_photo3']
         datadict['history_descr'] = request['datafrm']['t_history']
+        datadict['createdat'] = str(datetime.now())
         countdocs = dbmodules.history({},datadict,"c","history")
         print("Count of returned docs: ",countdocs)
         datadict['history_id'] = int(countdocs) + 1
@@ -495,12 +552,15 @@ def createHistoryApi(request):
             fname,lineno,fn,text = frame
             print( "Error in %s on line %d", fname, lineno)
         return "err"
+
+#=========================================================================
+#LIST HISTORY        
 def listTempleHistoryApi(request):
     try:
         dbQuery = {"history_templeid":request['datafrm']['templeid']}
-        modulename='LISTHISTORY'
-        request['modulename'] = modulename
-        datavalue =dbmodules.history({},dbQuery,"l","history")
+        # modulename='LISTHISTORY'
+        # request['modulename'] = modulename
+        datavalue =dbmodules.history(dbQuery, "","l","history")
         print("listed",datavalue)
         datavalue['result'] = "Success"
         return datavalue        
@@ -513,6 +573,47 @@ def listTempleHistoryApi(request):
             fname,lineno,fn,text = frame
             print( "Error in %s on line %d", fname, lineno)
         return str(e)
+
+#=========================================================================
+#CREATE STAY
+def createStayApi(request):
+    try:
+    
+        # request['database'] = "temple"
+        # request['collection'] = "pooja"
+        modulename='CREATESTAY'
+        request['modulename'] = modulename
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+        print(request['datafrm']['stay_name'])
+        datadict={}
+        datadict['stay_name'] = request['datafrm']['stay_name']
+        datadict['stay_photo'] = request['datafrm']['stay_photo']
+        datadict['stay_desc'] = request['datafrm']['stay_desc']
+        datadict['stay_amount'] = request['datafrm']['stay_amount']
+        datadict['stay_templeid'] = request['datafrm']['templeid']
+        datadict['createdat'] = str(datetime.now())
+        countdocs = dbmodules.stay({},datadict,"c","stay")
+        print("Count of returned docs: ",countdocs)
+        datadict['stay_id'] = int(countdocs) + 1
+        datadict['status'] = 1
+        print("Datadict*************",datadict)
+        datavalue =dbmodules.stay("",datadict,"i","stay")
+        print("insert",datavalue)
+        respdict={}
+        respdict['respfrmdb'] = {"response":"Success"}
+        respdict['result']="Success"
+        # print("type------",type(datadict))
+        # print("respdict!!!!!!!!!",datadict)
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
         
  #=========================================================================
  # DROPDOWN DIETY       
@@ -521,8 +622,8 @@ def drpdwnTempdietyApi(request):
         dbQuery = {"diety_templeid":request['datafrm']['templeid']}
         # request['database'] = "temple"
         # request['collection'] = "diety"
-        modulename="DROPDOWNDIETY"
-        request['modulename']=modulename
+        # modulename="DROPDOWNDIETY"
+        # request['modulename']=modulename
         datavalue =dbmodules.diety({},dbQuery,"l","diety")
         print("listed",datavalue)
         return datavalue  
@@ -540,8 +641,8 @@ def drpdwnTempdietyApi(request):
 def drpdwnTemprateApi(request):
     try:
         dbQuery = {"rate_templeid":request['datafrm']['templeid']}
-        modulename='DROPDOWNRATE'
-        request['modulename'] = modulename
+        # modulename='DROPDOWNRATE'
+        # request['modulename'] = modulename
         datavalue =dbmodules.rate({},dbQuery,"l","rate")
         print("listed",datavalue)
         return datavalue        
@@ -555,23 +656,28 @@ def drpdwnTemprateApi(request):
             print( "Error in %s on line %d", fname, lineno)
         return str(e)
         
-
+#=========================================================================
 #DROPDOWN QUANTITY OF PRASADAM
 def drpdwnPrasadamQtyApi(request):
     try:
-        dbQuery = {}
-        request['database'] = "temple"
-        request['collection'] = "prasadam"
-        datavalue = dbconstants.MongoAPI(request).read(dbQuery)
+        dbQuery = {"templeid":request['datafrm']['templeid']}
+        # request['database'] = "temple"
+        # request['collection'] = "prasadam"
+        datavalue =dbmodules.qnty({},dbQuery,"l","qnty")
+
         print("listed",datavalue)
-        return datavalue  
+        return datavalue
     except ValueError as e:
         print("EXCEPTION1")
         return str(e)
     except Exception as e:
         print("FAILED")
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
         return str(e)
 
+#=========================================================================
 # CREATE KANIKKA
 def createKanikkaApi(request):
     try:
@@ -587,6 +693,7 @@ def createKanikkaApi(request):
         datadict['pooja_rateid'] = request['datafrm']['pooja_rateid']
         datadict['pooja_descr'] = request['datafrm']['pooja_descr']
         datadict['pooja_templeid'] = request['datafrm']['templeid']
+        datadict['createdat'] = str(datetime.now())
         countdocs = dbmodules.pooja({},datadict,"c","pooja")
         print("Count of returned docs: ",countdocs)
         # countdocs = dbconstants.MongoAPI(request).count({})
@@ -661,3 +768,104 @@ def createAirportApi(request):
             fname,lineno,fn,text = frame
             print( "Error in %s on line %d", fname, lineno)
         return str(e)
+
+#LIST STAY
+def listTempleStayApi(request):
+    try:
+        dbQuery = {"stay_templeid":request['datafrm']['templeid']}
+        # request['database'] = "temple"
+        # request['collection'] = "prasadam"
+        # modulename="LISTPRASADAM"
+        # request['modulename']=modulename
+        datavalue =dbmodules.stay(dbQuery,"","l","stay")
+        print("listed",datavalue)
+        return datavalue        
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+def  createRateApi(request):
+    try:
+        # request['database'] = "temple"
+        # request['collection'] = "offering"
+        modulename='ADDRATE'
+        request['modulename'] = modulename
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+        # print(request['datafrm']['rate_name'])
+        datadict={}
+        # datadict['rate_name'] = request['datafrm']['rate_name']
+        datadict['rate_amount'] = request['datafrm']['rate']
+        datadict['rate_templeid'] = request['datafrm']['templeid']
+        # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+        # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+        datadict['createdat'] = str(datetime.now())
+        countdocs = dbmodules.rate({},datadict,"c","rate")
+        datadict['rate_id'] = int(countdocs) + 1
+        datadict['status'] = 1
+        print("Datadict*************",datadict)
+        datavalue =dbmodules.rate("",datadict,"i","rate")
+        print("insert",datavalue)
+        respdict={}
+        respdict['respfrmdb'] = {"response":"Success"}
+        respdict['result']="Success"
+        # del datadict['_id']
+        # print("type------",type(datadict))
+        # print("respdict!!!!!!!!!",datadict)
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+def  createQntyApi(request):
+    try:
+        # request['database'] = "temple"
+        # request['collection'] = "offering"
+        modulename='QUANTITYLIST'
+        request['modulename'] = modulename
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+        # print(request['datafrm']['rate_name'])
+        datadict={}
+        # datadict['rate_name'] = request['datafrm']['rate_name']
+        datadict['qnty_amount'] = request['datafrm']['qnty']
+        datadict['qty_templeid'] = request['datafrm']['templeid']
+        # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+        # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+        datadict['createdat'] = str(datetime.now())
+        countdocs = dbmodules.qnty({},datadict,"c","qnty")
+        datadict['qnty_id'] = int(countdocs) + 1
+        datadict['status'] = 1
+        print("Datadict*************",datadict)
+        datavalue =dbmodules.qnty("",datadict,"i","qnty")
+        print("insert",datavalue)
+        respdict={}
+        respdict['respfrmdb'] = {"response":"Success"}
+        respdict['result']="Success"
+        # del datadict['_id']
+        # print("type------",type(datadict))
+        # print("respdict!!!!!!!!!",datadict)
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+
+#USER
+#=========================================================================
+#INDEX

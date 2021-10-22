@@ -18,10 +18,18 @@ listDietyapi="templelistdietyapi"
 createHistoryapi="templecreateHistoryapi"
 listHistoryapi="templelistHistoryapi"
 
+dropDownQntyapi="templedropdownqntyapi"
 dropDownDietyapi="templedropdowndietyapi"
 dropDownRateapi="templedropdownrateapi"
 createKanikkaapi="templecreatekanikkaapi"
 createAirportapi="templecreateairportapi"
+createStayapi="templecreatestayapi"
+listStayapi="templeliststayapi"
+createRateapi="templecreaterateapi"
+createQntyapi="templecreateqntyapi"
+
+
+
 
 
 
