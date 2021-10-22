@@ -16,4 +16,3 @@ def returnDataforQRfromdb(data):
 # Use the decoded data to provide the list that needs to be sent back to the user interface
 def prepareresponsefromQRdata(data):
     return data
-
