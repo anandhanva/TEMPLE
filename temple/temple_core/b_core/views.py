@@ -5,7 +5,7 @@ import requests
 from b_core import app
 import json
 from b_core.statics import urlconstants,staticfunctions
-from b_core.platformlayers import bllayer, constantslayer
+from b_core.platformlayers import bllayer, constantslayer,qrmanage
 from b_core.responsemaster import responses
 # from temple.temple_core.b_core.statics.staticfunctions import coretobe_response
 from flask.json import jsonify
@@ -212,7 +212,7 @@ def addRate():
     
     return bllayer.addRateApi(request.json)
 
-#CREATE RATE
+#CREATE QUANTITY
 @app.route(urlconstants.ENDPOINT+'/add_quantity', methods = ['POST'])
 def addQnty():
     
