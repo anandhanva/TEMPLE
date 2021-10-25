@@ -251,3 +251,38 @@ commonValues['USERINDEX'] = {
                             "reqtype" : "USERINDEXREQ",
                             "methodtype" : "POST"
                         }
+
+commonValues['GETDIETYBYTEMPID'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/getdiety_templeid",
+                            "reqtype" : "GETDIETYBYTEMPIDREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['GETPOOJABYDIETYID'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/getpooja_dietyid",
+                            "reqtype" : "GETPOOJABYDIETYIDREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['GETPRASADAMBYTEMPID'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/getprasadam_templeid",
+                            "reqtype" : "GETPRASADAMBYTEMPIDREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['GETPACKAGESIZEBYPRASADAM'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/getpackagesize_prasadam",
+                            "reqtype" : "GETPACKAGESIZEBYPRASADAMREQ",
+                            "methodtype" : "POST"
+                        }
