@@ -31,8 +31,18 @@ def convinptodict(input):
         #it is already dict
         return input
     elif(isinstance(input, str)):
+        print("here")
         #convert string to dictionary
-        return json.loads(input)
+        v = json.loads(input)
+        print("reaaaaa",v)
+        print("reaaaaa",type(v))
+
+        if type(v) is dict:
+            print("VVVVV",v)
+            return v
+        else:
+
+            return json.loads(json.dumps(input)) # json
     elif(isinstance(input, int)):
         #convert iny to dictionary
         return json.loads(input)

@@ -183,3 +183,23 @@ def stay(query,datadict,op,stay,):
         datavalue = dbconstants.MongoAPI(d1).count(query)
         return datavalue
 
+
+def category(query,datadict,op,history):
+    d1= {}
+    d1['collection'] = history
+    d1['database'] = "temple"
+    if op=='i':
+        datavalue = dbconstants.MongoAPI(d1).write(datadict)
+        return datavalue
+    elif op=='u':
+        datavalue = dbconstants.MongoAPI(d1).update(query)
+        return json.loads(datavalue)
+    elif op=='l':
+        datavalue = dbconstants.MongoAPI(d1).read(query)
+        return json.loads(datavalue)
+    elif op=='lc':
+        datavalue = dbconstants.MongoAPI(d1).readOne(query)
+        return json.loads(datavalue)
+    elif op=='c':
+        datavalue = dbconstants.MongoAPI(d1).count(query)
+        return datavalue

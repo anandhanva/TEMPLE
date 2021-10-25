@@ -229,42 +229,49 @@ def userIndex():
     return bllayer.userIndexApi(request.json)
 
 
-#GET DIETY BY TEMPLE ID
-@app.route(urlconstants.ENDPOINT+'/getdiety_templeid', methods = ['POST'])
-def getDietyByTempleid():
+#GET KANIKKA BY DIETYID
+@app.route(urlconstants.ENDPOINT+'/kanikka_bydietyid', methods = ['POST'])
+def kanikkaByDietyid():
     
-    return bllayer.getDietybyTempleidApi(request)
+    return bllayer.kanikkaByDietyidApi(request.json)
 
 
-#GET POOJA BY DIETY ID
-@app.route(urlconstants.ENDPOINT+'/getpooja_dietyid', methods = ['POST'])
-def getPoojaByDietyid():
+
+#GET OFFERING BY TEMPLEID
+@app.route(urlconstants.ENDPOINT+'/offering_bytempleid', methods = ['POST'])
+def offeringByTempleid():
     
-    return bllayer.getPoojabyDietyidApi(request)
+    return bllayer.offeringByTempleidApi(request)
 
-
-#GET PRASADAM BY TEMPLE
-@app.route(urlconstants.ENDPOINT+'/getprasadam_templeid', methods = ['POST'])
-def getPrasadamByTempleid():
+#GET OFFERING BY DIETYID
+@app.route(urlconstants.ENDPOINT+'/offering_bydietyid', methods = ['POST'])
+def offeringByDietyid():
     
-    return bllayer.getPrasadamByTempleidApi(request)
+    return bllayer.offeringByDietyidApi(request)
 
-#GET PACKAGESIZE BY PRASADAM
-@app.route(urlconstants.ENDPOINT+'/getpackagesize_prasadam', methods = ['POST'])
-def getPackagesizeByPrasadam():
+
+#GET PRASADAM BY TEMPLEID
+@app.route(urlconstants.ENDPOINT+'/prasadam_bytempleid', methods = ['POST'])
+def prasadamByTempleid():
     
-    return bllayer.getPackagesizeByPrasadamApi(request  )
+    return bllayer.prasadamByTempleidApi(request)
 
-
-#QR
-#CREATE QR FROM DICT
-@app.route(urlconstants.ENDPOINT+'/create_qr', methods = ['POST'])
-def createQR():
+#GET POOJA BY TEMPLEID
+@app.route(urlconstants.ENDPOINT+'/diety_bytempleid', methods = ['POST'])
+def dietyjaByTempleid():
     
-    return bllayer.createQRApi(request.json)
+    return bllayer.dietyByTempleidApi(request)
 
 
-@app.route(urlconstants.ENDPOINT+'/update_orderid', methods = ['POST'])
-def updateQR():
+
+#CREATE CATEGORY
+@app.route(urlconstants.ENDPOINT+'/create_category', methods = ['POST'])
+def createCategory():
     
-    return qrmanage.updateOrderid(request.json)
+    return bllayer.createCategoryApi(request)
+
+#LIST CATEGORY
+@app.route(urlconstants.ENDPOINT+'/list_category', methods = ['POST'])
+def listCategory():
+    
+    return bllayer.listCategoryApi(request)

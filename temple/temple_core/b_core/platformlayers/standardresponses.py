@@ -252,37 +252,67 @@ commonValues['USERINDEX'] = {
                             "methodtype" : "POST"
                         }
 
-commonValues['GETDIETYBYTEMPID'] = {
+
+commonValues['GETKANIKKABYDIETYID'] = {
                             # "modulename":"checkUser",
                             "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/getdiety_templeid",
-                            "reqtype" : "GETDIETYBYTEMPIDREQ",
-                            "methodtype" : "POST"
-                        }
-commonValues['GETPOOJABYDIETYID'] = {
-                            # "modulename":"checkUser",
-                            "server" : ipconstants.templeBcoreServers,
-                            "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/getpooja_dietyid",
-                            "reqtype" : "GETPOOJABYDIETYIDREQ",
+                            "endpoint" : "/kanikka_bydietyid",
+                            "reqtype" : "GETKANIKKABYDIETYIDREQ",
                             "methodtype" : "POST"
                         }
 
-commonValues['GETPRASADAMBYTEMPID'] = {
+commonValues['GETOFFERINGBYTEMPLEID'] = {
                             # "modulename":"checkUser",
                             "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/getprasadam_templeid",
-                            "reqtype" : "GETPRASADAMBYTEMPIDREQ",
+                            "endpoint" : "/offering_bytempleid",
+                            "reqtype" : "GETOFFERINGBYTEMPLEIDREQ",
                             "methodtype" : "POST"
                         }
 
-commonValues['GETPACKAGESIZEBYPRASADAM'] = {
+
+
+commonValues['GETOFFERINGBYDIETYID'] = {
                             # "modulename":"checkUser",
                             "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/getpackagesize_prasadam",
-                            "reqtype" : "GETPACKAGESIZEBYPRASADAMREQ",
+                            "endpoint" : "/offering_bydietyid",
+                            "reqtype" : "GETOFFERINGBYDIETYIDREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['GETPRASADAMTEMPLEID'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/prasadam_bytempleid",
+                            "reqtype" : "GETPRASADAMTEMPLEIDREQ",
+                            "methodtype" : "POST"
+                        }
+
+
+commonValues['GETDIETYTEMPLEID'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/diety_bytempleid",
+                            "reqtype" : "GETDIETYTEMPLEIDREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['CREATECATEGORY'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_category",
+                            "reqtype" : "CREATECATEGORYREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['LISTCATEGORY'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_category",
+                            "reqtype" : "LISTCATEGORYREQ",
                             "methodtype" : "POST"
                         }

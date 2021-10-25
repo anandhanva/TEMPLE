@@ -27,10 +27,14 @@ def user():
     req = constantslayer.convinptodict(req)
     print("UI REQUESTtype------------------------>",type(req))
     print("UI REQUEST ---",req )
+    print("UI REQUEST ---",type(req) )
     # print("UI REQUESTjson",str(request.json))
     # print("UI REQUESTdata",str(request.get_data))
     valdata=validateReq(req)
-    valdata=constantslayer.convinptodict(valdata)
+
+    #valdata=constantslayer.convinptodict(valdata)
+    #valdata=json.loads(valdata)
+    #valdata=json.dumps(valdata)
     print(">>>>>>>>>>>>>>>>>>>>>>",type(valdata))
     print(">>>>>>>>valdata",valdata)
     
@@ -38,8 +42,10 @@ def user():
         print("checklogin")
         checklog=constantslayer.checklogin(req)
         print("checklog data is",checklog)
-        if(isinstance(checklog, str)):
+        print("checklog data is",type(checklog))
+        if(isinstance(checklog, dict)):
             checklog = constantslayer.convinptodict(checklog)
+            print("?????????????????????????????????",checklog)
             checklog['resp'] = "SUCCESS"
         if(checklog['resp'] and checklog['resp']!='ERROR' or checklog['resp_type'] == "SUCCESS"):
             checklog = constantslayer.convinptodict(checklog)
@@ -626,3 +632,7 @@ def map():
         req['message']="Request Failed Due to Unknown Error"
         req['responsedata']="Error Captured during execution"
         return jsonify(req)
+
+
+
+

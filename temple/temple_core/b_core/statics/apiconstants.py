@@ -1,3 +1,4 @@
+
 userLogin = "templeloginapi"
 addTempleapi = "templeaddapi"
 listTempleapi = "templelistapi"
@@ -17,7 +18,6 @@ createDietyapi="templecreatedietyapi"
 listDietyapi="templelistdietyapi"
 createHistoryapi="templecreateHistoryapi"
 listHistoryapi="templelistHistoryapi"
-
 dropDownQntyapi="templedropdownqntyapi"
 dropDownDietyapi="templedropdowndietyapi"
 dropDownRateapi="templedropdownrateapi"
@@ -27,6 +27,15 @@ createStayapi="templecreatestayapi"
 listStayapi="templeliststayapi"
 createRateapi="templecreaterateapi"
 createQntyapi="templecreateqntyapi"
+listStayapi="templeliststayapi"
+getKanikkabyDietyidapi="templekanikkabydietyidapi"
+getOfferingbyTempleidapi="templeofferingbytempleidapi"
+getOfferingbyDietyidapi="templeofferingbydietyidapi"
+getPrasadamTempleidapi="templeprasadamtempleidapi"
+getDietyTempleidapi="templedietytempleidapi"
+createCategoryapi="templecreatecategoryapi"
+listCategoryapi="templelistcategoryapi"
+
 
 
 
