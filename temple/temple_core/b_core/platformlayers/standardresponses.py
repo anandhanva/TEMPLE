@@ -251,3 +251,68 @@ commonValues['USERINDEX'] = {
                             "reqtype" : "USERINDEXREQ",
                             "methodtype" : "POST"
                         }
+
+
+commonValues['GETKANIKKABYDIETYID'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/kanikka_bydietyid",
+                            "reqtype" : "GETKANIKKABYDIETYIDREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['GETOFFERINGBYTEMPLEID'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/offering_bytempleid",
+                            "reqtype" : "GETOFFERINGBYTEMPLEIDREQ",
+                            "methodtype" : "POST"
+                        }
+
+
+
+commonValues['GETOFFERINGBYDIETYID'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/offering_bydietyid",
+                            "reqtype" : "GETOFFERINGBYDIETYIDREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['GETPRASADAMTEMPLEID'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/prasadam_bytempleid",
+                            "reqtype" : "GETPRASADAMTEMPLEIDREQ",
+                            "methodtype" : "POST"
+                        }
+
+
+commonValues['GETDIETYTEMPLEID'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/diety_bytempleid",
+                            "reqtype" : "GETDIETYTEMPLEIDREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['CREATECATEGORY'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_category",
+                            "reqtype" : "CREATECATEGORYREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['LISTCATEGORY'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_category",
+                            "reqtype" : "LISTCATEGORYREQ",
+                            "methodtype" : "POST"
+                        }

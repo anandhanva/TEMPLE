@@ -284,7 +284,7 @@ def getAmoutName(id):
     request2['database'] = "temple"
     request2['collection'] = "rate"
     amount = dbconstants.MongoAPI(request2).readOne(dbQuery2)
-    return amount['rate_amt']
+    return amount['rate_amount']
 
 def getDietyName(id):
     request3 = {}
@@ -328,7 +328,7 @@ def  createOfferingApi(request):
         modulename='CREAOFFERINGS'
         request['modulename'] = modulename
         print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-        print(request['datafrm']['offering_name'])
+        # print(request['datafrm']['offering_name'])
         datadict={}
         datadict['offering_name'] = request['datafrm']['offering_name']
         print("OFFERINGID",datadict)
@@ -422,6 +422,9 @@ def createPrasadamApi(request):
         return respdict
     except ValueError as e:
         print("EXCEPTION1")
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
         return str(e)
     except Exception as e:
         print("FAILED")
@@ -524,10 +527,10 @@ def createHistoryApi(request):
         request['modulename'] = modulename
         datadict={}
         datadict['history_templeid'] = request['datafrm']['templeid'],
-        datadict['history_title'] = request['datafrm']['t_name'],
-        datadict['history_image1'] = request['datafrm']['t_photo1']
-        datadict['history_image2'] = request['datafrm']['t_photo2']
-        datadict['history_image3'] = request['datafrm']['t_photo3']
+        datadict['history_title'] = request['datafrm']['temp_name'],
+        datadict['history_image1'] = request['datafrm']['diety_photo1']
+        datadict['history_image2'] = request['datafrm']['diety_photo2']
+        datadict['history_image3'] = request['datafrm']['diety_photo3']
         datadict['history_descr'] = request['datafrm']['t_history']
         datadict['createdat'] = str(datetime.now())
         countdocs = dbmodules.history({},datadict,"c","history")
@@ -575,8 +578,8 @@ def listTempleHistoryApi(request):
         return str(e)
 
 #=========================================================================
-#CREATE STAY
-def createStayApi(request):
+#CREATE CATEGORY
+def createCategoryApi(request):
     try:
     
         # request['database'] = "temple"
@@ -592,12 +595,12 @@ def createStayApi(request):
         datadict['stay_amount'] = request['datafrm']['stay_amount']
         datadict['stay_templeid'] = request['datafrm']['templeid']
         datadict['createdat'] = str(datetime.now())
-        countdocs = dbmodules.stay({},datadict,"c","stay")
+        countdocs = dbmodules.category({},datadict,"c","category")
         print("Count of returned docs: ",countdocs)
         datadict['stay_id'] = int(countdocs) + 1
         datadict['status'] = 1
         print("Datadict*************",datadict)
-        datavalue =dbmodules.stay("",datadict,"i","stay")
+        datavalue =dbmodules.category("",datadict,"i","category")
         print("insert",datavalue)
         respdict={}
         respdict['respfrmdb'] = {"response":"Success"}
@@ -869,3 +872,21 @@ def  createQntyApi(request):
 #USER
 #=========================================================================
 #INDEX
+def listTempleCategoryApi(request):
+    try:
+        dbQuery = {"history_templeid":request['datafrm']['templeid']}
+        # modulename='LISTHISTORY'
+        # request['modulename'] = modulename
+        datavalue =dbmodules.category(dbQuery, "","l","category")
+        print("listed",datavalue)
+        datavalue['result'] = "Success"
+        return datavalue        
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)

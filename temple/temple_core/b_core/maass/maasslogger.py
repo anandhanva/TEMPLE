@@ -15,6 +15,5 @@ def maasslogger(data, msg, modulename, logtype):
     reqdta['msg'] = msg
     config[modulename]["requestdata"] = reqdta
     config[modulename]["loggr"] = logtype
-    #maasslog = staticsfunctions.performRequest(config['LOGIN'],standardresponses.checkUserReqType,standardresponses.checkUserMethodType,standardresponses.checkUserEndpoint)
     maasslog = staticfunctions.performRequest(config[modulename])
     return maasslog

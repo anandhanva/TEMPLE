@@ -55,6 +55,7 @@ class MongoAPI:
     def readOne(self, query):
         log.info('Reading One Data')
         print(":::::::")
+        print(":::::::", query)
         countdocs = self.collection.count(query)
         if(countdocs >=1):
             documents = self.collection.find_one(query)
@@ -63,6 +64,7 @@ class MongoAPI:
             output.pop('_id')
         else:
             output= {"item": "None"}
+        print("Returned Data", output)
         return output        
 
     def write(self, data):
