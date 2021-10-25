@@ -228,3 +228,50 @@ def userIndex():
     
     return bllayer.userIndexApi(request.json)
 
+
+#GET KANIKKA BY DIETYID
+@app.route(urlconstants.ENDPOINT+'/kanikka_bydietyid', methods = ['POST'])
+def kanikkaByDietyid():
+    
+    return bllayer.kanikkaByDietyidApi(request.json)
+
+
+
+#GET OFFERING BY TEMPLEID
+@app.route(urlconstants.ENDPOINT+'/offering_bytempleid', methods = ['POST'])
+def offeringByTempleid():
+    
+    return bllayer.offeringByTempleidApi(request)
+
+#GET OFFERING BY DIETYID
+@app.route(urlconstants.ENDPOINT+'/offering_bydietyid', methods = ['POST'])
+def offeringByDietyid():
+    
+    return bllayer.offeringByDietyidApi(request)
+
+
+#GET PRASADAM BY TEMPLEID
+@app.route(urlconstants.ENDPOINT+'/prasadam_bytempleid', methods = ['POST'])
+def prasadamByTempleid():
+    
+    return bllayer.prasadamByTempleidApi(request)
+
+#GET POOJA BY TEMPLEID
+@app.route(urlconstants.ENDPOINT+'/diety_bytempleid', methods = ['POST'])
+def dietyjaByTempleid():
+    
+    return bllayer.dietyByTempleidApi(request)
+
+
+
+#CREATE CATEGORY
+@app.route(urlconstants.ENDPOINT+'/create_category', methods = ['POST'])
+def createCategory():
+    
+    return bllayer.createCategoryApi(request)
+
+#LIST CATEGORY
+@app.route(urlconstants.ENDPOINT+'/list_category', methods = ['POST'])
+def listCategory():
+    
+    return bllayer.listCategoryApi(request)

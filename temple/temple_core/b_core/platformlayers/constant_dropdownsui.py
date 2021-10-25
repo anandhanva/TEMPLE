@@ -1,8 +1,11 @@
 from b_core.statics import dbconstants
+import traceback, sys
+import json
 
 
 def getDietybyTempleid(req):
     try:
+        req = json.loads(req)
         dbQuery = {"diety_templeid":req['datafrm']['templeid']}
         req['database'] = "temple"
         req['collection'] = "diety"
@@ -95,14 +98,14 @@ def getOfferingbyTempleid(req):
 
 def getOfferingbyDietyid(req):
     try:
-        dbQuery = {"offering_id":req['datafrm']['templeid']}
+        dbQuery = {"offering_templeid":req['datafrm']['diety_id']}
         req['database'] = "temple"
         req['collection'] = "offering"
         datavalue = dbconstants.MongoAPI(req).read(dbQuery)
         print("listed",datavalue)
         return datavalue  
     except ValueError as e:
-        print("EXCEPTION",str(e))
+        print("EXCEPTION")
         return str(e)
     except Exception as e:
         print("FAILED",str(e))
