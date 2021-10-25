@@ -1,6 +1,6 @@
 import json
 from flask.globals import request
-from b_core.platformlayers import constantslayer
+from b_core.platformlayers import constantslayer,constant_dropdownsui,qrmanage
 from b_core.responsemaster import responses
 from b_core.maass.maasslogger import maasslogger
 from b_core.statics import staticfunctions,blconstants
@@ -2243,3 +2243,347 @@ def userIndexApi(req):
     else:
         maasslogger(request, "Wrong Credentials")
         return responses.standardErrorResponseToBE("LISTED","Wrong Credentials")
+
+
+# LIST DIETY BY TEMPLE ID
+def getDietybyTempleidApi(req):
+    request = req.get_json()
+    print("REQUEST",request)
+    try:
+        print("REQQUEST",request)
+        hashchecksumNdata = constantslayer.parseRequestHCRD(request)
+        print("HASHHHH",hashchecksumNdata)
+    except Exception as e:
+        # maasslogger(req, str(e))
+        return responses.standardErrorResponseToBE("LISTED",str(e))
+    #Create hash from data
+    try:
+        createdhash = constantslayer.createHashfromData(request,"HASH_MO")
+        print("HASH@@@",createdhash)
+    except Exception as e:
+        # maasslogger(req, str(e))
+        return responses.standardErrorResponseToBE("CREATELOGINHASH",str(e))
+    maasslogger(request,"hashing passes",request['modulename'],"SUCCESS")
+
+    try:
+
+        comparedResults = constant_dropdownsui.getDietybyTempleid(hashchecksumNdata)
+        comparedResult = constantslayer.convinptodict(comparedResults)
+        if(len(comparedResults) >= 1):
+            comparedResults['result'] = "Success"
+    except Exception as exCompareUser:
+        maasslogger(request, str(exCompareUser),"GETDIETYBYTEMPID", "FAILURE")
+        return str(exCompareUser)
+    errresp = "Error-Response"
+    if(errresp in comparedResult):
+        failureResults = {}
+        failureResults['em_reqid'] = req['em_reqid']
+        failureResults['em_custid'] = req['em_custid']
+        failureResults['resp_frm_bank'] = ""
+        failureResults['resp_frm_ewire'] = {"LISTED": "Wrong Credentials"}
+        failureResults['resp_frm_cbs'] = ""
+        failureResults['resp_frm_ext'] = ['resp_frm_ext']
+        failureResults['resp_frm_maass'] = ['resp_frm_maass']
+        failureResults['resp_frm_blockc'] = ['resp_frm_blockc']
+        failureResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        failureResults['resp_frm_rulengn'] = ['resp_frm_rulengn']
+        print("ComparedResultFail",comparedResult)
+        return staticfunctions.coretobe_response(comparedResult)
+
+    elif(comparedResult['result'] == "Success"):
+        comparedResultz = {}
+
+        comparedResultz['resp_code'] = 800
+        comparedResultz['resp_type'] = "SUCCESS"
+        comparedResultz['message'] = "Successfully listed"
+        comparedResultz['em_reqid'] = request['em_reqid']
+        comparedResultz['em_custid'] = request['em_custid']
+        comparedResultz['resp_frm_bank'] = ""
+        comparedResultz['resp_frm_ewire'] = comparedResult
+        comparedResultz['resp_frm_cbs'] = ""
+        comparedResultz['resp_frm_ext'] = ['resp_frm_ext']
+        comparedResultz['resp_frm_maass'] = ['resp_frm_maass']
+        comparedResultz['resp_frm_blockc'] = ['resp_frm_blockc']
+        comparedResultz['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        comparedResultz['resp_frm_rulengn'] = ['resp_frm_rulengn']
+        # comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        print("ComparedResult",comparedResultz)
+        return staticfunctions.coretobe_response(comparedResultz)
+    else:
+        maasslogger(request, "Wrong Credentials")
+        return responses.standardErrorResponseToBE("LISTED","Wrong Credentials")
+
+
+# LIST DIETY BY TEMPLE ID
+def getPoojabyDietyidApi(req):
+    request = req.get_json()
+    print("REQUEST",request)
+    try:
+        print("REQQUEST",request)
+        hashchecksumNdata = constantslayer.parseRequestHCRD(request)
+        print("HASHHHH",hashchecksumNdata)
+    except Exception as e:
+        # maasslogger(req, str(e))
+        return responses.standardErrorResponseToBE("LISTED",str(e))
+    #Create hash from data
+    try:
+        createdhash = constantslayer.createHashfromData(request,"HASH_MO")
+        print("HASH@@@",createdhash)
+    except Exception as e:
+        # maasslogger(req, str(e))
+        return responses.standardErrorResponseToBE("CREATELOGINHASH",str(e))
+    maasslogger(request,"hashing passes",request['modulename'],"SUCCESS")
+
+    try:
+
+        comparedResults = constant_dropdownsui.getPoojabyDietyid(hashchecksumNdata)
+        comparedResult = constantslayer.convinptodict(comparedResults)
+        if(len(comparedResults) >= 1):
+            comparedResults['result'] = "Success"
+    except Exception as exCompareUser:
+        maasslogger(request, str(exCompareUser),"GETPOOJABYDIETYID", "FAILURE")
+        return str(exCompareUser)
+    errresp = "Error-Response"
+    if(errresp in comparedResult):
+        failureResults = {}
+        failureResults['em_reqid'] = req['em_reqid']
+        failureResults['em_custid'] = req['em_custid']
+        failureResults['resp_frm_bank'] = ""
+        failureResults['resp_frm_ewire'] = {"LISTED": "Wrong Credentials"}
+        failureResults['resp_frm_cbs'] = ""
+        failureResults['resp_frm_ext'] = ['resp_frm_ext']
+        failureResults['resp_frm_maass'] = ['resp_frm_maass']
+        failureResults['resp_frm_blockc'] = ['resp_frm_blockc']
+        failureResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        failureResults['resp_frm_rulengn'] = ['resp_frm_rulengn']
+        print("ComparedResultFail",comparedResult)
+        return staticfunctions.coretobe_response(comparedResult)
+
+    elif(comparedResult['result'] == "Success"):
+        comparedResultz = {}
+
+        comparedResultz['resp_code'] = 800
+        comparedResultz['resp_type'] = "SUCCESS"
+        comparedResultz['message'] = "Successfully listed"
+        comparedResultz['em_reqid'] = request['em_reqid']
+        comparedResultz['em_custid'] = request['em_custid']
+        comparedResultz['resp_frm_bank'] = ""
+        comparedResultz['resp_frm_ewire'] = comparedResult
+        comparedResultz['resp_frm_cbs'] = ""
+        comparedResultz['resp_frm_ext'] = ['resp_frm_ext']
+        comparedResultz['resp_frm_maass'] = ['resp_frm_maass']
+        comparedResultz['resp_frm_blockc'] = ['resp_frm_blockc']
+        comparedResultz['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        comparedResultz['resp_frm_rulengn'] = ['resp_frm_rulengn']
+        # comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        print("ComparedResult",comparedResultz)
+        return staticfunctions.coretobe_response(comparedResultz)
+    else:
+        maasslogger(request, "Wrong Credentials")
+        return responses.standardErrorResponseToBE("LISTED","Wrong Credentials")
+
+
+
+# LIST DIETY BY TEMPLE ID
+def getPrasadamByTempleidApi(req):
+    request = req.get_json()
+    print("REQUEST",request)
+    try:
+        print("REQQUEST",request)
+        hashchecksumNdata = constantslayer.parseRequestHCRD(request)
+        print("HASHHHH",hashchecksumNdata)
+    except Exception as e:
+        # maasslogger(req, str(e))
+        return responses.standardErrorResponseToBE("LISTED",str(e))
+    #Create hash from data
+    try:
+        createdhash = constantslayer.createHashfromData(request,"HASH_MO")
+        print("HASH@@@",createdhash)
+    except Exception as e:
+        # maasslogger(req, str(e))
+        return responses.standardErrorResponseToBE("CREATELOGINHASH",str(e))
+    maasslogger(request,"hashing passes",request['modulename'],"SUCCESS")
+
+    try:
+
+        comparedResults = constant_dropdownsui.getPrasadambyTempleid(hashchecksumNdata)
+        comparedResult = constantslayer.convinptodict(comparedResults)
+        if(len(comparedResults) >= 1):
+            comparedResults['result'] = "Success"
+    except Exception as exCompareUser:
+        maasslogger(request, str(exCompareUser),"GETPRASADAMBYTEMPID", "FAILURE")
+        return str(exCompareUser)
+    errresp = "Error-Response"
+    if(errresp in comparedResult):
+        failureResults = {}
+        failureResults['em_reqid'] = req['em_reqid']
+        failureResults['em_custid'] = req['em_custid']
+        failureResults['resp_frm_bank'] = ""
+        failureResults['resp_frm_ewire'] = {"LISTED": "Wrong Credentials"}
+        failureResults['resp_frm_cbs'] = ""
+        failureResults['resp_frm_ext'] = ['resp_frm_ext']
+        failureResults['resp_frm_maass'] = ['resp_frm_maass']
+        failureResults['resp_frm_blockc'] = ['resp_frm_blockc']
+        failureResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        failureResults['resp_frm_rulengn'] = ['resp_frm_rulengn']
+        print("ComparedResultFail",comparedResult)
+        return staticfunctions.coretobe_response(comparedResult)
+
+    elif(comparedResult['result'] == "Success"):
+        comparedResultz = {}
+
+        comparedResultz['resp_code'] = 800
+        comparedResultz['resp_type'] = "SUCCESS"
+        comparedResultz['message'] = "Successfully listed"
+        comparedResultz['em_reqid'] = request['em_reqid']
+        comparedResultz['em_custid'] = request['em_custid']
+        comparedResultz['resp_frm_bank'] = ""
+        comparedResultz['resp_frm_ewire'] = comparedResult
+        comparedResultz['resp_frm_cbs'] = ""
+        comparedResultz['resp_frm_ext'] = ['resp_frm_ext']
+        comparedResultz['resp_frm_maass'] = ['resp_frm_maass']
+        comparedResultz['resp_frm_blockc'] = ['resp_frm_blockc']
+        comparedResultz['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        comparedResultz['resp_frm_rulengn'] = ['resp_frm_rulengn']
+        # comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        print("ComparedResult",comparedResultz)
+        return staticfunctions.coretobe_response(comparedResultz)
+    else:
+        maasslogger(request, "Wrong Credentials")
+        return responses.standardErrorResponseToBE("LISTED","Wrong Credentials")
+
+
+# LIST DIETY BY TEMPLE ID
+def getPackagesizeByPrasadamApi(req):
+    request = req.get_json()
+    print("REQUEST",request)
+    try:
+        print("REQQUEST",request)
+        hashchecksumNdata = constantslayer.parseRequestHCRD(request)
+        print("HASHHHH",hashchecksumNdata)
+    except Exception as e:
+        # maasslogger(req, str(e))
+        return responses.standardErrorResponseToBE("LISTED",str(e))
+    #Create hash from data
+    try:
+        createdhash = constantslayer.createHashfromData(request,"HASH_MO")
+        print("HASH@@@",createdhash)
+    except Exception as e:
+        # maasslogger(req, str(e))
+        return responses.standardErrorResponseToBE("CREATELOGINHASH",str(e))
+    maasslogger(request,"hashing passes",request['modulename'],"SUCCESS")
+
+    try:
+
+        comparedResults = constant_dropdownsui.getPackageSizebyPrasadam(hashchecksumNdata)
+        comparedResult = constantslayer.convinptodict(comparedResults)
+        if(len(comparedResults) >= 1):
+            comparedResults['result'] = "Success"
+    except Exception as exCompareUser:
+        maasslogger(request, str(exCompareUser),"GETPRASADAMBYTEMPID", "FAILURE")
+        return str(exCompareUser)
+    errresp = "Error-Response"
+    if(errresp in comparedResult):
+        failureResults = {}
+        failureResults['em_reqid'] = req['em_reqid']
+        failureResults['em_custid'] = req['em_custid']
+        failureResults['resp_frm_bank'] = ""
+        failureResults['resp_frm_ewire'] = {"LISTED": "Wrong Credentials"}
+        failureResults['resp_frm_cbs'] = ""
+        failureResults['resp_frm_ext'] = ['resp_frm_ext']
+        failureResults['resp_frm_maass'] = ['resp_frm_maass']
+        failureResults['resp_frm_blockc'] = ['resp_frm_blockc']
+        failureResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        failureResults['resp_frm_rulengn'] = ['resp_frm_rulengn']
+        print("ComparedResultFail",comparedResult)
+        return staticfunctions.coretobe_response(comparedResult)
+
+    elif(comparedResult['result'] == "Success"):
+        comparedResultz = {}
+
+        comparedResultz['resp_code'] = 800
+        comparedResultz['resp_type'] = "SUCCESS"
+        comparedResultz['message'] = "Successfully listed"
+        comparedResultz['em_reqid'] = request['em_reqid']
+        comparedResultz['em_custid'] = request['em_custid']
+        comparedResultz['resp_frm_bank'] = ""
+        comparedResultz['resp_frm_ewire'] = comparedResult
+        comparedResultz['resp_frm_cbs'] = ""
+        comparedResultz['resp_frm_ext'] = ['resp_frm_ext']
+        comparedResultz['resp_frm_maass'] = ['resp_frm_maass']
+        comparedResultz['resp_frm_blockc'] = ['resp_frm_blockc']
+        comparedResultz['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        comparedResultz['resp_frm_rulengn'] = ['resp_frm_rulengn']
+        # comparedResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+        print("ComparedResult",comparedResultz)
+        return staticfunctions.coretobe_response(comparedResultz)
+    else:
+        maasslogger(request, "Wrong Credentials")
+        return responses.standardErrorResponseToBE("LISTED","Wrong Credentials")
+
+
+#=======================================================================================
+#CREATE, READ, RETURN,PREPARE-QR
+
+# def createQRApi(req):
+
+#     #CREATE QR
+#     def createQRfrom(req):
+#         request = req.get_json()
+#         try:
+#             hashchecksumNdata = constantslayer.parseRequestHCRD(request)
+#         except Exception as e:
+#             return responses.standardErrorResponseToBE("CREATEQR",str(e))
+#         try:
+#             createdhash = constantslayer.createHashfromData(request,"HASH_MO")
+#         except Exception as e:
+#             return responses.standardErrorResponseToBE("CREATELOGINHASH",str(e))
+#         maasslogger(request,"hashing passes",request['modulename'],"SUCCESS")
+#         try:
+#             comparedResults = qrmanage.createQRfromDict(hashchecksumNdata)
+#             comparedResult = constantslayer.convinptodict(comparedResults)
+#             if(len(comparedResults) >= 1):
+#                 comparedResults['result'] = "Success"
+#         except Exception as exCompareUser:
+#             maasslogger(request, str(exCompareUser),"CREATEQR", "FAILURE")
+#             return str(exCompareUser)
+
+#     #
+#     def readQR():
+
+        
+# errresp = "Error-Response"
+# if(errresp in comparedResult):
+#     failureResults = {}
+#     failureResults['em_reqid'] = req['em_reqid']
+#     failureResults['em_custid'] = req['em_custid']
+#     failureResults['resp_frm_bank'] = ""
+#     failureResults['resp_frm_ewire'] = {"LISTED": "Wrong Credentials"}
+#     failureResults['resp_frm_cbs'] = ""
+#     failureResults['resp_frm_ext'] = ['resp_frm_ext']
+#     failureResults['resp_frm_maass'] = ['resp_frm_maass']
+#     failureResults['resp_frm_blockc'] = ['resp_frm_blockc']
+#     failureResults['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+#     failureResults['resp_frm_rulengn'] = ['resp_frm_rulengn']
+#     print("ComparedResultFail",comparedResult)
+#     return staticfunctions.coretobe_response(comparedResult)
+# elif(comparedResult['result'] == "Success"):
+#     comparedResultz = {}
+#     comparedResultz['resp_code'] = 800
+#     comparedResultz['resp_type'] = "SUCCESS"
+#     comparedResultz['message'] = "Successfully listed"
+#     comparedResultz['em_reqid'] = request['em_reqid']
+#     comparedResultz['em_custid'] = request['em_custid']
+#     comparedResultz['resp_frm_bank'] = ""
+#     comparedResultz['resp_frm_ewire'] = comparedResult
+#     comparedResultz['resp_frm_cbs'] = ""
+#     comparedResultz['resp_frm_ext'] = ['resp_frm_ext']
+#     comparedResultz['resp_frm_maass'] = ['resp_frm_maass']
+#     comparedResultz['resp_frm_blockc'] = ['resp_frm_blockc']
+#     comparedResultz['resp_frm_mojaloop'] = ['resp_frm_mojaloop']
+#     comparedResultz['resp_frm_rulengn'] = ['resp_frm_rulengn']
+#     print("ComparedResult",comparedResultz)
+#     return staticfunctions.coretobe_response(comparedResultz)
+# else:
+#     maasslogger(request, "Wrong Credentials")
+#     return responses.standardErrorResponseToBE("LISTED","Wrong Credentials")

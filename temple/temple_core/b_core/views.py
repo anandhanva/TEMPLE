@@ -5,7 +5,7 @@ import requests
 from b_core import app
 import json
 from b_core.statics import urlconstants,staticfunctions
-from b_core.platformlayers import bllayer, constantslayer
+from b_core.platformlayers import bllayer, constantslayer,qrmanage
 from b_core.responsemaster import responses
 # from temple.temple_core.b_core.statics.staticfunctions import coretobe_response
 from flask.json import jsonify
@@ -212,7 +212,7 @@ def addRate():
     
     return bllayer.addRateApi(request.json)
 
-#CREATE RATE
+#CREATE QUANTITY
 @app.route(urlconstants.ENDPOINT+'/add_quantity', methods = ['POST'])
 def addQnty():
     
@@ -228,3 +228,43 @@ def userIndex():
     
     return bllayer.userIndexApi(request.json)
 
+
+#GET DIETY BY TEMPLE ID
+@app.route(urlconstants.ENDPOINT+'/getdiety_templeid', methods = ['POST'])
+def getDietyByTempleid():
+    
+    return bllayer.getDietybyTempleidApi(request)
+
+
+#GET POOJA BY DIETY ID
+@app.route(urlconstants.ENDPOINT+'/getpooja_dietyid', methods = ['POST'])
+def getPoojaByDietyid():
+    
+    return bllayer.getPoojabyDietyidApi(request)
+
+
+#GET PRASADAM BY TEMPLE
+@app.route(urlconstants.ENDPOINT+'/getprasadam_templeid', methods = ['POST'])
+def getPrasadamByTempleid():
+    
+    return bllayer.getPrasadamByTempleidApi(request)
+
+#GET PACKAGESIZE BY PRASADAM
+@app.route(urlconstants.ENDPOINT+'/getpackagesize_prasadam', methods = ['POST'])
+def getPackagesizeByPrasadam():
+    
+    return bllayer.getPackagesizeByPrasadamApi(request  )
+
+
+#QR
+#CREATE QR FROM DICT
+@app.route(urlconstants.ENDPOINT+'/create_qr', methods = ['POST'])
+def createQR():
+    
+    return bllayer.createQRApi(request.json)
+
+
+@app.route(urlconstants.ENDPOINT+'/update_orderid', methods = ['POST'])
+def updateQR():
+    
+    return qrmanage.updateOrderid(request.json)
