@@ -242,6 +242,25 @@ commonValues['QUANTITYLIST'] = {
 
 #=======================================================================
 #USER
+commonValues['QRGENERATION'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/createqr",
+                            "reqtype" : "QRGENREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['READQRDATA'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/rdqrdata",
+                            "reqtype" : "READQRREQ",
+                            "methodtype" : "POST"
+                        }
+
+
 #INDEX
 commonValues['USERINDEX'] = {
                             # "modulename":"checkUser",
