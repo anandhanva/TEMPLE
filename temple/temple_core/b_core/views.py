@@ -23,19 +23,7 @@ def base():
 # USER LOGIN
 @app.route(urlconstants.ENDPOINT+'/user', methods = ['POST'])
 def user():
-    # valdata=staticfunctions.validateReq(request)
-    # #valdata=json.dumps(valdata)
-    # if(valdata['status']==200):
-    #     print("checklogin")
-    #     checklog=constantslayer.checkuserfrmdb(request)
-    #     print("checklog",checklog)
-    #     checklog['resp_type']=="SUCCESS"
-    #     return jsonify(coretobe_response(checklog))
-    # else:
-    #     request['resp_type']="FAIL"
-    #     return jsonify(coretobe_response())
-    # print("Request from UI: ", request.json)
-    # # Check User credentials and perform login operation
+    
     return bllayer.processLoginRequest(request.json)
 
 @app.route(urlconstants.ENDPOINT+'/ac', methods = ['POST'])
@@ -219,7 +207,6 @@ def addQnty():
     return bllayer.addQntyApi(request.json)
 
 
-
 #USER
 #=============================================================================
 #INDEX
@@ -275,3 +262,20 @@ def createCategory():
 def listCategory():
     
     return bllayer.listCategoryApi(request)
+
+
+
+#=====================================================================
+#QR
+
+#CREATE QR
+@app.route(urlconstants.ENDPOINT+'/createqr', methods = ['POST'])
+def qrGen():
+    return bllayer.createQR(request)
+
+
+#READ QR
+@app.route(urlconstants.ENDPOINT+'/rdqrdata', methods = ['POST'])
+def rdQr():
+    return bllayer.rdQRdata(request)
+
