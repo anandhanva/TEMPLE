@@ -316,3 +316,35 @@ commonValues['LISTCATEGORY'] = {
                             "reqtype" : "LISTCATEGORYREQ",
                             "methodtype" : "POST"
                         }
+commonValues['DROPDOWNCATEGORY'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/dropdown_category",
+                            "reqtype" : "DROPDOWNCATEGORYREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['CREATEFESTIVAL'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_festival",
+                            "reqtype" : "CREATEFESTIVALREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['LISTFESTIVAL'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_festival",
+                            "reqtype" : "LISTFESTIVALREQ",
+                            "methodtype" : "POST"
+                        }
+commonValues['CREATESTATEMENT'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_acstatement",
+                            "reqtype" : "CREATESTATEMENTREQ",
+                            "methodtype" : "POST"
+                        }

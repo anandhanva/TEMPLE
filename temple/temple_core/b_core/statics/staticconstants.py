@@ -541,3 +541,25 @@ schemas['templelistcategoryapi'] = {
 
     'hashstr': {'type':'string'},
     'checksum': {'type':'string'}}
+
+
+schemas['templecreatefestivalapiSchema'] = {
+    'req_type': {'type':'string'},
+    'req_code': {"type":"integer"}, 
+    'apiname': {'type':'string'},
+    'ewire_reqid': {'type':'string'},
+    'partner_reqid': {'type':'string'},
+    'req_timestamp': {'type':'integer'},
+    'requestdata': {"templeid": {'type':'integer'},        
+        "history_title": {'type':'string'},
+        "history_image1": {'type':'integer'},
+        "history_image2": {'type':'string'}, 
+        "history_image3": {'type':'string'},
+        "history_descr": {'type':'string'},
+
+                        },
+    'authtoken': {'type':'string'},
+    'ewire_endpoint': {'type':'string'},
+    'ewire_custid': {'type':'string'},
+    'txntype': {'type':'string'},
+}

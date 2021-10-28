@@ -584,20 +584,20 @@ def createCategoryApi(request):
     
         # request['database'] = "temple"
         # request['collection'] = "pooja"
-        modulename='CREATESTAY'
+        modulename='CREATECATEGORY'
         request['modulename'] = modulename
         print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-        print(request['datafrm']['stay_name'])
+        print(request['datafrm']['category_name'])
         datadict={}
-        datadict['stay_name'] = request['datafrm']['stay_name']
-        datadict['stay_photo'] = request['datafrm']['stay_photo']
-        datadict['stay_desc'] = request['datafrm']['stay_desc']
-        datadict['stay_amount'] = request['datafrm']['stay_amount']
-        datadict['stay_templeid'] = request['datafrm']['templeid']
+        datadict['category_name'] = request['datafrm']['title_text']
+        datadict['category_photo'] = request['datafrm']['cat_image']
+        datadict['category_desc'] = request['datafrm']['sel_cat']
+        # datadict['stay_amount'] = request['datafrm']['title_text']
+        datadict['category_templeid'] = request['datafrm']['templeid']
         datadict['createdat'] = str(datetime.now())
         countdocs = dbmodules.category({},datadict,"c","category")
         print("Count of returned docs: ",countdocs)
-        datadict['stay_id'] = int(countdocs) + 1
+        datadict['category_id'] = int(countdocs) + 1
         datadict['status'] = 1
         print("Datadict*************",datadict)
         datavalue =dbmodules.category("",datadict,"i","category")
@@ -874,7 +874,7 @@ def  createQntyApi(request):
 #INDEX
 def listTempleCategoryApi(request):
     try:
-        dbQuery = {"history_templeid":request['datafrm']['templeid']}
+        dbQuery = {"category_templeid":request['datafrm']['templeid']}
         # modulename='LISTHISTORY'
         # request['modulename'] = modulename
         datavalue =dbmodules.category(dbQuery, "","l","category")
@@ -886,6 +886,107 @@ def listTempleCategoryApi(request):
         return str(e)
     except Exception as e:
         print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+#CREATE FESTIVAL
+def createFestivalApi(request):
+    try:
+    
+        # request['database'] = "temple"
+        # request['collection'] = "diety"
+        modulename='CREATEFESTIVAL'
+        request['modulename'] = modulename
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+        print(request['datafrm']['festival_name'])
+        datadict={}
+        datadict['festival_name'] = request['datafrm']['festival_name']
+        datadict['festival_oftemp'] = request['datafrm']['festival_oftemp']
+        datadict['festival_photo'] = request['datafrm']['festival_photo']
+        datadict['festival_descr'] = request['datafrm']['festival_desc']
+        datadict['diety_templeid'] = request['datafrm']['templeid']
+        datadict['createdat'] = str(datetime.now())
+        countdocs = dbmodules.festival({},datadict,"c","festival")
+        datadict['diety_id'] = int(countdocs) + 1
+        datadict['status'] = 1
+        print("Datadict*************",datadict)
+        datavalue =dbmodules.festival({},datadict,"i","festival")
+        print("insert",datavalue)
+        respdict={}
+        respdict['respfrmdb'] = {"response":"Success"}
+        respdict['result']="Success"
+        # del datadict['_id']
+        # print("type------",type(datadict))
+        # print("respdict!!!!!!!!!",datadict)
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+# LIST FESTIVAL
+
+def listFestivalApi(request):
+    try:
+        dbQuery = {"category_templeid":request['datafrm']['templeid']}
+        # modulename='LISTHISTORY'
+        # request['modulename'] = modulename
+        datavalue =dbmodules.category(dbQuery, "","l","category")
+        print("listed",datavalue)
+        datavalue['result'] = "Success"
+        return datavalue        
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+
+
+def createStatementApi(request):
+    try:
+    
+        # request['database'] = "temple"
+        # request['collection'] = "diety"
+        modulename='CREATESTATEMENT'
+        request['modulename'] = modulename
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+        print(request['datafrm']['statement_name'])
+        datadict={}
+        datadict['statement_name'] = request['datafrm']['festival_name']
+        datadict['statement_oftemp'] = request['datafrm']['festival_oftemp']
+        datadict['statement_photo'] = request['datafrm']['festival_photo']
+        datadict['statement_descr'] = request['datafrm']['festival_desc']
+        datadict['diety_templeid'] = request['datafrm']['templeid']
+        datadict['createdat'] = str(datetime.now())
+        countdocs = dbmodules.statement({},datadict,"c","statement")
+        datadict['diety_id'] = int(countdocs) + 1
+        datadict['status'] = 1
+        print("Datadict*************",datadict)
+        datavalue =dbmodules.statement({},datadict,"i","statement")
+        print("insert",datavalue)
+        respdict={}
+        respdict['respfrmdb'] = {"response":"Success"}
+        respdict['result']="Success"
+        # del datadict['_id']
+        # print("type------",type(datadict))
+        # print("respdict!!!!!!!!!",datadict)
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
         for frame in traceback.extract_tb(sys.exc_info()[2]):
             fname,lineno,fn,text = frame
             print( "Error in %s on line %d", fname, lineno)

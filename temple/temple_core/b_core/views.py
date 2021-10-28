@@ -69,11 +69,11 @@ def listtempleadmin():
     
     return bllayer.listTempleAdminApi(request)
 
-# CREATE ACCOUNT
-@app.route(urlconstants.ENDPOINT+'/create_account', methods = ['POST'])
-def addaccount():
+# # CREATE ACCOUNT
+# @app.route(urlconstants.ENDPOINT+'/create_account', methods = ['POST'])
+# def addaccount():
     
-    return bllayer.createAccount(request)
+#     return bllayer.createAccount(request)
 
 
 # LIST ACCOUNT
@@ -275,3 +275,32 @@ def createCategory():
 def listCategory():
     
     return bllayer.listCategoryApi(request)
+
+
+
+# DROPDOWN - -CATEGORY
+
+@app.route(urlconstants.ENDPOINT+'/dropdown_category', methods = ['POST'])
+def dropCategory():
+    
+    return bllayer.dropdownCategoryApi(request)
+
+# CREATE - -FESTIVAL
+
+@app.route(urlconstants.ENDPOINT+'/create_festival', methods = ['POST'])
+def createFestival():
+    
+    return bllayer.createFestivalApi(request)
+
+# LIST - -FESTIVAL
+
+@app.route(urlconstants.ENDPOINT+'/list_festival', methods = ['POST'])
+def listFestival():
+    
+    return bllayer.listFestivalApi(request)
+
+# CREATE ACCOUNT STATEMENT
+@app.route(urlconstants.ENDPOINT+'/create_acstatement', methods = ['POST'])
+def createStatement():
+    
+    return bllayer.createStatementApi(request)

@@ -35,6 +35,13 @@ getPrasadamTempleidapi="templeprasadamtempleidapi"
 getDietyTempleidapi="templedietytempleidapi"
 createCategoryapi="templecreatecategoryapi"
 listCategoryapi="templelistcategoryapi"
+dropDownCategoryapi="templedropdowncategoryeapi"
+createFestivalapi="templecreatefestivalapi"
+listFestivalapi="templelistfestivalapi"
+createStatementapi="templecreatestatementapi"
+
+
+
 
 
 
