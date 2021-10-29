@@ -113,8 +113,14 @@ def validateReq(req):
     try:
         valdata = req
         # valdata=json.dumps(valdata)
-        print("val Data ", valdata)
+        
+        valdata=constantslayer.convinptodict(valdata)
+        
+        print(">>>>>>>>>>>>///////////",type(valdata))
+
+
         SchemaConst=valdata['api_name']+"Schema"
+
         print(">>>>>>>>>>>>>>>>>>>>>>>>",SchemaConst)
         Schema=staticconstants.schemas[SchemaConst]
         print(">>>>>>>>>>>>>>>>>>>>>>>>",Schema)

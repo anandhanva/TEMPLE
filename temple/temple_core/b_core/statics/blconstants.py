@@ -411,7 +411,7 @@ def createPrasadamApi(request):
         datadict['prasadam_id'] = int(countdocs) + 1
         datadict['status'] = 1
         print("Datadict*************",datadict)
-        datavalue =dbmodules.prasadam({},datadict,"i","prasadam")
+        datavalue =dbmodules.prasadam("",datadict,"i","prasadam")
         print("insert",datavalue)
         respdict={}
         respdict['respfrmdb'] = {"response":"Success"}

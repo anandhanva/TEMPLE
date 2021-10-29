@@ -20,3 +20,9 @@ def fetchAllOrdersByTempleId(req):
 #Update order by order id
 def updateOrderByOrderId(req):
     return req
+
+#Update Payment details and status of transactions by order id
+def updateTxnStatusByOrderId(req):
+    return req
+
+#

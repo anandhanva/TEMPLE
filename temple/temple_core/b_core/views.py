@@ -5,7 +5,7 @@ import requests
 from b_core import app
 import json
 from b_core.statics import urlconstants,staticfunctions
-from b_core.platformlayers import bllayer, constantslayer
+from b_core.platformlayers import bllayer, constantslayer,qrmanage
 from b_core.responsemaster import responses
 # from temple.temple_core.b_core.statics.staticfunctions import coretobe_response
 from flask.json import jsonify
@@ -23,19 +23,7 @@ def base():
 # USER LOGIN
 @app.route(urlconstants.ENDPOINT+'/user', methods = ['POST'])
 def user():
-    # valdata=staticfunctions.validateReq(request)
-    # #valdata=json.dumps(valdata)
-    # if(valdata['status']==200):
-    #     print("checklogin")
-    #     checklog=constantslayer.checkuserfrmdb(request)
-    #     print("checklog",checklog)
-    #     checklog['resp_type']=="SUCCESS"
-    #     return jsonify(coretobe_response(checklog))
-    # else:
-    #     request['resp_type']="FAIL"
-    #     return jsonify(coretobe_response())
-    # print("Request from UI: ", request.json)
-    # # Check User credentials and perform login operation
+    
     return bllayer.processLoginRequest(request.json)
 
 @app.route(urlconstants.ENDPOINT+'/ac', methods = ['POST'])
@@ -212,12 +200,11 @@ def addRate():
     
     return bllayer.addRateApi(request.json)
 
-#CREATE RATE
+#CREATE QUANTITY
 @app.route(urlconstants.ENDPOINT+'/add_quantity', methods = ['POST'])
 def addQnty():
     
     return bllayer.addQntyApi(request.json)
-
 
 
 #USER
@@ -277,7 +264,6 @@ def listCategory():
     return bllayer.listCategoryApi(request)
 
 
-
 # DROPDOWN - -CATEGORY
 
 @app.route(urlconstants.ENDPOINT+'/dropdown_category', methods = ['POST'])
@@ -304,3 +290,18 @@ def listFestival():
 def createStatement():
     
     return bllayer.createStatementApi(request)
+#=====================================================================
+#QR
+
+#CREATE QR
+@app.route(urlconstants.ENDPOINT+'/createqr', methods = ['POST'])
+def qrGen():
+    return bllayer.createQR(request)
+
+
+#READ QR
+@app.route(urlconstants.ENDPOINT+'/rdqrdata', methods = ['POST'])
+def rdQr():
+    return bllayer.rdQRdata(request)
+
+
