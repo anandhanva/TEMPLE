@@ -1,4 +1,7 @@
 
+# from temple.temple_core.b_core.platformlayers.bllayer import createFundsTransfer, listPoolApi
+
+
 userLogin = "templeloginapi"
 addTempleapi = "templeaddapi"
 listTempleapi = "templelistapi"
@@ -39,14 +42,57 @@ dropDownCategoryapi="templedropdowncategoryeapi"
 createFestivalapi="templecreatefestivalapi"
 listFestivalapi="templelistfestivalapi"
 createStatementapi="templecreatestatementapi"
+listStatementapi="templeliststatementapi"
+dropDownStatementapi="templedropdownstatementapi"
+getDatabyAccountapi="templedatabyacnumapi"
+createDevasomapi="templecreatedevasomapi"
+listDevasomapi="templelistdevasomapi"
+createDevasomAdminapi="templedevasomadminapi"
+listDevasomAdminapi="templelistdevasomadminapi"
+createPoolapi="templecreatepoolapi"
+listpoolapi="templelistpoolapi"
+createfundstransfer="templecreatefundtransferapi"
+listfundstransfer="templistfundtransferapi"
+createtransactiondevaswom="tempcreatetransactiondevaswomapi"
+listtransactiondevaswom="templisttransactiondevaswomapi"
+dropDownBankapi="templedropdownbankapi"
+dropDownTempleapi="templedropdowntempleapi"
+dropDownIFSCapi="templedropdownifsceapi"
+listfinanceactivityapi="templelistfinanceactivityapi"
+createreconciliationapi="templecreatereconciliationapi"
+listreconciliationapi="templelistreconciliationapi"
+dropDowndevaswomapi="templedropdowndevaswomapi"
+createforgotpinapi="templecreateforgotpinapi"
 
-
-
-
-
-
-
-
-
-
-
+# SUPER ADMIN-----------------------------------------------------------------
+createbankdetails="tempcreatebankdetailsapi"
+listbankdetails="templistbankdetailsapi"
+createbankadmin="tempcreatebankadminapi"
+listbankadmin="templistbankadminapi"
+createcardallocation="tempcreatecardallocationapi"
+listcardallocation="templistcardallocationapi"
+craetelordapi="templecreatelordapi"
+listlordapi="templelistlordapi"
+createrequestmoneyapi="templecreaterequestmoneyapi"
+gettransactiondevaswomapi="templegettransactiondevaswomapi"
+gettransactionbankapi="templegettransactionbankapi"
+listtransactionbankapi="templelisttransactionbankapi"
+gettransactiontempleapi="templegettransactiontempleapi"
+listtransactiontempleapi="templelisttransactiontempleapi"
+createblocktempleapi="templecreateblocktempleapi"
+listblocktempleapi="templelistblocktempleapi"
+createblockdevaswomapi="templecreateblockdevaswomapi"
+listblockdevaswomapi="templelistblockdevaswomapi"
+createblockcustomerapi="templecreateblockcustomerapi"
+listblockcustomerapi="templelistblockcustomerapi"
+createblockcardapi="templecreateblockcardapi"
+listblockcardapi="templelistblockcardapi"
+createblockbankapi="templecreateblockbankapi"
+listblockbankapi="templelistblockbankapi"
+listtransactionsuperapi="templelisttransactionsuperapi"
+listaccountstatementapi="templelistaccountstatementapi"
+dropDownactivitytypeapi="templedropdownactivitytypeapi"
+superdropDowndevaswomapi="templesuperdropdowndevaswomapi"
+superdropDowntempleapi="templesuperdropdowntempleapi"
+createsuperpoojaapi="templecreatesuperpoojaapi"
+listsuperpoojaapi="templelistsuperpoojaapi"

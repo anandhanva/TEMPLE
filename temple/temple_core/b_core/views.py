@@ -36,7 +36,7 @@ def ac():
 
 # ADD TEMPLE
 @app.route(urlconstants.ENDPOINT+'/add_temple', methods = ['POST'])
-def addtemple():
+def addtemples():
     
     return bllayer.addTemple(request)
 # LIST TEMPLE
@@ -58,10 +58,10 @@ def listtempleadmin():
     return bllayer.listTempleAdminApi(request)
 
 # # CREATE ACCOUNT
-# @app.route(urlconstants.ENDPOINT+'/create_account', methods = ['POST'])
-# def addaccount():
+@app.route(urlconstants.ENDPOINT+'/create_account', methods = ['POST'])
+def addaccount():
     
-#     return bllayer.createAccount(request)
+    return bllayer.createAccount(request)
 
 
 # LIST ACCOUNT
@@ -77,7 +77,7 @@ def listaccount():
 def createfinadmins():
     
     return bllayer.createFinAdmin(request)
-#TEMPLE ADMIN
+#TEMPLE ADMIN--------------------------------------------------------------------------------------------
 #CREATE POOJA
 @app.route(urlconstants.ENDPOINT+'/create_pooja', methods = ['POST'])
 def addpooja():
@@ -290,6 +290,11 @@ def listFestival():
 def createStatement():
     
     return bllayer.createStatementApi(request)
+# LIST STATEMENT
+@app.route(urlconstants.ENDPOINT+'/list_statement', methods = ['POST'])
+def listStatement():
+    
+    return bllayer.listStatementApi(request)
 #=====================================================================
 #QR
 
@@ -305,3 +310,347 @@ def rdQr():
     return bllayer.rdQRdata(request)
 
 
+
+# DROPDOWN - FINANCE-ACTIVITY
+
+@app.route(urlconstants.ENDPOINT+'/dropdown_activity', methods = ['POST'])
+def dropActivity():
+    
+    return bllayer.dropdownActivityApi(request)
+
+
+@app.route(urlconstants.ENDPOINT+'/dropdown_data', methods = ['POST'])
+def dropAcctData():
+    
+    return bllayer.dataByAcnumberApi(request)
+
+
+@app.route(urlconstants.ENDPOINT+'/create_devasom', methods = ['POST'])
+def createdevasam():
+    
+    return bllayer.createDevasamApi(request)
+
+@app.route(urlconstants.ENDPOINT+'/list_devasom', methods = ['POST'])
+def listdevasam():
+    
+    return bllayer.listDevasomApi(request)
+
+@app.route(urlconstants.ENDPOINT+'/create_devasomadmin', methods = ['POST'])
+def createdevasamadmin():
+    
+    return bllayer.createDevasomAdminApi(request)
+
+@app.route(urlconstants.ENDPOINT+'/list_devasomadmin', methods = ['POST'])
+def listdevasamadmin():
+    
+    return bllayer.listDevasomAdminApi(request)
+
+#create poool
+
+@app.route(urlconstants.ENDPOINT+'/create_pool', methods = ['POST'])
+def createpool():
+    
+    return bllayer.createPoolApi(request)
+
+#list poool
+
+@app.route(urlconstants.ENDPOINT+'/list_pool', methods = ['POST'])
+def listpool():
+    
+    return bllayer.listPoolsApi(request)
+
+#create fund transfer
+@app.route(urlconstants.ENDPOINT+'/create_fundtransfer', methods = ['POST'])
+def createfdtra():
+    
+    return bllayer.createFundsTransfer(request)
+
+#list fund transfer
+@app.route(urlconstants.ENDPOINT+'/list_fundtransfer', methods = ['POST'])
+def listfundtra():
+    
+    return bllayer.listFundsTransfer(request)
+
+# BANK ADMIN--------------------------------------------------------------------------------------------
+# CREATE FORGOT PIN
+@app.route(urlconstants.ENDPOINT+'/create_forgotpin', methods = ['POST'])
+def createforgotpin():
+    
+    return bllayer.createforgotpinApi(request)
+
+#DROPDOWN DEVASWOM
+@app.route(urlconstants.ENDPOINT+'/dropdown_devaswom', methods = ['POST'])
+def dropdowndevaswom():
+    
+    return bllayer.dropdowndevaswomApi(request)
+
+#DROPDOWN BANK
+@app.route(urlconstants.ENDPOINT+'/dropdown_bank', methods = ['POST'])
+def dropdownBank():
+    
+    return bllayer.dropDownBankApi(request)
+
+
+#DROPDOWN TEMPLE
+@app.route(urlconstants.ENDPOINT+'/dropdown_temple', methods = ['POST'])
+def dropdownTemple():
+    
+    return bllayer.dropDownTempleApi(request)
+
+#DROPDOWN IFSC
+@app.route(urlconstants.ENDPOINT+'/dropdown_IFSC', methods = ['POST'])
+def dropdownIFSC():
+    
+    return bllayer.dropDownIFSCApi(request)
+
+
+# LIST - FINANCE-ACTIVITY
+
+@app.route(urlconstants.ENDPOINT+'/list_financeactivity', methods = ['POST'])
+def listActivity():
+    
+    return bllayer.listActivityApi(request)
+
+
+#CREATE RECONCILIATION
+@app.route(urlconstants.ENDPOINT+'/create_reconciliation', methods = ['POST'])
+def createreconciliation():
+    
+    return bllayer.createReconciliationApi(request)
+
+#LIST RECONCILIATION
+@app.route(urlconstants.ENDPOINT+'/list_reconciliation', methods = ['POST'])
+def listreconciliation():
+    
+    return bllayer.listReconciliationApi(request)
+
+
+#CREATE TRANSACTION DEVASWOM
+@app.route(urlconstants.ENDPOINT+'/create_transactiondevaswom', methods = ['POST'])
+def createTransactionDevaswom():
+    
+    return bllayer.createTransactionDevaswomApi(request)
+
+
+#LIST TRANSACTION DEVASWOM
+@app.route(urlconstants.ENDPOINT+'/list_transactiondevaswom', methods = ['POST'])
+def listTransactionDevaswom():
+    
+    return bllayer.listTransactionDevaswomApi(request)
+
+
+#SUPER ADMIN---------------------------------------------------------------------------------------------
+#MANAGE BANK
+#CREATE BANK
+@app.route(urlconstants.ENDPOINT+'/create_bank', methods = ['POST'])
+def createbank():
+    
+    return bllayer.createBank(request)
+
+#LIST BANK
+@app.route(urlconstants.ENDPOINT+'/list_bankdetails', methods = ['POST'])
+def listbankdetails():
+    
+    return bllayer.listBankDetails(request)
+
+#MANAGE BANK ADMIN
+#CREATE BANK ADMIN
+@app.route(urlconstants.ENDPOINT+'/create_bankadmin', methods = ['POST'])
+def createbankadmin():
+    
+    return bllayer.createBankAdmin(request)
+
+#LIST BANK ADMIN
+@app.route(urlconstants.ENDPOINT+'/list_bankadmin', methods = ['POST'])
+def listbankadmin():
+    
+    return bllayer.listBankAdmin(request)
+
+#MANAGE CARD
+#CREATE CARD ALLOCATION
+@app.route(urlconstants.ENDPOINT+'/create_cardallocation', methods = ['POST'])
+def createCardAllocation():
+    
+    return bllayer.createCardAllocationApi(request)
+
+#LIST CARD ALLOCATION
+@app.route(urlconstants.ENDPOINT+'/list_cardallocation', methods = ['POST'])
+def listCardAllocation():
+    
+    return bllayer.listCardAllocationApi(request)
+
+
+#CREATE REQUEST MONEY
+@app.route(urlconstants.ENDPOINT+'/create_reqmoney', methods = ['POST'])
+def createreqmoney():
+    
+    return bllayer.createReqMoneyApi(request)
+
+#MANAGE LORDS
+#CREATE LORDS
+@app.route(urlconstants.ENDPOINT+'/create_lords', methods = ['POST'])
+def createlords():
+    
+    return bllayer.createlordsApi(request)
+
+# LIST LORDS
+@app.route(urlconstants.ENDPOINT+'/list_lords', methods = ['POST'])
+def listlords():
+    
+    return bllayer.listlordsApi(request)
+
+
+# GET TRANASACTION DEVASWOM
+@app.route(urlconstants.ENDPOINT+'/get_transactiondevaswom', methods = ['POST'])
+def gettranascactiondevaswom():
+    
+    return bllayer.gettransactiondevaswomApi(request)
+
+# GET TRANASACTION BANK
+@app.route(urlconstants.ENDPOINT+'/get_transactionbank', methods = ['POST'])
+def gettranascactionbank():
+    
+    return bllayer.gettransactionbankApi(request)
+
+# LIST TRANASACTION BANK
+@app.route(urlconstants.ENDPOINT+'/list_transactionbank', methods = ['POST'])
+def listtranascactionbank():
+    
+    return bllayer.listtransactionbankApi(request)
+
+# GET TRANASACTION TEMPLE
+@app.route(urlconstants.ENDPOINT+'/get_transactiontemple', methods = ['POST'])
+def gettranascactiontemple():
+    
+    return bllayer.gettransactiontempleApi(request)
+
+# LIST TRANASACTION TEMPLE
+@app.route(urlconstants.ENDPOINT+'/list_transactiontemple', methods = ['POST'])
+def listtranascactiontemple():
+    
+    return bllayer.listtransactiontempleApi(request)
+
+#MANAGE TEMPLE
+# CREATE BLOCK TEMPLE
+@app.route(urlconstants.ENDPOINT+'/create_blocktemple', methods = ['POST'])
+def createblocktemple():
+    
+    return bllayer.createblocktempleApi(request)
+
+# LIST BLOCK TEMPLE
+@app.route(urlconstants.ENDPOINT+'/list_blocktemple', methods = ['POST'])
+def listblocktemple():
+    
+    return bllayer.listblocktempleApi(request)
+
+#MANAGE DEVASWOM
+# CREATE BLOCK DEVASWOM
+@app.route(urlconstants.ENDPOINT+'/create_blockdevaswom', methods = ['POST'])
+def createblockdevaswom():
+    
+    return bllayer.createblockdevaswomApi(request)
+
+# LIST BLOCK DEVASWOM
+@app.route(urlconstants.ENDPOINT+'/list_blockdevaswom', methods = ['POST'])
+def listblockdevaswom():
+    
+    return bllayer.listblockdevaswomApi(request)
+
+#MANAGE CUSTOMER
+# CREATE BLOCK CUSTOMER
+@app.route(urlconstants.ENDPOINT+'/create_blockcustomer', methods = ['POST'])
+def createblockcustomer():
+    
+    return bllayer.createblockcustomerApi(request)
+
+# LIST BLOCK CUSTOMER
+@app.route(urlconstants.ENDPOINT+'/list_blockcustomer', methods = ['POST'])
+def listblockcustomer():
+    
+    return bllayer.listblockcustomerApi(request)
+
+#MANAGE CARD
+# CREATE BLOCK CARD
+@app.route(urlconstants.ENDPOINT+'/create_blockcard', methods = ['POST'])
+def createblockcard():
+    
+    return bllayer.createblockcardApi(request)
+
+# LIST BLOCK CARD
+@app.route(urlconstants.ENDPOINT+'/list_blockcard', methods = ['POST'])
+def listblockcard():
+    
+    return bllayer.listblockcardApi(request)
+
+#MANAGE BANK
+# CREATE BLOCK BANK
+@app.route(urlconstants.ENDPOINT+'/create_blockbank', methods = ['POST'])
+def createblockbank():
+    
+    return bllayer.createblockbankApi(request)
+
+# LIST BLOCK BANK
+@app.route(urlconstants.ENDPOINT+'/list_blockbank', methods = ['POST'])
+def listblockbank():
+    
+    return bllayer.listblockbankApi(request)
+
+#LIST TRANSACTION DEVASWOM
+@app.route(urlconstants.ENDPOINT+'/list_transdevaswom', methods = ['POST'])
+def listtransactiondevaswom():
+    
+    return bllayer.superlisttransdevaApi(request)
+
+#LIST ACCONT STATEMENT
+@app.route(urlconstants.ENDPOINT+'/list_acctstatement', methods = ['POST'])
+def listacctstatement():
+    
+    return bllayer.listacctstatmeentapi(request)
+
+#DROPDOWN ACTIVITIES TYPE
+@app.route(urlconstants.ENDPOINT+'/dropdown_activitytype', methods = ['POST'])
+def dropdownactivitytype():
+    
+    return bllayer.dropdownactivitytypeApi(request)
+
+#DROPDOWN DEVASWOM
+@app.route(urlconstants.ENDPOINT+'/dropdown_superdevaswom', methods = ['POST'])
+def superdropdowndevaswom():
+    
+    return bllayer.superdropdowndevaswomapi(request)
+
+#DROPDOWN TEMPLE
+@app.route(urlconstants.ENDPOINT+'/dropdown_supertemple', methods = ['POST'])
+def superdropdowntemple():
+    
+    return bllayer.superdropdowntempleapi(request)
+
+#CREATE POOJA
+@app.route(urlconstants.ENDPOINT+'/create_superpooja', methods = ['POST'])
+def createsuperpooja():
+    
+    return bllayer.createsuperpoojaapi(request)
+
+#LIST POOJA TOTAL
+@app.route(urlconstants.ENDPOINT+'/list_superpooja', methods = ['POST'])
+def listsuperpooja():
+    
+    return bllayer.listsuperpoojaapi(request)
+
+# #CREATE ACCOUNT
+# @app.route(urlconstants.ENDPOINT+'/create_superaccount', methods = ['POST'])
+# def createsuperpooja():
+    
+#     return bllayer.createsuperaccountapi(request)
+
+# #LIST ACCOUNT
+# @app.route(urlconstants.ENDPOINT+'/list_superaccount', methods = ['POST'])
+# def listsuperaccount():
+    
+#     return bllayer.listsuperaccountapi(request)
+
+#CREATE SUPER DEVASWOM
+@app.route(urlconstants.ENDPOINT+'/create_superdevaswom', methods = ['POST'])
+def createsuperdevaswom():
+    
+    return bllayer.createsuperdevaswomapi(request)

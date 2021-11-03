@@ -111,3 +111,18 @@ def getOfferingbyDietyid(req):
         print("FAILED",str(e))
     return req
     
+def getDatabyAcnumid(req):
+    try:
+        dbQuery = {"acnum_templeid":req['datafrm']['ac_id']}
+        req['database'] = "temple"
+        req['collection'] = "account"
+        datavalue = dbconstants.MongoAPI(req).read(dbQuery)
+        print("listed",datavalue)
+        return datavalue  
+    except ValueError as e:
+        print("EXCEPTION")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+    return req
+

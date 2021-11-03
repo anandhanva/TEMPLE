@@ -68,79 +68,138 @@ def checkuserfrmdb(request):
 
 def addTempleApi(request):
     try:
-        print("request>>>>>>>>>>>>>>>>>>.",request)
-        request['database'] = "temple"
-        request['collection'] = "temple_list"
-        datadict={}
-        datadict['d_templename'] = request['datafrm']['d_templename'],
-        datadict['d_address1'] = request['datafrm']['d_address1'],
-        datadict['d_address2'] = request['datafrm']['d_address2'],
-        datadict['d_address3'] = request['datafrm']['d_address3'],
-        datadict['d_lattitude'] = request['datafrm']['d_lattitude'],
-        datadict['d_longitude'] = request['datafrm']['d_longitude'],
-        datadict['d_vintage'] = request['datafrm']['d_vintage'],
-        datadict['d_found'] = request['datafrm']['d_found'],
-        datadict['temp_desc'] = request['datafrm']['temp_desc'],
-        print("Datadict*************",datadict)
-        datavalue = dbconstants.MongoAPI(request).write(datadict)
-        print("insert",datavalue)
+    #     # request['database'] = "temple"
+    #     # request['collection'] = "offering"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "templename":"temple1",
+            "templedesc":"fagdfgdfg"
+        }
+        print("dict***",dict)
         respdict={}
-        respdict['respfrmdb'] = datadict
-        respdict['result']="Success"
-        del datadict['_id']
-        print("type------",type(datadict))
-        print("respdict!!!!!!!!!",datadict)
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
         return respdict
     except ValueError as e:
         print("EXCEPTION1")
         return str(e)
     except Exception as e:
         print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
         return str(e)
-
 def listTempleApi(request):
     try:
-        print("REQUEST##########",request)
-        request['database'] = "temple"
-        request['collection'] = "temple_list"
-        datavalue = dbconstants.MongoAPI(request).read()
+        dbQuery = {"templeid":request['datafrm']['templeid']}
+        # request['database'] = "temple"
+        # request['collection'] = "offering"
+        # modulename='LISTOFFERINGS'
+        # request['modulename'] = modulename
+        datavalue =dbmodules.temple(dbQuery,"","l","temple")
         print("listed",datavalue)
-
+        return datavalue  
     except ValueError as e:
         print("EXCEPTION1")
         return str(e)
     except Exception as e:
-        print("FAILED")
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
         return str(e)
+   
 
 def createTempleAdminApi(request):
     try:
-        request['database'] = "temple"
-        request['collection'] = "temple_admin"
-        datadict={}
-        datadict['tmp_name'] = request['datafrm']['tmp_name'],
-        datadict['ad_name'] = request['datafrm']['ad_name'],
-        datadict['contact'] = request['datafrm']['contact'],
-        datadict['d_email'] = request['datafrm']['d_email'],
-        datadict['d_add1'] = request['datafrm']['d_add1'],
-        datadict['d_add2'] = request['datafrm']['d_add2'],
-        datadict['d_state'] = request['datafrm']['d_state'],
-        datadict['createdat'] = str(datetime.now()) 
-        print("Datadict*************",datadict)
-        datavalue = dbconstants.MongoAPI(request).write(datadict)
-        print("insert",datavalue)
+    #     # request['database'] = "temple"
+    #     # request['collection'] = "offering"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "templeadminname":"templeadmin",
+            "templedadminid":"10"
+        }
+        print("dict***",dict)
         respdict={}
-        respdict['respfrmdb'] = datadict
-        respdict['result']="Success"
-        del datadict['_id']
-        print("type------",type(datadict))
-        print("respdict!!!!!!!!!",datadict)
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
         return respdict
     except ValueError as e:
         print("EXCEPTION1")
         return str(e)
     except Exception as e:
         print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
         return str(e)
 
 
@@ -160,30 +219,62 @@ def listTempleAdminApi(request):
 
 def createAccountApi(request):
     try:
-        request['database'] = "temple"
-        request['collection'] = "temp_account"
-        datadict={}
-        datadict['tmp_name'] = request['datafrm']['tmp_name'],
-        datadict['bank_name'] = request['datafrm']['bank_name'],
-        datadict['acc_no'] = request['datafrm']['acc_no'],
-        datadict['ifsc'] = request['datafrm']['ifsc'],
-        datadict['d_add1'] = request['datafrm']['d_add1'],
-        print("Datadict*************",datadict)
-        datavalue = dbconstants.MongoAPI(request).write(datadict)
-        print("insert",datavalue)
+    #     # request['database'] = "temple"
+    #     # request['collection'] = "offering"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "accountnumber":"SBI009",
+            "accountdesc":"djvhjfsgfdg"
+        }
+        print("dict***",dict)
         respdict={}
-        respdict['respfrmdb'] = datadict
-        respdict['result']="Success"
-        del datadict['_id']
-        print("type------",type(datadict))
-        print("respdict!!!!!!!!!",datadict)
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
         return respdict
     except ValueError as e:
         print("EXCEPTION1")
         return str(e)
     except Exception as e:
         print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
         return str(e)
+   
 
 def listAccountApi(request):
     try:
@@ -201,36 +292,61 @@ def listAccountApi(request):
 
 def createFinAdminApi(request):
     try:
-        request['database'] = "temple"
-        request['collection'] = "finance_admin"
-        datadict={}
-        datadict['tmp_name'] = request['datafrm']['tmp_name'],
-        datadict['ad_name'] = request['datafrm']['ad_name'],
-        datadict['d_email'] = request['datafrm']['d_email'],
-        datadict['d_add1'] = request['datafrm']['d_add1'],
-        datadict['d_add2'] = request['datafrm']['d_add2'],
-        datadict['d_state'] = request['datafrm']['d_state'],
-        datadict['bank_name'] = request['datafrm']['bank_name'],
-        datadict['d_accno'] = request['datafrm']['d_accno'],
-        datadict['ifsc'] = request['datafrm']['ifsc'],
-
-        print("Datadict*************",datadict)
-        datavalue = dbconstants.MongoAPI(request).write(datadict)
-        print("insert",datavalue)
+    #     # request['database'] = "temple"
+    #     # request['collection'] = "offering"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "finadminname":"fin1",
+            "finadminid":"12"
+        }
+        print("dict***",dict)
         respdict={}
-        respdict['respfrmdb'] = datadict
-        respdict['result']="Success"
-        del datadict['_id']
-        print("type------",type(datadict))
-        print("respdict!!!!!!!!!",datadict)
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
         return respdict
     except ValueError as e:
         print("EXCEPTION1")
         return str(e)
     except Exception as e:
         print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
         return str(e)
-
 
 #=========================================================================
 #CREATE POOJA
@@ -955,33 +1071,94 @@ def listFestivalApi(request):
 
 def createStatementApi(request):
     try:
-    
-        # request['database'] = "temple"
-        # request['collection'] = "diety"
-        modulename='CREATESTATEMENT'
-        request['modulename'] = modulename
-        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-        print(request['datafrm']['statement_name'])
-        datadict={}
-        datadict['statement_name'] = request['datafrm']['festival_name']
-        datadict['statement_oftemp'] = request['datafrm']['festival_oftemp']
-        datadict['statement_photo'] = request['datafrm']['festival_photo']
-        datadict['statement_descr'] = request['datafrm']['festival_desc']
-        datadict['diety_templeid'] = request['datafrm']['templeid']
-        datadict['createdat'] = str(datetime.now())
-        countdocs = dbmodules.statement({},datadict,"c","statement")
-        datadict['diety_id'] = int(countdocs) + 1
-        datadict['status'] = 1
-        print("Datadict*************",datadict)
-        datavalue =dbmodules.statement({},datadict,"i","statement")
-        print("insert",datavalue)
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "offering"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "accountnumber":"CrStmt",
+            "accountdesc":"jhgyhgfg"
+        }
+        print("dict***",dict)
         respdict={}
-        respdict['respfrmdb'] = {"response":"Success"}
-        respdict['result']="Success"
-        # del datadict['_id']
-        # print("type------",type(datadict))
-        # print("respdict!!!!!!!!!",datadict)
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
         return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+# LIST STATEMENT
+
+def listStatementsApi(request):
+    try:
+        dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # modulename='LISTHISTORY'
+        # request['modulename'] = modulename
+        datavalue =dbmodules.category(dbQuery, "","l","statement")
+        print("listed",datavalue)
+        datavalue['result'] = "Success"
+        return datavalue        
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#DROPDOWN ACTIVITY
+def drpdwnFinActivityApi(request):
+    try:
+        dbQuery = {"templeid":request['datafrm']['templeid']}
+        # request['database'] = "temple"
+        # request['collection'] = "prasadam"
+        datavalue =dbmodules.activity({},dbQuery,"l","activity")
+
+        print("listed",datavalue)
+        return datavalue
     except ValueError as e:
         print("EXCEPTION1")
         return str(e)
@@ -990,4 +1167,2131 @@ def createStatementApi(request):
         for frame in traceback.extract_tb(sys.exc_info()[2]):
             fname,lineno,fn,text = frame
             print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+# CREATE DEVASOM
+def createDevasomsApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "offering"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "devasomname":"Devasom1",
+            "devasomdesc":"ncjhhdfh"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+# LIST DEVASOM
+
+def listDevasomsApi(request):
+    try:
+        dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # modulename='LISTHISTORY'
+        # request['modulename'] = modulename
+        datavalue =dbmodules.devaswom(dbQuery, "","l","devaswom")
+        print("listed",datavalue)
+        datavalue['result'] = "Success"
+        return datavalue        
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#Create Devasom Admin
+def createDevasomAdminApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "offering"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "devasomadmin":"DevasomAdmin",
+            "devasomlog":"jahsas"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#List Devasom Admin
+def listDevasomAdminApi(request):
+    try:
+        dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # modulename='LISTHISTORY'
+        # request['modulename'] = modulename
+        datavalue =dbmodules.devasomadmin(dbQuery, "","l","devasomadmin")
+        print("listed",datavalue)
+        datavalue['result'] = "Success"
+        return datavalue        
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+
+#Create Pool
+def createPoolApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "offering"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "createpool":"pool1",
+            "poolpass":"hasj"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+
+#List Pool
+def listPoolApi(request):
+    try:
+        dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # modulename='LISTHISTORY'
+        # request['modulename'] = modulename
+        datavalue =dbmodules.pool(dbQuery, "","l","bpool")
+        print("listed",datavalue)
+        datavalue['result'] = "Success"
+        return datavalue        
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#Create Pool
+def createFundTransferApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "offering"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "createfundtransfer":"fund1",
+            "fundpass":"ahgsh"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#List Fund Transfer
+def listFundTransferApi(request):
+    try:
+        dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # modulename='LISTHISTORY'
+        # request['modulename'] = modulename
+        datavalue =dbmodules.fund(dbQuery, "","l","bfund")
+        print("listed",datavalue)
+        datavalue['result'] = "Success"
+        return datavalue        
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#Create Bank Details
+def createBankApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "offering"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "createbankdetails":"bank1",
+            "bankpass":"anbsahg"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+
+#List Bank Details
+def listBankDetailsApi(request):
+    try:
+        dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # modulename='LISTHISTORY'
+        # request['modulename'] = modulename
+        datavalue =dbmodules.bank(dbQuery, "","l","bank")
+        print("listed",datavalue)
+        datavalue['result'] = "Success"
+        return datavalue        
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#Create Bank Admin
+def createBankAdminApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "offering"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "createbankadmin":"admin1",
+            "adminpass":"admin"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#List Bank Admin
+def listBankAdminApi(request):
+    try:
+        dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # modulename='LISTHISTORY'
+        # request['modulename'] = modulename
+        datavalue =dbmodules.bankadmin(dbQuery, "","l","bankadmin")
+        print("listed",datavalue)
+        datavalue['result'] = "Success"
+        return datavalue        
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+
+def createCardApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "offering"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "cardnumber":"980",
+            "name":"rfyrgh"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+
+
+
+#LIST CARD APPLICATION
+def listCardApplicationsApi(request):
+    try:
+        dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # modulename='LISTHISTORY'
+        # request['modulename'] = modulename
+        datavalue =dbmodules.card(dbQuery, "","l","card")
+        print("listed",datavalue)
+        datavalue['result'] = "Success"
+        return datavalue        
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+
+
+def createTransactionDevaswomsApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "offering"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "transactionname":"transactio1",
+            "name":"ncsjnj"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+
+
+#LIST TRANSACTION DEVASWOM
+def listTransactionsDevaswomsApi(request):
+    try:
+        # dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # # modulename='LISTHISTORY'
+        # # request['modulename'] = modulename
+        # datavalue =dbmodules.transactionDevaswom(dbQuery, "","l","card")
+        # print("listed",datavalue)
+        # datavalue['result'] = "Success"
+        # return datavalue 
+        print("REQUEST########",request)
+        dict={
+            "transactionname":"transactio1",
+            "name":"ncsjnj"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict       
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+
+# DROPDOWN BANK    
+def drpdwnBankApi(request):
+    try:
+        dbQuery = {"bank_templeid":request['datafrm']['templeid']}
+        # request['database'] = "temple"
+        # request['collection'] = "diety"
+        # modulename="DROPDOWNDIETY"
+        # request['modulename']=modulename
+        datavalue =dbmodules.bank({},dbQuery,"l","bank")
+        print("listed",datavalue)
+        return datavalue  
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+# DROPDOWN TEMPLE    
+def drpdwnTempleApi(request):
+    try:
+        dbQuery = {"bank_templeid":request['datafrm']['templeid']}
+        # request['database'] = "temple"
+        # request['collection'] = "diety"
+        # modulename="DROPDOWNDIETY"
+        # request['modulename']=modulename
+        datavalue =dbmodules.bank({},dbQuery,"l","bank")
+        print("listed",datavalue)
+        return datavalue  
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+# DROPDOWN IFSC   
+def drpdwnIFSCApi(request):
+    try:
+        dbQuery = {"bank_templeid":request['datafrm']['templeid']}
+        # request['database'] = "temple"
+        # request['collection'] = "diety"
+        # modulename="DROPDOWNDIETY"
+        # request['modulename']=modulename
+        datavalue =dbmodules.bank({},dbQuery,"l","bank")
+        print("listed",datavalue)
+        return datavalue  
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#LIST FINANCE ACTIVITY
+def listFinActivityApi(request):
+    try:
+        # dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # # modulename='LISTHISTORY'
+        # # request['modulename'] = modulename
+        # datavalue =dbmodules.activity(dbQuery, "","l","activity")
+        # print("listed",datavalue)
+        # datavalue['result'] = "Success"
+        # return datavalue 
+        print("REQUEST########",request)
+        dict={
+            "financetype":"goldloan",
+            "name":"Hlk"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict       
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+
+#CREATE RECONCILIATION
+def createReconciliationApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "reconciliation"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "reconciliationtype":"reconcilaition2",
+            "rename":"type2"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#LIST RECONCILIATION ACTIVITY
+def listReconciliationApi(request):
+    try:
+        # dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # # modulename='LISTHISTORY'
+        # # request['modulename'] = modulename
+        # datavalue =dbmodules.reconsiliation(dbQuery, "","l","recon")
+        # print("listed",datavalue)
+        # datavalue['result'] = "Success"
+        # return datavalue 
+        print("REQUEST########",request)
+        dict={
+            "reconciliationtype":"re1",
+            "rename":"standard"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict       
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+
+#CREATE REQUEST MONEY
+def createRequestMoneyApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "reqmoney"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "getreqmoneytype":"reconcilaition2",
+            "getrmoney":"money1"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+# DROPDOWN DEVASWOM
+def dropdownDevaswomApi(request):
+    try:
+        dbQuery = {"bank_templeid":request['datafrm']['templeid']}
+        # request['database'] = "temple"
+        # request['collection'] = "devaswom"
+        # modulename="DROPDOWNDEVASWOM"
+        # request['modulename']=modulename
+        datavalue =dbmodules.devaswom({},dbQuery,"l","bank")
+        print("listed",datavalue)
+        return datavalue  
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+# SUPER ADMIN
+#CREATE REQUEST MONEY
+def createLordsApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "lords"
+    #     modulename='CREATELORDS'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "lordname":"shiva",
+            "lordtype":"jags"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#LIST LORDS
+def listLordsApi(request):
+    try:
+        # dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # # modulename='LISTLORD'
+        # # request['modulename'] = modulename
+        # datavalue =dbmodules.lords(dbQuery, "","l","lords")
+        # print("listed",datavalue)
+        # datavalue['result'] = "Success"
+        # return datavalue 
+        print("REQUEST########",request)
+        dict={
+            "lordname":"shiva",
+            "lordtlist":"5"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict       
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+
+def createForgotPinApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "forgotpin"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "pinumber":"980",
+            "acholdername":"jason"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+def getTransactionDevaswomApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "devaswom"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "date":"6/9/21",
+            "transaction":"5"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+def getTransactionBankApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "bank"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "date":"10/10/2021",
+            "transaction":"10"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#LIST BANK
+def listTransactionBankApi(request):
+    try:
+        # dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # # modulename='LISTLORD'
+        # # request['modulename'] = modulename
+        # datavalue =dbmodules.bank(dbQuery, "","l","bank")
+        # print("listed",datavalue)
+        # datavalue['result'] = "Success"
+        # return datavalue 
+        print("REQUEST########",request)
+        dict={
+            "list":"banklist",
+            "banklist":"20"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict       
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+
+def getTransactionTempleApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "templetra"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.temple("",datadict,"i","temple")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "date":"15/10/2021",
+            "templtrans":"20"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#LIST TRANSACTION TEMPLE
+def listTransactionTempleApi(request):
+    try:
+        # dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # # modulename='LISTLORD'
+        # # request['modulename'] = modulename
+        # datavalue =dbmodules.templetra(dbQuery, "","l","templetra")
+        # print("listed",datavalue)
+        # datavalue['result'] = "Success"
+        # return datavalue 
+        print("REQUEST########",request)
+        dict={
+            "templtra":"listtrans",
+            "templelist":"05"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict       
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+
+def createBlockTempleApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "block"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.block("",datadict,"i","block")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "blocktemp":"tempname",
+            "reason":"reason"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#LIST BLOCK TEMPLE
+def listBlockTempleApi(request):
+    try:
+        # dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # # modulename='LISTLORD'
+        # # request['modulename'] = modulename
+        # datavalue =dbmodules.block(dbQuery, "","l","block")
+        # print("listed",datavalue)
+        # datavalue['result'] = "Success"
+        # return datavalue 
+        print("REQUEST########",request)
+        dict={
+            "blocklist":"blocklist1",
+            "blocktype":"blocktype"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict       
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+
+def createBlockDevaswomApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "block"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.block("",datadict,"i","block")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "blockdevaswom":"devaswomname",
+            "reason":"reason"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#LIST BLOCK DEVASWOM
+def listBlockDevaswomApi(request):
+    try:
+        # dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # # modulename='LISTLORD'
+        # # request['modulename'] = modulename
+        # datavalue =dbmodules.block(dbQuery, "","l","block")
+        # print("listed",datavalue)
+        # datavalue['result'] = "Success"
+        # return datavalue 
+        print("REQUEST########",request)
+        dict={
+            "blocklist":"blocklist2",
+            "blocktype":"blocktype"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict       
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+
+def createBlockCustomerApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "block"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.block("",datadict,"i","block")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "blockcustomer":"customername",
+            "reason":"reason"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#LIST BLOCK CUSTOMER
+def listBlockCustomerApi(request):
+    try:
+        # dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # # modulename='LISTLORD'
+        # # request['modulename'] = modulename
+        # datavalue =dbmodules.block(dbQuery, "","l","block")
+        # print("listed",datavalue)
+        # datavalue['result'] = "Success"
+        # return datavalue 
+        print("REQUEST########",request)
+        dict={
+            "blocklist":"blocklist3",
+            "blocktype":"customer"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict       
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+
+def createBlockCardApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "block"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.block("",datadict,"i","block")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "blockcard":"cardname",
+            "type":"card"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#LIST BLOCK CARD
+def listBlockCardApi(request):
+    try:
+        # dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # # modulename='LISTLORD'
+        # # request['modulename'] = modulename
+        # datavalue =dbmodules.block(dbQuery, "","l","block")
+        # print("listed",datavalue)
+        # datavalue['result'] = "Success"
+        # return datavalue 
+        print("REQUEST########",request)
+        dict={
+            "blocklist":"blocklist3",
+            "blocktype":"card"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict       
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+
+def createBlockBankApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "block"
+    #     modulename='CREATETEMPLE'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.block("",datadict,"i","block")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "blockbank":"bankname",
+            "type":"bank1"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#LIST BLOCK BANK
+def listBlockBankApi(request):
+    try:
+        # dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # # modulename='LISTLORD'
+        # # request['modulename'] = modulename
+        # datavalue =dbmodules.block(dbQuery, "","l","block")
+        # print("listed",datavalue)
+        # datavalue['result'] = "Success"
+        # return datavalue 
+        print("REQUEST########",request)
+        dict={
+            "blocklist":"blocklist4",
+            "blocktype":"bank"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict       
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+
+#LIST TRANSACTION DEVASWOM
+def superListTransDevaApi(request):
+    try:
+        # dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # # modulename='LISTLORD'
+        # # request['modulename'] = modulename
+        # datavalue =dbmodules.devaswom(dbQuery, "","l","devaswom")
+        # print("listed",datavalue)
+        # datavalue['result'] = "Success"
+        # return datavalue 
+        print("REQUEST########",request)
+        dict={
+            "translist":"list3",
+            "transtype":"bank"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict       
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+
+#LIST ACCOUNT STATEMENT
+def listAcctStatmeentApi(request):
+    try:
+        # dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # # modulename=''
+        # # request['modulename'] = modulename
+        # datavalue =dbmodules.bank(dbQuery, "","l","bank")
+        # print("listed",datavalue)
+        # datavalue['result'] = "Success"
+        # return datavalue 
+        print("REQUEST########",request)
+        dict={
+            "acctstatement":"statement1",
+            "statementtype":"daily"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict       
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+
+# DROPDOWN ACTVITIES   
+def dropdownActivityTypeApi(request):
+    try:
+        #dbQuery = {"diety_templeid":request['datafrm']['templeid']}
+        # request['database'] = "temple"
+        # request['collection'] = "diety"
+        # modulename="DROPDOWNDIETY"
+        # request['modulename']=modulename
+        #datavalue =dbmodules.diety({},dbQuery,"l","diety")
+        # print("listed",datavalue)
+        # return datavalue 
+        print("REQUEST########",request)
+        dict={
+            "activity":"activity1",
+            "activitytype":"daily"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict        
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+# DROPDOWN ACTVITIES   
+def superDropDownDevaswomApi(request):
+    try:
+        #dbQuery = {"diety_templeid":request['datafrm']['templeid']}
+        # request['database'] = "temple"
+        # request['collection'] = "diety"
+        # modulename="DROPDOWNDIETY"
+        # request['modulename']=modulename
+        #datavalue =dbmodules.diety({},dbQuery,"l","diety")
+        # print("listed",datavalue)
+        # return datavalue 
+        print("REQUEST########",request)
+        dict={
+            "devaswomdrop":"drop1",
+            "devaswomtype":"set1"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict        
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+# DROPDOWN ACTVITIES   
+def superDropDownTempleApi(request):
+    try:
+        #dbQuery = {"diety_templeid":request['datafrm']['templeid']}
+        # request['database'] = "temple"
+        # request['collection'] = "diety"
+        # modulename="DROPDOWNDIETY"
+        # request['modulename']=modulename
+        #datavalue =dbmodules.diety({},dbQuery,"l","diety")
+        # print("listed",datavalue)
+        # return datavalue 
+        print("REQUEST########",request)
+        dict={
+            "templedrop":"drop2",
+            "templetype":"set1"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict        
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+def createSuperPoojaApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "pooja"
+    #     modulename='CREATESUPERPOOJA'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.block("",datadict,"i","block")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "pooja":"poojaname",
+            "type":"pooja1"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
+        return str(e)
+
+#LIST POOJA
+def listSuperPoojaApi(request):
+    try:
+        # dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+        # # modulename=''
+        # # request['modulename'] = modulename
+        # datavalue =dbmodules.pooja(dbQuery, "","l","pooja")
+        # print("listed",datavalue)
+        # datavalue['result'] = "Success"
+        # return datavalue 
+        print("REQUEST########",request)
+        dict={
+            "poojaname":"pooja1",
+            "poojalist":"list"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict       
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED",str(e))
+        for frame in traceback.extract_tb(sys.exc_info()[2]):
+            fname,lineno,fn,text = frame
+            print( "Error in %s on line %d", fname, lineno)
+
+# def createSuperAccountApi(request):
+#     try:
+
+#        #     # request['database'] = "temple"
+#     #     # request['collection'] = "bank"
+#     #     modulename='CREATESUPERPOOJA'
+#     #     request['modulename'] = modulename
+#     #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+#     #     # print(request['datafrm']['offering_name'])
+#     #     datadict={}
+#     #     datadict['temple_name'] = request['datafrm']['offering_name']
+#     #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+#     #     datadict['offering_descr'] = request['datafrm']['offering_description']
+#     #     datadict['offering_templeid'] = request['datafrm']['templeid']
+#     #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+#     #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+#     #     datadict['createdat'] = str(datetime.now())
+#     #     countdocs = dbmodules.temple({},datadict,"c","temple")
+#     #     datadict['offering_id'] = int(countdocs) + 1
+#     #     datadict['status'] = 1
+#     #     print("Datadict*************",datadict)
+#     #     datavalue =dbmodules.bank("",datadict,"i","bank")
+#     #     print("insert",datavalue)
+#     #     respdict={}
+#     #     respdict['respfrmdb'] = {"response":"Success"}
+#     #     respdict['result']="Success"
+#     #     # del datadict['_id']
+#     #     # print("type------",type(datadict))
+#     #     # print("respdict!!!!!!!!!",datadict)
+#     #     return respdict
+#     # except ValueError as e:
+#     #     print("EXCEPTION1")
+#     #     return str(e)
+#     # except Exception as e:
+#     #     print("FAILED")
+#     #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+#     #         fname,lineno,fn,text = frame
+#     #         print( "Error in %s on line %d", fname, lineno)
+#     #     return str(e)
+#         print("REQUEST########",request)
+#         dict={
+#             "pooja":"poojaname",
+#             "type":"pooja1"
+#         }
+#         print("dict***",dict)
+#         respdict={}
+#         respdict["respfrmdb"]=dict
+#         respdict["result"]="Success"
+#         return respdict
+#     except ValueError as e:
+#         print("EXCEPTION1")
+#         return str(e)
+#     except Exception as e:
+#         print("FAILED")
+#         # for frame in traceback.extract_tb(sys.exc_info()[2]):
+#         #     fname,lineno,fn,text = frame
+#         #     print( "Error in %s on line %d", fname, lineno)
+#         return str(e)
+
+# #LIST POOJA
+# def listSuperPoojaApi(request):
+#     try:
+#         # dbQuery = {"statement_templeid":request['datafrm']['templeid']}
+#         # # modulename=''
+#         # # request['modulename'] = modulename
+#         # datavalue =dbmodules.pooja(dbQuery, "","l","pooja")
+#         # print("listed",datavalue)
+#         # datavalue['result'] = "Success"
+#         # return datavalue 
+#         print("REQUEST########",request)
+#         dict={
+#             "poojaname":"pooja1",
+#             "poojalist":"list"
+#         }
+#         print("dict***",dict)
+#         respdict={}
+#         respdict["respfrmdb"]=dict
+#         respdict["result"]="Success"
+#         return respdict       
+#     except ValueError as e:
+#         print("EXCEPTION1")
+#         return str(e)
+#     except Exception as e:
+#         print("FAILED",str(e))
+#         for frame in traceback.extract_tb(sys.exc_info()[2]):
+#             fname,lineno,fn,text = frame
+#             print( "Error in %s on line %d", fname, lineno)
+
+def createSuperDevaswomApi(request):
+    try:
+
+       #     # request['database'] = "temple"
+    #     # request['collection'] = "pooja"
+    #     modulename='CREATESUPERPOOJA'
+    #     request['modulename'] = modulename
+    #     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    #     # print(request['datafrm']['offering_name'])
+    #     datadict={}
+    #     datadict['temple_name'] = request['datafrm']['offering_name']
+    #     datadict['offering_rateid'] = request['datafrm']['offering_rateid']
+    #     datadict['offering_descr'] = request['datafrm']['offering_description']
+    #     datadict['offering_templeid'] = request['datafrm']['templeid']
+    #     # datadict['diety_name'] = getDietyName(request['datafrm']['deity'])
+    #     # datadict['amount'] = getAmoutName(request['datafrm']['offering_rateid'])
+    #     datadict['createdat'] = str(datetime.now())
+    #     countdocs = dbmodules.temple({},datadict,"c","temple")
+    #     datadict['offering_id'] = int(countdocs) + 1
+    #     datadict['status'] = 1
+    #     print("Datadict*************",datadict)
+    #     datavalue =dbmodules.block("",datadict,"i","block")
+    #     print("insert",datavalue)
+    #     respdict={}
+    #     respdict['respfrmdb'] = {"response":"Success"}
+    #     respdict['result']="Success"
+    #     # del datadict['_id']
+    #     # print("type------",type(datadict))
+    #     # print("respdict!!!!!!!!!",datadict)
+    #     return respdict
+    # except ValueError as e:
+    #     print("EXCEPTION1")
+    #     return str(e)
+    # except Exception as e:
+    #     print("FAILED")
+    #     for frame in traceback.extract_tb(sys.exc_info()[2]):
+    #         fname,lineno,fn,text = frame
+    #         print( "Error in %s on line %d", fname, lineno)
+    #     return str(e)
+        print("REQUEST########",request)
+        dict={
+            "pooja":"poojaname",
+            "type":"pooja1"
+        }
+        print("dict***",dict)
+        respdict={}
+        respdict["respfrmdb"]=dict
+        respdict["result"]="Success"
+        return respdict
+    except ValueError as e:
+        print("EXCEPTION1")
+        return str(e)
+    except Exception as e:
+        print("FAILED")
+        # for frame in traceback.extract_tb(sys.exc_info()[2]):
+        #     fname,lineno,fn,text = frame
+        #     print( "Error in %s on line %d", fname, lineno)
         return str(e)

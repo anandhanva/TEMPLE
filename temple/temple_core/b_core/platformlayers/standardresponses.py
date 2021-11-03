@@ -465,21 +465,105 @@ commonValues['LISTFUNDTRANSFER'] = {
                             "methodtype" : "POST"
                         }
 
-commonValues['CREATEBANKDETAILS'] = {
+commonValues['DROPDOWNBANK'] = {
                             # "modulename":"checkUser",
                             "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/create_bankdetails",
-                            "reqtype" : "CREATEBANKDETAILSREQ",
+                            "endpoint" : "/dropdown_bank",
+                            "reqtype" : "DROPDOWNBANKREQ",
                             "methodtype" : "POST"
                         }
 
-commonValues['LISTBANKDETAILS'] = {
+commonValues['DROPDOWNTEMPLE'] = {
                             # "modulename":"checkUser",
                             "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/list_bankdetails",
-                            "reqtype" : "LISTBANKDETAILSREQ",
+                            "endpoint" : "/dropdown_temple",
+                            "reqtype" : "DROPDOWNTEMPLEREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['DROPDOWNIFSC'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/dropdown_IFSC",
+                            "reqtype" : "DROPDOWNIFSCREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LISTFINANCEACTIVITY'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_financeactivity",
+                            "reqtype" : "LISTFINANCEACTIVITYREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['CREATERECONCILIATION'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_reconciliation",
+                            "reqtype" : "CREATERECONCILIATIONREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LISTRECONCILIATION'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_reconciliation",
+                            "reqtype" : "LISTRECONCILIATIONREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['CREATEFORGOTPIN'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_forgotpin",
+                            "reqtype" : "CREATEFORGOTREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['CREATETRANSACTIONDEVASWOM'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_transactiondevaswom",
+                            "reqtype" : "CREATETRANSACTIONREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LISTTRANSACTIONDEVASWOM'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_transactiondevaswom",
+                            "reqtype" : "LISTTRANSACTIONDEVASWOMREQ",
+                            "methodtype" : "POST"
+                        }
+
+
+#SUPER ADMIN---------------------------------------------------------------------------
+
+commonValues['CREATEBANK'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_bank",
+                            "reqtype" : "CREATEBANKREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LISTBANK'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_bank",
+                            "reqtype" : "LISTBANKREQ",
                             "methodtype" : "POST"
                         }
 
@@ -519,38 +603,237 @@ commonValues['LISTCARDALLOCATION'] = {
                             "methodtype" : "POST"
                         }
 
-commonValues['CREATETRANSACTIONDEVASWOM'] = {
+commonValues['CREATEREQUESTMONEY'] = {
                             # "modulename":"checkUser",
                             "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/create_transactiondevaswom",
-                            "reqtype" : "CREATETRANSACTIONREQ",
+                            "endpoint" : "/create_reqmoney",
+                            "reqtype" : "CREATEREQUESTMONEYREQ",
                             "methodtype" : "POST"
                         }
 
-commonValues['LISTTRANSACTIONDEVASWOM'] = {
+commonValues['CREATEFUNDTRANSFER'] = {
                             # "modulename":"checkUser",
                             "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/list_transactiondevaswom",
-                            "reqtype" : "LISTTRANSACTIONDEVASWOMREQ",
+                            "endpoint" : "/create_fundtransfer",
+                            "reqtype" : "CREATEFUNDTRANSFERREQ",
                             "methodtype" : "POST"
                         }
 
-commonValues['DROPDOWNBANK'] = {
+commonValues['DROPDOWNDEVASWOM'] = {
                             # "modulename":"checkUser",
                             "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/dropdown_bank",
-                            "reqtype" : "DROPDOWNBANKREQ",
+                            "endpoint" : "/dropdown_devaswom",
+                            "reqtype" : "DROPDOWNDEVASWOMREQ",
                             "methodtype" : "POST"
                         }
 
-commonValues['DROPDOWNTEMPLE'] = {
+commonValues['CREATELORDS'] = {
                             # "modulename":"checkUser",
                             "server" : ipconstants.templeBcoreServers,
                             "headerz" : {"Content-Type":"application/json"},
-                            "endpoint" : "/dropdown_temple",
-                            "reqtype" : "DROPDOWNTEMPLEREQ",
+                            "endpoint" : "/create_lords",
+                            "reqtype" : "CREATELORDSREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LISTLORDS'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_lords",
+                            "reqtype" : "LISTLORDSREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['GETTRANSACTIONDEVASWOM'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/get_transactiondevaswom",
+                            "reqtype" : "GETTRASNSACTIONDEVASWOMREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['GETTRANSACTIONBANK'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/get_transactionbank",
+                            "reqtype" : "GETTRASNSACTIONDBANKREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LISTTRANSACTIONBANK'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_transactionbank",
+                            "reqtype" : "LISTTRASNSACTIONDBANKREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['GETTRANSACTIONTEMPLE'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/get_transactiontemple",
+                            "reqtype" : "GETTRASNSACTIONDTEMPLEREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LISTTRANSACTIONTEMPLE'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_transactiontemple",
+                            "reqtype" : "LISTTRASNSACTIONTEMPLEREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['CREATEBLOCKTEMPLE'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_blocktemple",
+                            "reqtype" : "CREATEBLOCKTEMPLEREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LISTBLOCKTEMPLE'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_blocktemple",
+                            "reqtype" : "LISTBLOCKTEMPLEREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['CREATEBLOCKDEVASWOM'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_blockdevaswom",
+                            "reqtype" : "CREATEBLOCKDEVASWOMREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LISTBLOCKDEVASWOM'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_blockdevaswom",
+                            "reqtype" : "LISTBLOCKDEVASWOMREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['CREATEBLOCKCUSTOMER'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_blockcustomer",
+                            "reqtype" : "CREATEBLOCKCUSTOMERREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LISTBLOCKCUSTOMER'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_blockcustomer",
+                            "reqtype" : "LISTBLOCKCUSTOMERREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['CREATEBLOCKCARD'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_blockcard",
+                            "reqtype" : "CREATEBLOCKCARDREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LISTBLOCKCARD'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_blockcard",
+                            "reqtype" : "LISTBLOCKCARDREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['CREATEBLOCKBANK'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_blockbank",
+                            "reqtype" : "CREATEBLOCKBANKREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LISTBLOCKBANK'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_blockbank",
+                            "reqtype" : "LISTBLOCKBANKREQ",
+                            "methodtype" : "POST"
+                        }
+
+
+commonValues['LISTACCOUNTSTATEMENT'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_acctstatement",
+                            "reqtype" : "LISTACCOUNTSTATEMENTREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['DROPDOWNACTIVITYTYPE'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/dropdown_activitytype",
+                            "reqtype" : "DROPDOWNACTIVITYTYPEREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['SUPERDROPDOWNDEVASWOM'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/dropdown_superdevaswom",
+                            "reqtype" : "SUPERDROPDOWNDEVASWOMREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['SUPERDROPDOWNTEMPLE'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/dropdown_supertemple",
+                            "reqtype" : "SUPERDROPDOWNTEMPLEREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['CREATESUPERPOOJA'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/create_superpooja",
+                            "reqtype" : "CREATESUPERPOOJAREQ",
+                            "methodtype" : "POST"
+                        }
+
+commonValues['LISTSUPERPOOJA'] = {
+                            # "modulename":"checkUser",
+                            "server" : ipconstants.templeBcoreServers,
+                            "headerz" : {"Content-Type":"application/json"},
+                            "endpoint" : "/list_superpooja",
+                            "reqtype" : "LISTSUPERPOOJAREQ",
                             "methodtype" : "POST"
                         }
