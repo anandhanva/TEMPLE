@@ -1,0 +1,2 @@
+userLogin = "templeapploginapi"
+otpVerification ="templeappotpverificationapi"
